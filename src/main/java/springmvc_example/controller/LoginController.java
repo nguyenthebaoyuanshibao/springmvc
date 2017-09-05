@@ -30,6 +30,8 @@ public class LoginController {
 	@RequestMapping(value= {"/", "/home"}, method=RequestMethod.GET)
 	public ModelAndView home(){
 		ModelAndView model = new ModelAndView();
+		model.addObject("greeting", "Welcome to the online store!");
+		model.addObject("tagline", "The only and only online store");
 		model.setViewName("home/home");
 		
 		return model;
