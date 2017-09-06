@@ -28,6 +28,11 @@
 				        <span class="glyphicon-info-sign glyphicon" /></span> OurPages
 				  </a>
 			 </p>
+			 <p>
+			       <a href=" <spring:url value=  "/user/list"/> " class="btn btn-primary"> 
+				        <span class="glyphicon-info-sign glyphicon" /></span> Admin Page
+				  </a>
+			 </p>
 		    </div>
 	    </div>
 	    </div>

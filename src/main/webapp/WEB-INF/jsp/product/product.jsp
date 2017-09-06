@@ -19,21 +19,21 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<h3>${product.name}</h3>
+				<h3>${product.productName}</h3>
 				<p>${product.description}</p>
 				<p>
-					<strong>Item Code : </strong><span class="label label-warning">${product.productId}</span>
+					<strong>Item Code : </strong><span class="label label-warning">${products.productId}</span>
 				</p>
 				<p>
-					<strong>manufacturer</strong> : ${product.manufacturer}
+					<strong>manufacturer</strong> : ${products.manufacturer}
 				</p>
 				<p>
-					<strong>category</strong> : ${product.category}
+					<strong>category</strong> : ${products.categoryId}
 				</p>
 				<p>
-					<strong>Availble units in stock </strong> : ${product.unitsInStock}
+					<strong>Availble units in stock </strong> : ${products.unitsInStock}
 				</p>
-				<h4>${product.unitPrice}USD</h4>
+				<h4>${products.unitPrice}USD</h4>
 				
 				<p>
 					<a href="<spring:url value="/products" />" class="btn btn-default">

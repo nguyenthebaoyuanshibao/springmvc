@@ -37,7 +37,8 @@
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h3>${product.name}</h3>
+							<h3>${product.productName}</h3>
+							<h3>${product.productId}</h3>
 							<p>${product.description}</p>
 							<p>${product.unitPrice}USD</p>
 							<p>Available ${product.unitsInStock} units in stock</p>

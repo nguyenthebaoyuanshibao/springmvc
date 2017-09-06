@@ -73,13 +73,22 @@ public class ProductController
 	 * @param argCategory
 	 * @return
 	 */
-	@RequestMapping("/{category}")
-	public String getProductsByCategory(Model model, @PathVariable(value="category") String argCategory)
-	{
-		model.addAttribute("products", this.productService.getProductsByCategory(argCategory));
-		return "products";
+	@RequestMapping("/{categoryId}")
+	public ModelAndView getProductsByCategory(ModelAndView model, @PathVariable(value="categoryId") String argCategory)
+	{   
+		model.addObject("products", this.productService.getProductsByCategory(argCategory));
+		model.setViewName("product/products");
+		return model;
 	}
 	
+	@RequestMapping("/product")
+	public ModelAndView getProductById(@RequestParam("id") String argProductId)
+	{  
+	   ModelAndView model = new ModelAndView();
+		model.addObject("products", this.productService.getProductById(argProductId));
+		model.setViewName("product/product");
+		return model;
+	}
 	/**
 	 * @param argFilterParams
 	 * @param argModel
@@ -92,18 +101,5 @@ public class ProductController
 		return "products";
 	}
 	
-	/**
-	 * @param argProductId
-	 * @param argModel
-	 * @return
-	 */
-	@RequestMapping("/product")
-	public ModelAndView getProductById(@RequestParam("id") String argProductId)
-	{  
-	   ModelAndView model = new ModelAndView();
-		model.addObject("product", this.productService.getProductById(argProductId));
-		model.setViewName("product/product");
-		return model;
-	}
 	
 }

@@ -3,7 +3,7 @@ package springmvc_example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springmvc_example.dao.ProductRepository;
+import springmvc_example.dao.ProductDao;
 import springmvc_example.model.Product;
 
 
@@ -15,7 +15,7 @@ import springmvc_example.model.Product;
 public class OrderServiceImpl implements OrderService
 {
 	@Autowired
-	private ProductRepository productRepository;   
+	private ProductDao productRepository;   
 	
 	/* (non-Javadoc)
 	 * @see com.packt.webstore.service.OrderService#processOrder(java.lang.String, java.lang.Integer)

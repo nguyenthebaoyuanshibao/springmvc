@@ -37,17 +37,16 @@ public class UserController {
 	public ModelAndView changePass(@PathVariable("username") String username) {
 		ModelAndView model = new ModelAndView("user/change_pass");
 		model.addObject("user", userService.findUserbyUsername(username));
-		//model.addObject("msg", "Password change successful!");
-		
+				
 		return model;
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String save(@ModelAttribute("user") UserInfo user) {
-		ModelAndView model = new ModelAndView();
+	public ModelAndView save(@ModelAttribute("user") UserInfo user) {
+		ModelAndView model = new ModelAndView("user/change_pass");
 		userService.update(user.getUsername(), user.getPassword());
-		//model.addObject("msg", "Password change successful!");
-	     return "redirect:/user/changePass/{username}";
+		model.addObject("msg", "Password change successful!");
+	   return model;
 		
 		
 	}
@@ -78,6 +77,19 @@ public class UserController {
 		
 		
 	}
+	@RequestMapping(value="/removeUser/{username}", method=RequestMethod.GET)
+	public ModelAndView removeUser(@PathVariable("username") String username) {
+		ModelAndView model = new ModelAndView("user/removeUser");
+		model.addObject("user", userService.findUserbyUsername(username));
+				
+		return model;
+	}
 	
-	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public ModelAndView delete(@ModelAttribute("user") UserInfo user) {
+		ModelAndView model = new ModelAndView("user/removeUser");
+		userService.delete(user.getUsername());
+		model.addObject("msg", "User removed successful!");
+	   return model;
+	}	
 }

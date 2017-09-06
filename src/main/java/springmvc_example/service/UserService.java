@@ -14,6 +14,8 @@ public interface UserService {
 	
 	public void add(String username, String password);
 	
+	public void delete(String username);
+	
 	public boolean userExists(String username);
 
 }

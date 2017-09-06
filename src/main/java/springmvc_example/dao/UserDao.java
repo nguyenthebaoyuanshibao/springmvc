@@ -15,5 +15,7 @@ public interface UserDao {
 	
 	public void add(String username, String password);
 	
+	public void delete(String username);
+	
 	public boolean userExists(String username);
 }

@@ -8,15 +8,14 @@ import java.math.BigDecimal;
  */
 public class Product
 {
-	private String productId 		= null;
-	private String name 			= null;
+	private String productId 		;
+	private String productName 			;
 	private BigDecimal unitPrice 	= null;
 	private String description		= null;
 	private String manufacturer	 	= null;
-	private String category			= null;
+	private String categoryId			;
 	private Integer unitsInStock		= null;
 	private Integer unitsInOrder		= null;
-	private Boolean discontinued	= Boolean.FALSE;
 	private String condition		= null;
 	
 	public Product()
@@ -27,7 +26,7 @@ public class Product
 	public Product(String argProductId, String arName, BigDecimal arUnitPrice)
 	{
 		this.productId = argProductId;
-		this.name = arName;
+		this.productName = arName;
 		this.unitPrice = arUnitPrice;
 	}
 	
@@ -39,13 +38,13 @@ public class Product
 	{
 		this.productId = argProductId;
 	}
-	public String getName()
+	public String getProductName()
 	{
-		return this.name;
+		return this.productName;
 	}
-	public void setName(String argName)
+	public void setProductName(String argName)
 	{
-		this.name = argName;
+		this.productName = argName;
 	}
 	public BigDecimal getUnitPrice()
 	{
@@ -71,13 +70,13 @@ public class Product
 	{
 		this.manufacturer = argManufacturer;
 	}
-	public String getCategory()
+	public String getCategoryId()
 	{
-		return this.category;
+		return this.categoryId;
 	}
-	public void setCategory(String argCategory)
+	public void setCategoryId(String argCategory)
 	{
-		this.category = argCategory;
+		this.categoryId = argCategory;
 	}
 	public Integer getUnitsInStock()
 	{
@@ -95,14 +94,7 @@ public class Product
 	{
 		this.unitsInOrder = argUnitsInOrder;
 	}
-	public Boolean getDiscontinued()
-	{
-		return this.discontinued;
-	}
-	public void setDiscontinued(Boolean argDiscontinued)
-	{
-		this.discontinued = argDiscontinued;
-	}
+	
 	public String getCondition()
 	{
 		return this.condition;
@@ -145,6 +137,6 @@ public class Product
 	@Override
 	public String toString()
 	{
-		return "Product [productId=" + productId + ", name=" + name + "]";
+		return "Product [productId=" + productId + ", name=" + productName + "]";
 	}
 }

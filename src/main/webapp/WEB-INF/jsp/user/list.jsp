@@ -5,11 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Users List</title>
 </head>
 <body>
-    <a href='<c:url value="/logout" />'>Logout</a>
+    <p>
+			       <a href=" <spring:url value=  "/logout"/> " class="btn btn-primary"> 
+				        <span class="glyphicon-info-sign glyphicon" /></span> Logout
+				  </a>
+    </p>
     <br/>
+    <p>
+			       <a href=" <spring:url value=  "/products"/> " class="btn btn-primary"> 
+				        <span class="glyphicon-info-sign glyphicon" /></span> OurPages
+				  </a>
+   </p>
     <table border="1">
         <tr>
             <td>Username</td>
@@ -23,6 +34,10 @@
                     <a href="${changePassURL }/${user.username}">ChangePass</a>
                 </td>
                 
+                 <td>
+                    <spring:url value="/user/removeUser" var="removeUserURL" />
+                    <a href="${removeUserURL }/${user.username}">Remove</a>
+                </td>
             </tr>
         </c:forEach>
     </table>

@@ -7,7 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springmvc_example.dao.ProductRepository;
+import springmvc_example.dao.ProductDao;
 import springmvc_example.model.Product;
 
 
@@ -19,7 +19,7 @@ import springmvc_example.model.Product;
 public class ProductServiceImpl implements ProductService
 {
 	@Autowired
-	private ProductRepository productRepository; 
+	private ProductDao productRepository; 
 	
 	/* (non-Javadoc)
 	 * @see com.packt.webstore.service.OrderService#getAllProducts()

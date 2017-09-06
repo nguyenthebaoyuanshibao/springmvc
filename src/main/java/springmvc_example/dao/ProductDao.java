@@ -12,7 +12,7 @@ import springmvc_example.model.Product;
  * @author life
  *
  */
-public interface ProductRepository
+public interface ProductDao
 {
 	List<Product> getAllProducts();
 	Product getProductById(String argProductId);

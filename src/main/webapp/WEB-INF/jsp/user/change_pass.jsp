@@ -6,11 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Change Pass</title>
 </head>
 <body>
     <spring:url value="/user/save" var="saveURL" />
-    <form:form method ="post" modelAttribute="user" action="${saveURL }">
+    <form:form method ="post" modelAttribute="user" action="${saveURL }" >
     <form:hidden path="username" />
         <table border="1">
              <tr>
@@ -21,7 +23,7 @@
                  <td>${user.username }</td>
              </tr>
              <tr>
-                 <td>Password: </td>
+                 <td>New Password: </td>
                  <td><form:password path="password" /></td>
              </tr>
              <tr>
@@ -29,6 +31,18 @@
                  <td><button type="submit">Change Pass</button></td>
              </tr>
         </table>
+        <section>
+            <div>
+                <td>
+                    <p>
+			           <a href=" <spring:url value=  "/user/list"/> " class="btn btn-primary"> 
+				        <span class="glyphicon-info-sign glyphicon" /></span> Admin Page
+				      </a>
+			       </p>
+                   
+                </td>
+            </div>
+        </section>
     </form:form>
 
 </body>

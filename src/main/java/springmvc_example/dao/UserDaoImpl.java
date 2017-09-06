@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
 	private SqlParameterSource getSqlParameterSource(String username, String password) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		if(username!=null) {
-			parameterSource.addValue("username", username);
+			parameterSource.addValue("user_name", username);
 		}
 		if(password!=null) {
 			parameterSource.addValue("password", password);
@@ -81,6 +81,12 @@ public class UserDaoImpl implements UserDao {
 		sql = "insert into user_roles(username,role) values (:username,'ROLE_USER')";
 		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(username, password));
 
+	}
+	
+	public void delete(String username) {
+		String sql = "delete from users where username= :username";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(username, null));
+		
 	}
 	
 	
