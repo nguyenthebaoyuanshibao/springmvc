@@ -74,18 +74,18 @@ public class ProductController
 	 * @return
 	 */
 	@RequestMapping("/{categoryId}")
-	public ModelAndView getProductsByCategory(ModelAndView model, @PathVariable(value="categoryId") String argCategory)
+	public ModelAndView getProductsByCategory(ModelAndView model, @PathVariable(value="categoryId") String categoryId)
 	{   
-		model.addObject("products", this.productService.getProductsByCategory(argCategory));
+		model.addObject("products", this.productService.getProductsByCategory(categoryId));
 		model.setViewName("product/products");
 		return model;
 	}
 	
 	@RequestMapping("/product")
-	public ModelAndView getProductById(@RequestParam("id") String argProductId)
+	public ModelAndView getProductById(@RequestParam("id") String productId)
 	{  
 	   ModelAndView model = new ModelAndView();
-		model.addObject("products", this.productService.getProductById(argProductId));
+		model.addObject("products", this.productService.getProductById(productId));
 		model.setViewName("product/product");
 		return model;
 	}

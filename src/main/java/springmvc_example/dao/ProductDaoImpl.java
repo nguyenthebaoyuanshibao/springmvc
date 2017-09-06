@@ -37,18 +37,20 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() {
 		String sql = "SELECT * from products";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null), new ProductMapper());
 		
 		return list;
 	}
 	
     
-	private SqlParameterSource getSqlParameterSource(String productId) {
+	private SqlParameterSource getSqlParameterSource(String productId, String categoryId) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		if(productId!=null) {
-			parameterSource.addValue("product_id", productId);
+			parameterSource.addValue("productId", productId);
 		}
-		
+		if(categoryId!=null) {
+			parameterSource.addValue("categoryId", categoryId);
+		}
 		return parameterSource;
 	}
 	
@@ -67,19 +69,19 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product getProductById(String argProductId) {
+	public Product getProductById(String productId) {
 		
-		String sql = "SELECT * FROM products where product_id= :argProductId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(argProductId), new ProductMapper());
+		String sql = "SELECT * FROM products where product_id= :productId";
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(productId,null), new ProductMapper());
 		
 	
 		return list.get(0);
 	}
 
 	@Override
-	public List<Product> getProductsByCategory(String argCategory) {
-		String sql = "SELECT * FROM products where category_id= :argCategory";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null), new ProductMapper());
+	public List<Product> getProductsByCategory(String categoryId) {
+		String sql = "SELECT * FROM products where category_id= :categoryId";
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,categoryId), new ProductMapper());
 		
 	
 		return list;
