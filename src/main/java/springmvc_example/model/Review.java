@@ -11,7 +11,9 @@ public class Review {
 		
 		private String productId;
 
-		private String content;
+		private String reviewInfo;
+		
+		private Integer rateNumber;
 
 		// 作成日
 		private Date createAt;
@@ -19,7 +21,7 @@ public class Review {
 		// 更新日
 		private Date updateAt;
 
-
+        
 
 		/* Construction */
 		public Review() {
@@ -28,12 +30,13 @@ public class Review {
 
 
 
-		public Review(String reviewId, Integer userId, String productId, String content, Date createAt, Date updateAt) {
+		public Review(String reviewId, Integer userId, String productId, String reviewInfo, Integer rateNumber, Date createAt, Date updateAt) {
 			super();
 			this.reviewId = reviewId;
 			this.userId = userId;
 			this.productId = productId;
-			this.content = content;
+			this.reviewInfo = reviewInfo;
+			this.rateNumber = rateNumber;
 			this.createAt = createAt;
 			this.updateAt = updateAt;
 		}
@@ -76,14 +79,26 @@ public class Review {
 
 
 
-		public String getContent() {
-			return content;
+		public String getReviewInfo() {
+			return reviewInfo;
 		}
 
 
 
-		public void setContent(String content) {
-			this.content = content;
+		public void setReviewInfo(String reviewInfo) {
+			this.reviewInfo = reviewInfo;
+		}
+
+
+
+		public Integer getRateNumber() {
+			return rateNumber;
+		}
+
+
+
+		public void setRateNumber(Integer rateNumber) {
+			this.rateNumber = rateNumber;
 		}
 
 

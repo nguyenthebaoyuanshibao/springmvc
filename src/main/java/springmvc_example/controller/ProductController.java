@@ -61,10 +61,10 @@ public class ProductController
 	 * @return
 	 */
 	@RequestMapping("/order/{productId}/{quantity}")
-	public String process(@PathVariable(value="productId") String argProductId, 
-						  @PathVariable(value="quantity") Integer argQuantity)
+	public String process(@PathVariable(value="productId") String productId, 
+						  @PathVariable(value="quantity") Integer quantity)
 	{
-		this.orderService.processOrder(argProductId, argQuantity);
+		this.orderService.processOrder(productId, quantity);
 		return "redirect:/products";
 	}
 	
@@ -82,7 +82,7 @@ public class ProductController
 	}
 	
 	@RequestMapping("/product")
-	public ModelAndView getProductById(@RequestParam("id") String productId)
+	public ModelAndView getProductById(@RequestParam("id") String productId) throws Exception
 	{  
 	   ModelAndView model = new ModelAndView();
 		model.addObject("products", this.productService.getProductById(productId));

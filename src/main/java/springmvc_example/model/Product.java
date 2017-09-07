@@ -8,22 +8,21 @@ import java.math.BigDecimal;
  */
 public class Product
 {
-	private String productId 		;
-	private String productName 			;
-	private BigDecimal unitPrice 	= null;
+	private String productId =null		;
+	private String productName 	=null		;
+	private Integer unitPrice 	= null;
 	private String description		= null;
 	private String manufacturer	 	= null;
-	private String categoryId			;
+	private String categoryId		=null	;
 	private Integer unitsInStock		= null;
-	private Integer unitsInOrder		= null;
-	private String condition		= null;
+	
 	
 	public Product()
 	{
 		super();
 	}
 
-	public Product(String argProductId, String arName, BigDecimal arUnitPrice)
+	public Product(String argProductId, String arName, Integer arUnitPrice)
 	{
 		this.productId = argProductId;
 		this.productName = arName;
@@ -46,11 +45,11 @@ public class Product
 	{
 		this.productName = argName;
 	}
-	public BigDecimal getUnitPrice()
+	public Integer getUnitPrice()
 	{
 		return this.unitPrice;
 	}
-	public void setUnitPrice(BigDecimal argUnitPrice)
+	public void setUnitPrice(Integer argUnitPrice)
 	{
 		this.unitPrice = argUnitPrice;
 	}
@@ -86,23 +85,7 @@ public class Product
 	{
 		this.unitsInStock = argUnitsInStock;
 	}
-	public Integer getUnitsInOrder()
-	{
-		return this.unitsInOrder;
-	}
-	public void setUnitsInOrder(Integer argUnitsInOrder)
-	{
-		this.unitsInOrder = argUnitsInOrder;
-	}
 	
-	public String getCondition()
-	{
-		return this.condition;
-	}
-	public void setCondition(String argCondition)
-	{
-		this.condition = argCondition;
-	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)

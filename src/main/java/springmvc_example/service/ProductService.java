@@ -15,7 +15,7 @@ import springmvc_example.model.Product;
 public interface ProductService
 {
 	List<Product> getAllProducts();
-	Product getProductById(String argProductId);
+	Product getProductById(String argProductId) ;
 	List<Product> getProductsByCategory(String categoryId);
 	Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams);
 }

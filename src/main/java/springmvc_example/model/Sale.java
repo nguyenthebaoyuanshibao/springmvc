@@ -2,14 +2,14 @@ package springmvc_example.model;
 
 import java.util.Date;
 
-public class Salehistory {
+public class Sale {
 	
 	// 販売履歴のID
 		private String saleId;
 
 		private Integer userId;
 		
-		private String status;
+		private String saleInfo;
 		// 作成日
 		private Date createAt;
 
@@ -18,15 +18,15 @@ public class Salehistory {
 
 		
 		/* Construction */
-		public Salehistory() {
+		public Sale() {
 
 		}
 
-		public Salehistory(String saleId, Integer userId, String status, Date createAt, Date updateAt) {
+		public Sale(String saleId, Integer userId, String saleInfo, Date createAt, Date updateAt) {
 			super();
 			this.saleId = saleId;
 			this.userId = userId;
-			this.status = status;
+			this.saleInfo = saleInfo;
 			this.createAt = createAt;
 			this.updateAt = updateAt;
 		}
@@ -47,12 +47,12 @@ public class Salehistory {
 			this.userId = userId;
 		}
 
-		public String getStatus() {
-			return status;
+		public String getsaleInfo() {
+			return saleInfo;
 		}
 
-		public void setStatus(String status) {
-			this.status = status;
+		public void setSaleInfo(String saleInfo) {
+			this.saleInfo = saleInfo;
 		}
 
 		public Date getCreateAt() {

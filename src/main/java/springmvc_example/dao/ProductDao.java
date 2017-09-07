@@ -15,7 +15,7 @@ import springmvc_example.model.Product;
 public interface ProductDao
 {
 	List<Product> getAllProducts();
-	Product getProductById(String argProductId);
+	Product getProductById(String argProductId) ;
 	List<Product> getProductsByCategory(String argCategory);
 	Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams);
 }

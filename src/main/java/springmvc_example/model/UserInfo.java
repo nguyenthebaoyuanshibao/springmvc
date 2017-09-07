@@ -27,17 +27,6 @@ public class UserInfo {
 	// 更新日
 	private Date updateAt;
 	
-	//ストアのリスト
-	private List<Store> stores;
-	
-	//お気に入りのリスト
-	private List<Favorite> favorites;
-	
-	//レビューのリスト
-	private List<Review> reviews;
-	
-	//販売履歴のリスト
-	private List<Salehistory> saleHistories;
 	
 	public UserInfo() {
 		super();
@@ -53,10 +42,7 @@ public class UserInfo {
 		this.telNumber = telNumber;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
-		this.stores = stores;
-		this.favorites = favorites;
-		this.reviews = reviews;
-		this.saleHistories = saleHistories;
+
 	}
 
 	public String getUsername() {
@@ -123,38 +109,4 @@ public class UserInfo {
 		this.updateAt = updateAt;
 	}
 
-	public List<Store> getStores() {
-		return stores;
-	}
-
-	public void setStores(List<Store> stores) {
-		this.stores = stores;
-	}
-
-	public List<Favorite> getFavorites() {
-		return favorites;
-	}
-
-	public void setFavorites(List<Favorite> favorites) {
-		this.favorites = favorites;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<Salehistory> getSaleHistories() {
-		return saleHistories;
-	}
-
-	public void setSaleHistories(List<Salehistory> saleHistories) {
-		this.saleHistories = saleHistories;
-	}
-    
-	
-	
 }
