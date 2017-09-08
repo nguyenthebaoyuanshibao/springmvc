@@ -12,28 +12,28 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import springmvc_example.dao.LoginDao;
-import springmvc_example.model.UserInfo;
+import springmvc_example.dao.UserDao;
+import springmvc_example.model.Users;
 
 @Service
 
 public class LoginServiceImpl implements UserDetailsService{
-	
-	LoginDao loginDao;
+
+	UserDao userDao;
 	
 	@Autowired
-	public void setLoginDao(LoginDao loginDao) {
-		this.loginDao = loginDao;
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 	
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-		UserInfo userInfo = loginDao.findUserInfo(username);
+	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException{
+		Users userInfo = userDao.findUserbyUserId(userId);
 		
 		if(userInfo == null) {
-			throw new UsernameNotFoundException("username was not found in the database!");
+			throw new UsernameNotFoundException("userId was not found in the database!");
 		}
 		
-		List<String> roles = loginDao.getUserRoles(username);
+		List<String> roles = userDao.getUserRoles(userId);
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 		
 		if(roles!= null) {
@@ -43,7 +43,7 @@ public class LoginServiceImpl implements UserDetailsService{
 			}
 		}
 		
-		UserDetails userDetails = new User(userInfo.getUsername(), userInfo.getPassword(), grantList);
+		UserDetails userDetails = new User(userInfo.getUserId(), userInfo.getPassword(), grantList);
         
 		return userDetails;
 	}

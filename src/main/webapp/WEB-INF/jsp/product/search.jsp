@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Product</title>
+<title>Result</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Products</h1>
+				<h1>Search Result</h1>
 			</div>
 		</div>
 	</section>
@@ -40,13 +40,13 @@
 									class="glyphicon-shopping-cart glyphicon"></span> Rating
 								</a>
 							</p>
+
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 	</section>
-
 
 </body>
 </html>

@@ -21,39 +21,57 @@ public class ProductServiceImpl implements ProductService
 	@Autowired
 	private ProductDao productRepository; 
 	
-	/* (non-Javadoc)
-	 * @see com.packt.webstore.service.OrderService#getAllProducts()
-	 */
 	@Override
 	public List<Product> getAllProducts()
 	{
 		return this.productRepository.getAllProducts();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.packt.webstore.service.ProductService#getProductById(java.lang.String)
-	 */
+
 	@Override
-	public Product getProductById(String argProductId)
-	{
-		return this.productRepository.getProductById(argProductId);
+	public List<Product> getProductByName(String productName) {
+		return this.productRepository.getProductByName(productName);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.packt.webstore.service.ProductService#getProductsByCategory(java.lang.String)
-	 */
+	
 	@Override
 	public List<Product> getProductsByCategory(String argCategory)
 	{
 		return this.productRepository.getProductsByCategory(argCategory);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.packt.webstore.service.ProductService#getProductsByFilter(java.util.Map)
-	 */
+
 	@Override
 	public Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams)
 	{
 		return this.productRepository.getProductsByFilter(argFilterParams);
 	}
+
+	@Override
+	public void addProduct(String productId, String categoryId, String productName, Integer unitPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteProductById(String productId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public List<Product> getProductsByPriceLessThan(Integer price) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getProductsByPriceGreatThan(Integer price) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

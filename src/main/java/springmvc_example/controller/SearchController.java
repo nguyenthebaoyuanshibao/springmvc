@@ -1,5 +1,9 @@
 package springmvc_example.controller;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,31 +21,40 @@ import springmvc_example.service.ProductService;
 
 @Controller
 public class SearchController {
-	@Autowired 
+	@Autowired
 	private ProductService productService;
+	public static boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    } catch(NullPointerException e) {
+	        return false;
+	    }
+	    // only got here if we didn't return false
+	    return true;
+	}
 	
-	ProductDaoImpl productDaoImpl;
-	
-	@RequestMapping(value= "/products/search", method=RequestMethod.GET)
-	public ModelAndView searchProductById(@RequestParam("id") String productId) {
-        
+
+	@RequestMapping(value = "/products/search", method = RequestMethod.GET)
+	public ModelAndView search(@RequestParam("id") Object object) {
+		
+		
+		String id = String.valueOf(object);
+		List<Product> list1 = this.productService.getProductsByCategory(id);
+		List<Product> list2 = this.productService.getProductByName(id);
+//		List<Product> list3 = new ArrayList<Product>();
+//	    if (isInteger(id)) {
+//	    	list3 = this.productService.getProductsByPrice(Integer.parseInt(id));
+//	    }
+	   
+	    
 		ModelAndView model = new ModelAndView();
 		
-		Product p = productDaoImpl.getProductById(productId);
-		
-		if(p.getProductId()!=null) {
-			
-			model.addObject("product", this.productService.getProductById(productId));
-
-			model.setViewName("product/search_success");
-
-		}
-		else {
-
-		
-		model.setViewName("product/search_error");
-		
-		}
+		model.addObject("products", list1.size()>list2.size()?list1:list2);
+		model.setViewName("product/search");
 		return model;
+
+		
 	}
 }

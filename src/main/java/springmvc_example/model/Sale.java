@@ -10,6 +10,8 @@ public class Sale {
 		private Integer userId;
 		
 		private String saleInfo;
+		
+		private Integer price;
 		// 作成日
 		private Date createAt;
 
@@ -22,13 +24,12 @@ public class Sale {
 
 		}
 
-		public Sale(String saleId, Integer userId, String saleInfo, Date createAt, Date updateAt) {
+		public Sale(String saleId, Integer userId, String saleInfo, Integer price) {
 			super();
 			this.saleId = saleId;
 			this.userId = userId;
 			this.saleInfo = saleInfo;
-			this.createAt = createAt;
-			this.updateAt = updateAt;
+			this.price = price;
 		}
 
 		public String getSaleId() {
@@ -53,6 +54,14 @@ public class Sale {
 
 		public void setSaleInfo(String saleInfo) {
 			this.saleInfo = saleInfo;
+		}
+		
+		public Integer getPrice() {
+			return price;
+		}
+
+		public void setPrice(Integer price) {
+			this.price = price;
 		}
 
 		public Date getCreateAt() {

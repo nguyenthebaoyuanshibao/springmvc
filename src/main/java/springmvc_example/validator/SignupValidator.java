@@ -30,8 +30,8 @@ public class SignupValidator implements Validator {
 			errors.rejectValue("password", "notMath.confirmPassword");
 		}
 		
-		if(userService.userExists(user.getUsername())) {
-			errors.rejectValue("username", "exists.username");
+		if(userService.userExists(user.getUserId())) {
+			errors.rejectValue("userId", "exists.userId");
 		}
 	}
 }

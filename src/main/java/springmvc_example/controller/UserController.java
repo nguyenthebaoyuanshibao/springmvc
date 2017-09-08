@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springmvc_example.form.UserForm;
-import springmvc_example.model.UserInfo;
+import springmvc_example.model.Users;
 import springmvc_example.service.UserService;
 import springmvc_example.validator.SignupValidator;
 
@@ -28,23 +28,23 @@ public class UserController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView model = new ModelAndView("user/list");
-		model.addObject("list", userService.list() );
+		model.addObject("list", userService.getListUser() );
 		
 		return model;
 	}
 	
-	@RequestMapping(value="/changePass/{username}", method=RequestMethod.GET)
-	public ModelAndView changePass(@PathVariable("username") String username) {
+	@RequestMapping(value="/changePass/{userId}", method=RequestMethod.GET)
+	public ModelAndView changePass(@PathVariable("userId") String userId) {
 		ModelAndView model = new ModelAndView("user/change_pass");
-		model.addObject("user", userService.findUserbyUsername(username));
+		model.addObject("user", userService.findUserbyUserId(userId));
 				
 		return model;
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("user") UserInfo user) {
+	public ModelAndView save(@ModelAttribute("user") Users user) {
 		ModelAndView model = new ModelAndView("user/change_pass");
-		userService.update(user.getUsername(), user.getPassword());
+		userService.updateUser(user.getUserId(), user.getPassword());
 		model.addObject("msg", "Password change successful!");
 	   return model;
 		
@@ -69,7 +69,7 @@ public class UserController {
 		}
 		
 		else {
-			userService.add(userForm.getUsername(), userForm.getPassword());
+			userService.addUser(userForm.getUserId(), userForm.getPassword());
 			redirectAttributes.addFlashAttribute("msg", "Your account has been created successfully!");
 			
 			return "redirect:/login";
@@ -77,18 +77,18 @@ public class UserController {
 		
 		
 	}
-	@RequestMapping(value="/removeUser/{username}", method=RequestMethod.GET)
-	public ModelAndView removeUser(@PathVariable("username") String username) {
+	@RequestMapping(value="/removeUser/{userId}", method=RequestMethod.GET)
+	public ModelAndView removeUser(@PathVariable("userId") String userId) {
 		ModelAndView model = new ModelAndView("user/removeUser");
-		model.addObject("user", userService.findUserbyUsername(username));
+		model.addObject("user", userService.findUserbyUserId(userId));
 				
 		return model;
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute("user") UserInfo user) {
+	public ModelAndView delete(@ModelAttribute("user") Users user) {
 		ModelAndView model = new ModelAndView("user/removeUser");
-		userService.delete(user.getUsername());
+		userService.deleteUser(user.getUserId());
 		model.addObject("msg", "User removed successful!");
 	   return model;
 	}	

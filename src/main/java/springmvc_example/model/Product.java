@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 public class Product
 {
 	private String productId =null		;
+	private String categoryId		=null	;
 	private String productName 	=null		;
 	private Integer unitPrice 	= null;
 	private String description		= null;
 	private String manufacturer	 	= null;
-	private String categoryId		=null	;
 	private Integer unitsInStock		= null;
 	
 	
@@ -22,11 +22,12 @@ public class Product
 		super();
 	}
 
-	public Product(String argProductId, String arName, Integer arUnitPrice)
+	public Product(String productId, String categoryId, String productName, Integer unitPrice)
 	{
-		this.productId = argProductId;
-		this.productName = arName;
-		this.unitPrice = arUnitPrice;
+		this.productId = productId;
+		this.categoryId = categoryId;
+		this.productName = productName;
+		
 	}
 	
 	public String getProductId()

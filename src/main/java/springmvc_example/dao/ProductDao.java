@@ -13,9 +13,13 @@ import springmvc_example.model.Product;
  *
  */
 public interface ProductDao
-{
+{   
 	List<Product> getAllProducts();
-	Product getProductById(String argProductId) ;
+	void addProduct(String productId, String categoryId, String productName, Integer unitPrice);
+	void deleteProductById(String productId);
+	List<Product> getProductByName(String productName) ;
 	List<Product> getProductsByCategory(String argCategory);
 	Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams);
+	List<Product> getProductsByPriceLessThan(Integer unitPrice);
+	List<Product> getProductsByPriceGreatThan(Integer unitPrice);
 }

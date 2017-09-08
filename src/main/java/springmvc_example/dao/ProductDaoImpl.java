@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 
 
 import springmvc_example.model.Product;
-import springmvc_example.model.UserInfo;
+
 
 /**
  * @author life
@@ -27,6 +27,7 @@ import springmvc_example.model.UserInfo;
  */
 @Repository
 public class ProductDaoImpl implements ProductDao {
+	public ProductDaoImpl() {}
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired
@@ -37,19 +38,22 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() {
 		String sql = "SELECT * FROM products";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null), new ProductMapper());
 		
 		return list;
 	}
 	
     
-	private SqlParameterSource getSqlParameterSource(String productId, String categoryId) {
+	private SqlParameterSource getSqlParameterSource(String productName, String categoryId, Integer unitPrice) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-		if(productId!=null) {
-			parameterSource.addValue("productId", productId);
+		if(productName!=null) {
+			parameterSource.addValue("productName", productName);
 		}
 		if(categoryId!=null) {
 			parameterSource.addValue("categoryId", categoryId);
+		}
+		if(unitPrice!=null) {
+			parameterSource.addValue("unitPrice", unitPrice);
 		}
 		return parameterSource;
 	}
@@ -71,22 +75,36 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product getProductById(String productId) {
+	public List<Product> getProductByName(String productName) {
+		String sql = "SELECT * FROM products where product_name= :productName";
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(productName,null,null), new ProductMapper());
 		
-		String sql = "SELECT * FROM products where product_id= :productId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(productId,null), new ProductMapper());
-		if(list.size()<1) {
-			return new Product();
-		}
-	    return list.get(0);
+	    return list;
 	}
 
 	@Override
 	public List<Product> getProductsByCategory(String categoryId) {
 		String sql = "SELECT * FROM products where category_id= :categoryId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,categoryId), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,categoryId,null), new ProductMapper());
 		
+		return list;
+	}
 	
+	@Override
+	public List<Product> getProductsByPriceLessThan(Integer unitPrice) {
+		
+		String sql = "SELECT * FROM products where unit_price <= unitPrice";
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,unitPrice), new ProductMapper());
+		
+		return list;
+	}
+
+	@Override
+	public List<Product> getProductsByPriceGreatThan(Integer unitPrice) {
+		
+		String sql = "SELECT * FROM products where unit_price >= unitPrice";
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,unitPrice), new ProductMapper());
+		
 		return list;
 	}
 
@@ -95,6 +113,24 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void addProduct(String productId, String categoryId, String productName, Integer unitPrice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteProductById(String productId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+	
 
 	
 

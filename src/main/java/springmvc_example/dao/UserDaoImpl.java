@@ -12,7 +12,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import springmvc_example.dao.UserDao;
-import springmvc_example.model.UserInfo;
+
+import springmvc_example.model.Users;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -26,17 +27,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<UserInfo> list() {
-		String sql = "SELECT username from users";
-		List<UserInfo> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null), new UserMapper());
+	public List<Users> getListUser() {
+		String sql = "SELECT user_id from users";
+		List<Users> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null), new UserMapper());
 		
 		return list;
 	}
     
-	private SqlParameterSource getSqlParameterSource(String username, String password) {
+	private SqlParameterSource getSqlParameterSource(String userId, String password) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-		if(username!=null) {
-			parameterSource.addValue("user_name", username);
+		if(userId!=null) {
+			parameterSource.addValue("userId", userId);
 		}
 		if(password!=null) {
 			parameterSource.addValue("password", password);
@@ -45,59 +46,72 @@ public class UserDaoImpl implements UserDao {
 		return parameterSource;
 	}
 	
-	private static final class UserMapper implements RowMapper<UserInfo>{
+	private static final class UserMapper implements RowMapper<Users>{
 		
-		public UserInfo mapRow(ResultSet rs, int numRow) throws SQLException{
-			UserInfo user = new UserInfo();
-			user.setUsername(rs.getString("username"));
-			
-			return user;
+		public Users mapRow(ResultSet rs, int numRow) throws SQLException{
+			String userId = rs.getString("user_id");
+		    String password = rs.getString("password");
+		    
+		    return new Users(userId, password);
 		}
 	}
 	
-	public UserInfo findUserbyUsername(String username) {
-		String sql = "SELECT username FROM users where username= :username";
-		List<UserInfo> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(username, null), new UserMapper());
+	public Users findUserbyUserId(String userId) {
 		
-	
-		return list.get(0);
+		String sql = "select user_id,password from users where user_id= :userId";
+
+		Users user = namedParameterJdbcTemplate.queryForObject(sql, getSqlParameterSource(userId,null),
+				new UserMapper());
+
+		return user;
 	}
 
 	
-	public void update(String username, String password) {
-		String sql = "update users set password =:password where username= :username";
+	public void updateUser(String userId, String password) {
+		String sql = "update users set password =:password where user_id= :userId";
 		
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(username, password));
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, password));
 
 	}
 
 	
-	public void add(String username, String password) {
+	public void addUser(String userId, String password) {
 		//insert table user
-		String sql = "insert into users(username,password) values (:username, :password)";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(username, password));
+		String sql = "insert into users(user_id,password) values (:userId, :password)";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, password));
 		
 		//insert table user_roles
-		sql = "insert into user_roles(username,role) values (:username,'ROLE_USER')";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(username, password));
+		sql = "insert into user_roles(user_id,role) values (:userId,'ROLE_USER')";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, password));
 
 	}
 	
-	public void delete(String username) {
-		String sql = "delete from users where username= :username";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(username, null));
+	public void deleteUser(String userId) {
+		String sql = "delete from users where user_id= :userId";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, null));
 		
 	}
 	
 	
-	public boolean userExists(String username) {
-		String sql = "select * from users where username = :username";
-		List<UserInfo> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(username, null), new UserMapper());
+	public boolean userExists(String userId) {
+		String sql = "select * from users where user_id = :userId";
+		List<Users> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(userId, null), new UserMapper());
 		if(list.size()>0) {
 			return true;
 		}
 		
 		return false;
 	}
+
+	public List<String> getUserRoles(String userId) {
+		String sql = "select role from user_roles where user_id =:userId";
+		
+		List<String> roles = namedParameterJdbcTemplate.queryForList(sql, getSqlParameterSource(userId,null), String.class);
+		
+		return roles;
+	}
+
+	
+
 
 }

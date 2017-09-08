@@ -3,10 +3,10 @@ package springmvc_example.model;
 import java.util.Date;
 import java.util.List;
 
-public class UserInfo {
+public class Users {
 	
 	
-	private String userName;
+	private String userId;
 	
 	private String password;
 	
@@ -28,13 +28,13 @@ public class UserInfo {
 	private Date updateAt;
 	
 	
-	public UserInfo() {
+	public Users() {
 		super();
 	}
 
-	public UserInfo(String username, String password) {
+	public Users(String userId, String password) {
 		super();
-		this.userName = username;
+		this.userId = userId;
 		this.password = password;
 		this.role = role;
 		this.userGender = userGender;
@@ -45,12 +45,12 @@ public class UserInfo {
 
 	}
 
-	public String getUsername() {
-		return userName;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUsername(String username) {
-		this.userName = username;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getPassword() {

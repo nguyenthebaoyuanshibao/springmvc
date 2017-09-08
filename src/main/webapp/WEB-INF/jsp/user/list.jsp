@@ -23,20 +23,20 @@
    </p>
     <table border="1">
         <tr>
-            <td>Username</td>
+            <td>UserId</td>
             <td>Action</td>
         </tr>
         <c:forEach items="${list }" var="user" >
             <tr>
-                <td>${user.username }</td>
+                <td>${user.userId }</td>
                 <td>
                     <spring:url value="/user/changePass" var="changePassURL" />
-                    <a href="${changePassURL }/${user.username}">ChangePass</a>
+                    <a href="${changePassURL }/${user.userId}">ChangePass</a>
                 </td>
                 
                  <td>
                     <spring:url value="/user/removeUser" var="removeUserURL" />
-                    <a href="${removeUserURL }/${user.username}">Remove</a>
+                    <a href="${removeUserURL }/${user.userId}">Remove</a>
                 </td>
             </tr>
         </c:forEach>

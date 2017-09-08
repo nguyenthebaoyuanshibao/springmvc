@@ -13,14 +13,14 @@
 <body>
     <spring:url value="/user/save" var="saveURL" />
     <form:form method ="post" modelAttribute="user" action="${saveURL }" >
-    <form:hidden path="username" />
+    <form:hidden path="userId" />
         <table border="1">
              <tr>
                  <td colspan="2">${msg }</td>
              </tr>
              <tr>
                  <td>Username</td>
-                 <td>${user.username }</td>
+                 <td>${user.userId }</td>
              </tr>
              <tr>
                  <td>New Password: </td>

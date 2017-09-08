@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import springmvc_example.service.OrderService;
+
 import springmvc_example.service.ProductService;
 
 
@@ -25,8 +25,7 @@ import springmvc_example.service.ProductService;
 @RequestMapping("/products")
 public class ProductController
 {
-	@Autowired 
-	private OrderService orderService;
+	
 	@Autowired 
 	private ProductService productService;
 	
@@ -60,13 +59,7 @@ public class ProductController
 	/**
 	 * @return
 	 */
-	@RequestMapping("/order/{productId}/{quantity}")
-	public String process(@PathVariable(value="productId") String productId, 
-						  @PathVariable(value="quantity") Integer quantity)
-	{
-		this.orderService.processOrder(productId, quantity);
-		return "redirect:/products";
-	}
+	
 	
 	/**
 	 * @param model
@@ -82,10 +75,11 @@ public class ProductController
 	}
 	
 	@RequestMapping("/product")
-	public ModelAndView getProductById(@RequestParam("id") String productId) throws Exception
+	public ModelAndView getProductByName(@RequestParam("id") String productName) throws Exception
+	
 	{  
 	   ModelAndView model = new ModelAndView();
-		model.addObject("products", this.productService.getProductById(productId));
+		model.addObject("products", this.productService.getProductByName(productName));
 		model.setViewName("product/product");
 		return model;
 	}

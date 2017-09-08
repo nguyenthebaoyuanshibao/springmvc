@@ -15,7 +15,11 @@ import springmvc_example.model.Product;
 public interface ProductService
 {
 	List<Product> getAllProducts();
-	Product getProductById(String argProductId) ;
-	List<Product> getProductsByCategory(String categoryId);
+	void addProduct(String productId, String categoryId, String productName, Integer unitPrice);
+	void deleteProductById(String productId);
+	List<Product> getProductByName(String productName) ;
+	List<Product> getProductsByCategory(String argCategory);
 	Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams);
+	List<Product> getProductsByPriceLessThan(Integer price);
+	List<Product> getProductsByPriceGreatThan(Integer price);
 }

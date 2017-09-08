@@ -7,6 +7,7 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Products</title>
+
 </head>
 <body>
 	<section>
@@ -14,32 +15,41 @@
 			<div class="container">
 				<p>
 					<a href=" <spring:url value=  "/home" /> " class="btn btn-primary">
-						<span class="glyphicon-info-sign glyphicon" /></span> Home</a> 
-					<a href=" <spring:url value=  "/logout" /> "
+						<span class="glyphicon-info-sign glyphicon" /></span> Home
+					</a> <a href=" <spring:url value=  "/logout" /> "
 						class="btn btn-primary"> <span
 						class="glyphicon-info-sign glyphicon" /></span> Logout
 					</a>
+
 				</p>
 				<div class="row">
+				
 					<div class="small-3 columns">
-						<input type="text" id="txt" name="searchString" onchange="showText(this.value)">
+						<input type="text" id="txt" name="searchString"
+							onchange="showText(this.value)">
 					</div>
 
 
-					<a
-						id="searchButton"
-						class="btn btn-primary"> <span
-						class="glyphicon-info-sign glyphicon" /></span> Search
+					<a id="searchButton"> 
+					<select>
+							<option>ProductName</option>
+							<option>Category</option>
+							<option>PriceLessThan</option>
+							<option>PriceGreatThan</option>
+					</select> 
+					 Search
+
 					</a>
 
+
+
+
+
+					<h1>Products</h1>
+					<p>All the available products in our store</p>
+
 				</div>
-
-
-				<h1>Products</h1>
-				<p>All the available products in our store</p>
-
 			</div>
-		</div>
 	</section>
 	<section class="container">
 		<div class="row">
@@ -54,7 +64,7 @@
 							<p>Available ${product.unitsInStock} units in stock</p>
 							<p>
 								<a
-									href=" <spring:url value=  "/products/product?id=${product.productId}" /> "
+									href=" <spring:url value=  "/products/product?id=${product.productName}" /> "
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> Details
 								</a>

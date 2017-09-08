@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import springmvc_example.dao.UserDao;
-import springmvc_example.model.UserInfo;
+import springmvc_example.model.Users;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,40 +22,41 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 	
-	public List<UserInfo> list() {
+	public List<Users> getListUser() {
 		
-		return userDao.list();
+		return userDao.getListUser();
 	}
 
 
-	public UserInfo findUserbyUsername(String username) {
-		return userDao.findUserbyUsername(username);
+	public Users findUserbyUserId(String userId) {
+		return userDao.findUserbyUserId(userId);
 		
 	}
 
 	
-	public void update(String username, String password) {
-		userDao.update(username, passwordEncoder.encode(password));
+	public void updateUser(String userId, String password) {
+		userDao.updateUser(userId, passwordEncoder.encode(password));
 
 	}
 
 
-	public void add(String username, String password) {
-		userDao.add(username, passwordEncoder.encode(password));
+	public void addUser(String username, String password) {
+		userDao.addUser(username, passwordEncoder.encode(password));
 
 	}
 
 
-	public boolean userExists(String username) {
+	public boolean userExists(String userId) {
 		
-		return userDao.userExists(username);
+		return userDao.userExists(userId);
 	}
 
 	@Override
-	public void delete(String username) {
+	public void deleteUser(String userId) {
 		
-		userDao.delete(username);
+		userDao.deleteUser(userId);
 		
 	}
+	
 
 }
