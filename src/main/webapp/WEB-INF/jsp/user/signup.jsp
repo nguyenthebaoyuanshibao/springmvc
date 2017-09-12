@@ -11,9 +11,9 @@
 <body>
     <spring:url value="/user/register" var="registerURL" />
     <form:form action="${registerURL }" modelAttribute="userForm" method="post">
-        <label>Username: </label>    
-        <form:input path="username" type="text" />
-        <form:errors path="username" />
+        <label>UserId: </label>    
+        <form:input path="userId" type="text" />
+        <form:errors path="userId" />
         <br/>
         <label>Password: </label>
         <form:password path="password" />

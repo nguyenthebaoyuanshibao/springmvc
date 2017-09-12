@@ -21,27 +21,34 @@
 			<c:forEach items="${products}" var="product">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
-						<div class="caption">
-							<h3>${product.productName}</h3>
-							<h3>productId ${product.productId}</h3>
-							<p>description: ${product.description}</p>
-							<p>price: ${product.unitPrice}USD</p>
-							<p>Available ${product.unitsInStock} units in stock</p>
+						
 
-							<p>
-								<a href="<spring:url value="/products" />"
-									class="btn btn-warning btn-large"> <span
-									class="glyphicon-shopping-cart glyphicon"></span> back
-								</a> <a href="<spring:url value="/order" />"
-									class="btn btn-warning btn-large"> <span
-									class="glyphicon-shopping-cart glyphicon"></span> Order Now
-								</a> <a href="<spring:url value="#" />"
-									class="btn btn-warning btn-large"> <span
-									class="glyphicon-shopping-cart glyphicon"></span> Rating
-								</a>
-							</p>
-						</div>
+							<div>
+								<image style weight="200" height="200" src=${product.url }>
+							</div>
+
+
+							<h3>${product.productName}</h3>
+
+
+
+							<p>Description: ${product.description}</p>
+							<p>Price : ${product.unitPrice}</p>
+							<p>Units In Stock: ${product.unitsInStock }</p>
+						
+
 					</div>
+
+					<div>
+						<a href="<spring:url value="/" />"
+							class="btn btn-warning btn-large"> <span
+							class="glyphicon-shopping-cart glyphicon"></span> Back
+					
+						<a href="<spring:url value="/order" />"
+							class="btn btn-warning btn-large"> <span
+							class="glyphicon-shopping-cart glyphicon"></span> Order Now 
+					</div></a>
+				
 				</div>
 			</c:forEach>
 		</div>

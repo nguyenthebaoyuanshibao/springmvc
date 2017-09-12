@@ -13,7 +13,7 @@
 <body>
     <spring:url value="/user/delete" var="deleteURL" />
     <form:form method ="post" modelAttribute="user" action="${deleteURL }" >
-    <form:hidden path="username" />
+    <form:hidden path="userId" />
         <table border="1">
              <tr>
                  <td colspan="2">${msg }</td>

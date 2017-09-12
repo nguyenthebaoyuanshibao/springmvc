@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,35 +24,19 @@ import springmvc_example.service.ProductService;
 public class SearchController {
 	@Autowired
 	private ProductService productService;
-	public static boolean isInteger(String s) {
-	    try { 
-	        Integer.parseInt(s); 
-	    } catch(NumberFormatException e) { 
-	        return false; 
-	    } catch(NullPointerException e) {
-	        return false;
-	    }
-	    // only got here if we didn't return false
-	    return true;
-	}
+	
+	
 	
 
-	@RequestMapping(value = "/products/search", method = RequestMethod.GET)
-	public ModelAndView search(@RequestParam("id") Object object) {
+	@RequestMapping(value = "/products/search/{categoryId}/{priceFrom}/{priceTo}", method = RequestMethod.GET)
+	public ModelAndView search(@PathVariable("categoryId") String categoryId,@PathVariable("priceFrom") Integer priceFrom,
+			@PathVariable("priceTo") Integer priceTo,@RequestParam("id") String productName ) {
 		
-		
-		String id = String.valueOf(object);
-		List<Product> list1 = this.productService.getProductsByCategory(id);
-		List<Product> list2 = this.productService.getProductByName(id);
-//		List<Product> list3 = new ArrayList<Product>();
-//	    if (isInteger(id)) {
-//	    	list3 = this.productService.getProductsByPrice(Integer.parseInt(id));
-//	    }
+	
 	   
-	    
 		ModelAndView model = new ModelAndView();
 		
-		model.addObject("products", list1.size()>list2.size()?list1:list2);
+		model.addObject("products",this.productService.getProductByName(productName));
 		model.setViewName("product/search");
 		return model;
 

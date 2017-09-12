@@ -40,12 +40,12 @@ public class ProductServiceImpl implements ProductService
 		return this.productRepository.getProductsByCategory(argCategory);
 	}
 
-
 	@Override
-	public Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams)
-	{
-		return this.productRepository.getProductsByFilter(argFilterParams);
+	public List<Product> search(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
+		
+		return this.productRepository.search(categoryId, priceFrom, priceTo, productName);
 	}
+
 
 	@Override
 	public void addProduct(String productId, String categoryId, String productName, Integer unitPrice) {
@@ -61,17 +61,9 @@ public class ProductServiceImpl implements ProductService
 
 
 
-	@Override
-	public List<Product> getProductsByPriceLessThan(Integer price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	@Override
-	public List<Product> getProductsByPriceGreatThan(Integer price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	
 	
 }

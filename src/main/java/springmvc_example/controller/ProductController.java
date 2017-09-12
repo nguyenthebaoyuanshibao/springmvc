@@ -83,17 +83,8 @@ public class ProductController
 		model.setViewName("product/product");
 		return model;
 	}
-	/**
-	 * @param argFilterParams
-	 * @param argModel
-	 * @return
-	 */
-	@RequestMapping("/filter/{byCriteria}")
-	public String getProductsByFilter(@MatrixVariable(pathVar="byCriteria") Map<String, List<String>> argFilterParams, Model argModel)
-	{
-		argModel.addAttribute("products", this.productService.getProductsByFilter(argFilterParams));
-		return "products";
-	}
+	
+	
 	
 	
 }

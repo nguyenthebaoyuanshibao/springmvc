@@ -38,13 +38,13 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() {
 		String sql = "SELECT * FROM products";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null,null), new ProductMapper());
 		
 		return list;
 	}
 	
     
-	private SqlParameterSource getSqlParameterSource(String productName, String categoryId, Integer unitPrice) {
+	private SqlParameterSource getSqlParameterSource( String categoryId, Integer priceFrom, Integer priceTo,String productName) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		if(productName!=null) {
 			parameterSource.addValue("productName", productName);
@@ -52,9 +52,14 @@ public class ProductDaoImpl implements ProductDao {
 		if(categoryId!=null) {
 			parameterSource.addValue("categoryId", categoryId);
 		}
-		if(unitPrice!=null) {
-			parameterSource.addValue("unitPrice", unitPrice);
+		if(priceFrom!=null) {
+			parameterSource.addValue("priceFrom", priceFrom);
 		}
+		
+		if(priceTo!=null) {
+			parameterSource.addValue("priceTo", priceTo);
+		}
+		
 		return parameterSource;
 	}
 	
@@ -63,6 +68,7 @@ public class ProductDaoImpl implements ProductDao {
 		public Product mapRow(ResultSet rs, int numRow) throws SQLException{
 			Product product = new Product();
 			product.setProductId(rs.getString("product_id"));
+			product.setUrl(rs.getString("url"));
 			product.setProductName(rs.getString("product_name"));
 			product.setDescription(rs.getString("description"));
 		    product.setUnitPrice(rs.getInt("unit_price"));
@@ -77,42 +83,30 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getProductByName(String productName) {
 		String sql = "SELECT * FROM products where product_name= :productName";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(productName,null,null), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null,productName), new ProductMapper());
 		
 	    return list;
 	}
-
+	@Override
+	public List<Product> search(String categoryId, Integer priceFrom, Integer priceTo,String productName) {
+		if(priceFrom==null) {
+			priceFrom=0;
+		}
+		if(priceTo==null) {
+			priceTo=600;
+		}
+        String sql ="SELECT * from products WHERE category_id =:categoryId AND unit_price >= :priceFrom AND unit_price <= :priceTo AND product_name LIKE '%productName%' ORDER BY product_id ";
+        List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(categoryId,priceFrom,priceTo,productName), new ProductMapper());
+		return list;
+	}
 	@Override
 	public List<Product> getProductsByCategory(String categoryId) {
 		String sql = "SELECT * FROM products where category_id= :categoryId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,categoryId,null), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(categoryId,null,null,null), new ProductMapper());
 		
 		return list;
 	}
 	
-	@Override
-	public List<Product> getProductsByPriceLessThan(Integer unitPrice) {
-		
-		String sql = "SELECT * FROM products where unit_price <= unitPrice";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,unitPrice), new ProductMapper());
-		
-		return list;
-	}
-
-	@Override
-	public List<Product> getProductsByPriceGreatThan(Integer unitPrice) {
-		
-		String sql = "SELECT * FROM products where unit_price >= unitPrice";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,unitPrice), new ProductMapper());
-		
-		return list;
-	}
-
-	@Override
-	public Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void addProduct(String productId, String categoryId, String productName, Integer unitPrice) {
@@ -128,10 +122,5 @@ public class ProductDaoImpl implements ProductDao {
 
 	
 
-	
-
-	
-
-	
 
 }

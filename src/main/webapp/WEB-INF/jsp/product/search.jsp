@@ -17,12 +17,13 @@
 		</div>
 	</section>
 	<section class="container">
+
 		<div class="row">
 			<c:forEach items="${products}" var="product">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h3>${product.productName}</h3>
+							<h3>productName :${product.productName}</h3>
 							<h3>productId ${product.productId}</h3>
 							<p>description: ${product.description}</p>
 							<p>price: ${product.unitPrice}USD</p>

@@ -10,6 +10,7 @@ public class Product
 {
 	private String productId =null		;
 	private String categoryId		=null	;
+	private String url;
 	private String productName 	=null		;
 	private Integer unitPrice 	= null;
 	private String description		= null;
@@ -37,6 +38,15 @@ public class Product
 	public void setProductId(String argProductId)
 	{
 		this.productId = argProductId;
+	}
+	
+	public String getUrl()
+	{
+		return this.url;
+	}
+	public void setUrl(String url)
+	{
+		this.url = url;
 	}
 	public String getProductName()
 	{

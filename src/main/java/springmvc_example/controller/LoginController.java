@@ -3,6 +3,7 @@ package springmvc_example.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -12,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import springmvc_example.service.ProductService;
+
 @Controller
 @RequestMapping(value="/")
 public class LoginController {
+	
+	@Autowired
+	ProductService productService;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value="error", required = false) String error) {
@@ -30,8 +36,9 @@ public class LoginController {
 	@RequestMapping(value= {"/", "/home"}, method=RequestMethod.GET)
 	public ModelAndView home(){
 		ModelAndView model = new ModelAndView();
-		model.addObject("greeting", "Welcome to the online store!");
-		model.addObject("tagline", "The only and only online store");
+		model.addObject("products", this.productService.getAllProducts() );
+		
+
 		model.setViewName("home/home");
 		
 		return model;

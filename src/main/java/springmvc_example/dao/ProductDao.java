@@ -17,9 +17,8 @@ public interface ProductDao
 	List<Product> getAllProducts();
 	void addProduct(String productId, String categoryId, String productName, Integer unitPrice);
 	void deleteProductById(String productId);
+	List<Product> search(String categoryId, Integer priceFrom, Integer priceTo,String productName);
 	List<Product> getProductByName(String productName) ;
 	List<Product> getProductsByCategory(String argCategory);
-	Set<Product> getProductsByFilter(Map<String, List<String>> argFilterParams);
-	List<Product> getProductsByPriceLessThan(Integer unitPrice);
-	List<Product> getProductsByPriceGreatThan(Integer unitPrice);
+	
 }
