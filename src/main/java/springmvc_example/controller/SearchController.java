@@ -36,7 +36,7 @@ public class SearchController {
 	   
 		ModelAndView model = new ModelAndView();
 		
-		model.addObject("products",this.productService.getProductByName(productName));
+		model.addObject("products",this.productService.search(categoryId, priceFrom, priceTo, productName));
 		model.setViewName("product/search");
 		return model;
 
