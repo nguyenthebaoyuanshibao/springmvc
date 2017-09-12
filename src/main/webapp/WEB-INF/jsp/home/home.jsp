@@ -70,6 +70,10 @@ footer {
 					<li><a href="#">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/SpringWebStore/user/list"><span
+							class="glyphicon glyphicon-log-in"></span> Admin Page</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/SpringWebStore/logout"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
@@ -93,21 +97,27 @@ footer {
 			<div class="col-sm-8 text-left">
 				<div>
 
-
-					Input Text : <input type="text" id="txt" name="searchString"> 
-						<br /> 
-					Category     :  <select id="foo" class=>
-						<option value="I phone">I Phone</option>
-						<option value="SamSung Galaxy">Samsung Galaxy</option>
-						<option value="XiaoMi">XiaoMi</option>
-					</select> <br />
 					<form>
-						Price from: <input id ="id1" type="number" name="priceFrom" min="0">
+						Input Text : <input type="text" id="txt" name="searchString">
+						Category: 
+						<select id="foo" class=>
+						    <option value =""></option>
+							<option value="I phone">I Phone</option>
+							<option value="SamSung Galaxy">Samsung Galaxy</option>
+							<option value="XiaoMi">XiaoMi</option>
+						</select>
+                        <br/>
+                       
+					    <br/>
+						<div>
+						Price from: <input id="id1" type="number" name="priceFrom" min="0">
+                        <br/>
+						Price from: <input id="id2" type="number" name="priceTo" min="400">
+						</div>
 					</form>
-					<form>
-						Price from: <input id ="id2" type="number" name="priceTo" min="400">
-					</form>
-					<br/>
+						
+					
+					
 					 <button onclick="search()">Search</button>
 				</div>
 				<div>
@@ -162,10 +172,10 @@ footer {
 		var searchButton = document.getElementById('searchButton');
 
 		function setSearchHref() {
-			//return 'products/search/?id=' + textField.value + '?category=' + categoryField.value +
-			//		'?price-from=' + priceFromField.value + '?price-to=' + priceToField.value; 
-			return 'products/search/' + categoryField.value + '/' + priceFromField.value + '/'
-			      + priceToField.value + '/?id=' + textField.value;
+			return 'products/search/?id=' + textField.value + '&category=' + categoryField.value +
+			'&price-from=' + priceFromField.value + '&price-to=' + priceToField.value; 
+			//return 'products/search/' + categoryField.value + '/' + priceFromField.value + '/'
+			 //    + priceToField.value + '/?id=' + textField.value;
 		}
 		
 		function search() {

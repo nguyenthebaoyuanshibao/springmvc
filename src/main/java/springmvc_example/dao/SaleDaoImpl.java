@@ -9,7 +9,7 @@ import springmvc_example.model.Sale;
 public class SaleDaoImpl implements SaleDao {
 
 	@Override
-	public void addSale(String saleId, Integer userId, String saleInfo, Integer price) {
+	public void addSale(String saleId, Integer userId, String productId, Integer price) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -28,9 +28,9 @@ public class SearchController {
 	
 	
 
-	@RequestMapping(value = "/products/search/{categoryId}/{priceFrom}/{priceTo}", method = RequestMethod.GET)
-	public ModelAndView search(@PathVariable("categoryId") String categoryId,@PathVariable("priceFrom") Integer priceFrom,
-			@PathVariable("priceTo") Integer priceTo,@RequestParam("id") String productName ) {
+	@RequestMapping(value = "/products/search/", method = RequestMethod.GET)
+	public ModelAndView search(@RequestParam("id") String productName, @RequestParam("price-from") Integer priceFrom, 
+			@RequestParam("price-to") Integer priceTo, @RequestParam("category") String categoryId) {
 		
 	
 	   

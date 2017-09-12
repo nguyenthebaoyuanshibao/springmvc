@@ -17,8 +17,8 @@
     </p>
     <br/>
     <p>
-			       <a href=" <spring:url value=  "/products"/> " class="btn btn-primary"> 
-				        <span class="glyphicon-info-sign glyphicon" /></span> OurPages
+			       <a href=" <spring:url value=  "/"/> " class="btn btn-primary"> 
+				        <span class="glyphicon-info-sign glyphicon" /></span> Home
 				  </a>
    </p>
     <table border="1">

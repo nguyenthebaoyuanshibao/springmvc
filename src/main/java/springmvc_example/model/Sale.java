@@ -9,7 +9,7 @@ public class Sale {
 
 		private Integer userId;
 		
-		private String saleInfo;
+		private String productId;
 		
 		private Integer price;
 		// 作成日
@@ -24,11 +24,11 @@ public class Sale {
 
 		}
 
-		public Sale(String saleId, Integer userId, String saleInfo, Integer price) {
+		public Sale(String saleId, Integer userId, String productId, Integer price) {
 			super();
 			this.saleId = saleId;
 			this.userId = userId;
-			this.saleInfo = saleInfo;
+			this.productId = productId;
 			this.price = price;
 		}
 
@@ -48,12 +48,12 @@ public class Sale {
 			this.userId = userId;
 		}
 
-		public String getsaleInfo() {
-			return saleInfo;
+		public String getProductId() {
+			return productId;
 		}
 
-		public void setSaleInfo(String saleInfo) {
-			this.saleInfo = saleInfo;
+		public void setProductId(String productId) {
+			this.productId = productId;
 		}
 		
 		public Integer getPrice() {

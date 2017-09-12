@@ -28,7 +28,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<Users> getListUser() {
-		String sql = "SELECT user_id from users";
+		
+		String sql = "SELECT * from users where user_id != :userId";
 		List<Users> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null), new UserMapper());
 		
 		return list;
