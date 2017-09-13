@@ -54,7 +54,7 @@ footer {
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+     <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -98,27 +98,23 @@ footer {
 				</p>
 			</div>
 			<div class="col-sm-8 sidenav">
-				<spring:url value="/user/save" var="saveURL" />
-				<form:form method="post" modelAttribute="user" action="${saveURL }">
+				<spring:url value="/user/admin/delete" var="deleteURL" />
+				<form:form method="post" modelAttribute="user"
+					action="${deleteURL }">
 					<form:hidden path="userId" />
+					<h2>${msg}</h2>
 					<table border="1" align="center">
-						<tr>
-							<td colspan="2">${msg }</td>
-						</tr>
+						
 						<tr>
 							<td>Username</td>
 							<td>${user.userId }</td>
 						</tr>
-						<tr>
-							<td>New Password:</td>
-							<td><form:password path="password" /></td>
-						</tr>
+						
 						<tr>
 							<td></td>
-							<td><button type="submit">Change Pass</button></td>
+							<td><button type="submit">Remove</button></td>
 						</tr>
 					</table>
-					
 					
 				</form:form>
 			</div>
@@ -137,7 +133,7 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
- 
- 
+	
+
 </body>
 </html>

@@ -22,7 +22,7 @@ public class SignupValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		UserForm user = (UserForm) target;
 		
-		ValidationUtils.rejectIfEmpty(errors, "username", "notEmpty.username");
+		ValidationUtils.rejectIfEmpty(errors, "userId", "notEmpty.userId");
 		ValidationUtils.rejectIfEmpty(errors, "password", "notEmpty.password");
 		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "notEmpty.confirmPassword");
 		

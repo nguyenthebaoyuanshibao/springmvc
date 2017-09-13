@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,7 +52,7 @@ footer {
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -68,10 +66,7 @@ footer {
 			<ul class="nav navbar-nav">
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 <li class="active">
-                 <a href=" <spring:url value=  "/user/admin"/> "
-					class="btn btn-primary"> Admin Page </a>
-				</li>
+                 	<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -98,29 +93,26 @@ footer {
 				</p>
 			</div>
 			<div class="col-sm-8 sidenav">
-				<spring:url value="/user/save" var="saveURL" />
-				<form:form method="post" modelAttribute="user" action="${saveURL }">
-					<form:hidden path="userId" />
-					<table border="1" align="center">
-						<tr>
-							<td colspan="2">${msg }</td>
-						</tr>
-						<tr>
-							<td>Username</td>
-							<td>${user.userId }</td>
-						</tr>
-						<tr>
-							<td>New Password:</td>
-							<td><form:password path="password" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><button type="submit">Change Pass</button></td>
-						</tr>
-					</table>
-					
-					
-				</form:form>
+			         <p>${msg }</p>
+				<form >
+					ProductId: <input id="id1" type="text" > <br> 
+					Url: <input id="id2" type="text" > <br>
+					Category: 
+						<select id="id3" class=>
+						    <option value =""></option>
+							<option value="I phone">I Phone</option>
+							<option value="SamSung Galaxy">Samsung Galaxy</option>
+							<option value="XiaoMi">XiaoMi</option>
+						</select>
+						<br>
+					ProductName: <input id="id4" type="text" > <br> 
+					UnitPrice: <input id="id5" type="number" > <br> 
+					UnitsInStock: <input id="id6" type="number" > <br> 
+				</form>
+                
+                  <button onclick="add()">AddProduct</button>
+
+
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -137,7 +129,27 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
- 
- 
+	<script language="javascript" type="text/javascript">
+	
+		var productIdField = document.getElementById('id1');
+		var urlField = document.getElementById('id2');
+		var categoryIdField = document.getElementById('id3');
+		var productNameField = document.getElementById('id4');
+		var unitPriceField = document.getElementById('id5');
+		var unitsInStockField = document.getElementById('id6');
+
+		function setSearchHref() {
+			return '/add?id=' + productIdField.value + '&url='
+					+ urlField.value + '&categoryId='
+					+ categoryIdField.value + '&productName=' + productNameField.value
+					+'&unitPrice=' + unitPriceField.value + '&unitsInStock=' +
+					unitsInStockField.value;
+			
+		}
+
+		function add() {
+			window.location = window.location.href + setSearchHref();
+		}
+	</script>
 </body>
 </html>

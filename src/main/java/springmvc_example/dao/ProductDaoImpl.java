@@ -26,8 +26,7 @@ import springmvc_example.model.Sale;
  */
 @Repository
 public class ProductDaoImpl implements ProductDao {
-	public ProductDaoImpl() {
-	}
+	
 
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -39,29 +38,35 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() {
 		String sql = "SELECT * FROM products";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null, null, null),
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null, null, null,null),
 				new ProductMapper());
 
 		return list;
 	}
 
-	private SqlParameterSource getSqlParameterSource(String productId, String productName, String categoryId, Integer unitPrice) {
+	private SqlParameterSource getSqlParameterSource(String productId, String url, String categoryId,String productName, Integer unitPrice, Integer unitsInStock) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		if (productId!=null){
 			parameterSource.addValue("productId", productId);
 		}
-		if (productName != null) {
-			parameterSource.addValue("productName", productName);
+		if(url!=null) {
+			parameterSource.addValue("url", url);
 		}
 		if (categoryId != null) {
 			parameterSource.addValue("categoryId", categoryId);
 		}
+		if (productName != null) {
+			parameterSource.addValue("productName", productName);
+		}
 		if (unitPrice != null) {
 			parameterSource.addValue("unitPrice", unitPrice);
 		}
+		if(unitsInStock!=null) {
+			parameterSource.addValue("unitsInStock", unitsInStock);
+		}
 
 		parameterSource.addValue("priceFrom", 0);
-		parameterSource.addValue("priceTo", 600);
+		parameterSource.addValue("priceTo", 450);
 		
 
 		return parameterSource;
@@ -87,7 +92,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getProductByName(String productName) {
 		String sql = "SELECT * FROM products where product_name= :productName";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,productName, null, null),
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null,productName, null,null),
 				new ProductMapper());
 
 		return list;
@@ -95,33 +100,27 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product getProductById(String productId) {
 		String sql = "SELECT * FROM products where product_id= :productId";
-		Product product = namedParameterJdbcTemplate.queryForObject(sql, getSqlParameterSource(productId,null, null, null),
+		Product product = namedParameterJdbcTemplate.queryForObject(sql, getSqlParameterSource(productId,null,null, null, null,null),
 				new ProductMapper());
 
 		return product;
 	}
 
-
 	@Override
 	public List<Product> search(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
-		if (priceFrom == null) {
-			priceFrom = 0;
-		}
-		if (priceTo == null) {
-			priceTo = 600;
-		}
+
 		if (categoryId == null || categoryId == "") {
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null,productName, categoryId, null), new ProductMapper());
+					getSqlParameterSource(null,null,categoryId,productName, null,null), new ProductMapper());
 			return list;
 		} else {
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND category_id =:categoryId AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null,productName, categoryId, null), new ProductMapper());
+					getSqlParameterSource(null,null,categoryId,productName, null,null), new ProductMapper());
 			return list;
 		}
 	}
@@ -129,19 +128,25 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getProductsByCategory(String categoryId) {
 		String sql = "SELECT * FROM products where category_id= :categoryId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null, categoryId, null),
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null, categoryId,null, null,null),
 				new ProductMapper());
 
 		return list;
 	}
 	
-	
+	@Override
+	public void updateUnitsInStock(String productId, Integer unitsInStock) {
+		String sql = "update products set units_in_stock =:unitsInStock where product_id= :productId";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId,null, null, null, null,unitsInStock));
+		
+	}
 
 
 	@Override
-	public void addProduct(String productId, String url, String categoryId, String productName, Integer unitPrice) {
-		// TODO Auto-generated method stub
-
+	public void addProduct(String productId, String url,String categoryId, String productName, Integer unitPrice, Integer unitsInStock) {
+		String sql = "INSERT INTO products(product_id, url, category_id, product_name, unit_price, units_in_stock) "
+				+ "VALUES(:productId, :url, :categoryId, :productName, :unitPrice, :unitsInStock)";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId,url,categoryId,productName,unitPrice,unitsInStock));
 	}
 
 	@Override
@@ -149,6 +154,9 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 
 	}
+
+
+
 	
 
 }

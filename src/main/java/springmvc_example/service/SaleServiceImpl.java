@@ -23,7 +23,11 @@ public class SaleServiceImpl implements SaleService {
 		Product product = this.productRepository.getProductById(productId);
 		Integer unitPrice = product.getUnitPrice();
 		if(checkQuantity(productId, price/unitPrice)){
-			 this.saleDao.addSale(saleId, userId, productId, unitPrice);
+			
+			 product.setUnitsInStock(product.getUnitsInStock()-price/unitPrice);
+			 
+			 this.saleDao.addSale(saleId, userId, productId, price);
+			 this.productRepository.updateUnitsInStock(productId, product.getUnitsInStock());
 		}
 		
 
@@ -38,7 +42,7 @@ public class SaleServiceImpl implements SaleService {
 	public boolean checkQuantity(String productId, Integer quantity ){
     	Product product = this.productRepository.getProductById(productId);
     	if(product.getUnitsInStock()>=quantity){
-    		product.setUnitsInStock(product.getUnitsInStock()-quantity);
+    		
     		return true;
     	}
     	return false;

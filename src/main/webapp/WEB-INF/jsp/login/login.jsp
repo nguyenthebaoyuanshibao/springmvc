@@ -6,10 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
+
 </head>
 <body>
-    <form name="loginForm" action= '<c:url value="j_spring_security_check" />' method ="post">
-        <table>
+    <form  name="loginForm" action= '<c:url value="j_spring_security_check" />' method ="post">
+        <table align="center">
             <tr>
                 <td colspan ="2">Login</td>
             </tr>
@@ -42,7 +43,8 @@
                 <td></td>
                 <td>
                     <a href='<c:url value="/user/signup" />'>Sign up</a>
-                </td>
+					
+				</td>
             </tr>
         </table>
     </form>

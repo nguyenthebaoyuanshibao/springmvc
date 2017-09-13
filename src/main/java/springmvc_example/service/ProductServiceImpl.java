@@ -34,7 +34,11 @@ public class ProductServiceImpl implements ProductService
 		return this.productRepository.getProductByName(productName);
 	}
 
-	
+	@Override
+	public Product getProductById(String productId) {
+		return this.productRepository.getProductById(productId);
+	}
+
 	@Override
 	public List<Product> getProductsByCategory(String argCategory)
 	{
@@ -46,11 +50,17 @@ public class ProductServiceImpl implements ProductService
 		
 		return this.productRepository.search(categoryId, priceFrom, priceTo, productName);
 	}
-
-
+     
 	@Override
-	public void addProduct(String productId, String categoryId, String productName, Integer unitPrice) {
-		// TODO Auto-generated method stub
+	public void updateUnitsInStock(String productId, Integer unitsInStock) {
+		this.productRepository.updateUnitsInStock(productId, unitsInStock);
+		
+	}
+    
+	@Override
+	public void addProduct(String productId, String url, String categoryId, String productName, Integer unitPrice,
+			Integer unitsInStock) {
+		this.productRepository.addProduct(productId, url, categoryId, productName, unitPrice, unitsInStock);
 		
 	}
 
@@ -60,23 +70,6 @@ public class ProductServiceImpl implements ProductService
 		
 	}
 
-
-		
-		
-    
-
-
-	@Override
-	public Sale addSale(String saleId, String userId, String productId, Integer quantity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Product getProductById(String productId) {
-		return this.productRepository.getProductById(productId);
-	}
 
 	
 }

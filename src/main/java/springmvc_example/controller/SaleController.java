@@ -1,5 +1,7 @@
 package springmvc_example.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,18 +30,20 @@ public class SaleController {
 		return model;
 	}
 	
-	@RequestMapping(value="/order/{productId}/{quantity}")
-	public ModelAndView orderResult(@PathVariable("productId") String productId, 
-			@PathVariable("quantity") Integer quantity){
-		String saleId = "12";
+	@RequestMapping(value = "/order/{productId}/{quantity}")
+	public ModelAndView orderResult(@PathVariable("productId") String productId,
+			@PathVariable("quantity") Integer quantity) {
+		
+		String saleId = UUID.randomUUID().toString();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = auth.getName();
-		Integer price = quantity*productService.getProductById(productId).getUnitPrice();
-		
-		
+
 		ModelAndView model = new ModelAndView();
-		saleService.addSale(saleId, userId, productId, price);
-		model.setViewName("product/order_result");
+		saleService.addSale(saleId, userId, productId,
+				quantity * (productService.getProductById(productId).getUnitPrice()));
+		
+		model.addObject("product", productService.getProductById(productId));
+		model.setViewName("product/product_details");
 		return model;
 	}
 

@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
+<title>Add User</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -54,7 +52,8 @@ footer {
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+
+	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -69,8 +68,7 @@ footer {
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
                  <li class="active">
-                 <a href=" <spring:url value=  "/user/admin"/> "
-					class="btn btn-primary"> Admin Page </a>
+                 <a href=" <spring:url value=  "/user/admin"/> "> Admin Page </a>
 				</li>
 			</ul>
 
@@ -98,29 +96,20 @@ footer {
 				</p>
 			</div>
 			<div class="col-sm-8 sidenav">
-				<spring:url value="/user/save" var="saveURL" />
-				<form:form method="post" modelAttribute="user" action="${saveURL }">
-					<form:hidden path="userId" />
-					<table border="1" align="center">
-						<tr>
-							<td colspan="2">${msg }</td>
-						</tr>
-						<tr>
-							<td>Username</td>
-							<td>${user.userId }</td>
-						</tr>
-						<tr>
-							<td>New Password:</td>
-							<td><form:password path="password" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><button type="submit">Change Pass</button></td>
-						</tr>
-					</table>
-					
-					
-				</form:form>
+
+				<form align="center">
+					UserId:<br> <input type="text" name="userId"
+						> <br> 
+					Password:<br> <input
+						type="password" name="password" value=> <br>
+				</form>
+				
+				<a href="<spring:url value="/user/admin/addUser" />"
+						class="btn btn-warning btn-large"> <span
+						class="glyphicon glyphicon"></span> Add User
+					</a>
+
+
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -138,6 +127,6 @@ footer {
 	<p>Footer Text</p>
 	</footer>
  
- 
+
 </body>
 </html>

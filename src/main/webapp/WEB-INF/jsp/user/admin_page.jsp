@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,7 +53,7 @@ footer {
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -68,10 +67,7 @@ footer {
 			<ul class="nav navbar-nav">
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 <li class="active">
-                 <a href=" <spring:url value=  "/user/admin"/> "
-					class="btn btn-primary"> Admin Page </a>
-				</li>
+                 	<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -98,29 +94,28 @@ footer {
 				</p>
 			</div>
 			<div class="col-sm-8 sidenav">
-				<spring:url value="/user/save" var="saveURL" />
-				<form:form method="post" modelAttribute="user" action="${saveURL }">
-					<form:hidden path="userId" />
-					<table border="1" align="center">
+				<table border="1" align="center">
+					<tr>
+						<td align="center">UserId</td>
+						<td align="center">Action</td>
+						<td align="center">Action</td>
+					</tr>
+					<c:forEach items="${list }" var="user">
 						<tr>
-							<td colspan="2">${msg }</td>
-						</tr>
-						<tr>
-							<td>Username</td>
 							<td>${user.userId }</td>
+							<td><spring:url value="/user/changePass" var="changePassURL" />
+								<a href="${changePassURL }/${user.userId}"><span
+									class="glyphicon-info-sign glyphicon"></span>ChangePass</a></td>
+
+							<td><spring:url value="/user/admin/removeUser" var="removeUserURL" />
+								<a href="${removeUserURL }/${user.userId}"><span
+									class="glyphicon-info-sign glyphicon"></span>Remove</a></td>
 						</tr>
-						<tr>
-							<td>New Password:</td>
-							<td><form:password path="password" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><button type="submit">Change Pass</button></td>
-						</tr>
-					</table>
-					
-					
-				</form:form>
+					</c:forEach>
+				</table>
+				
+				
+
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -137,7 +132,9 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
- 
- 
+	
+
+
+
 </body>
 </html>

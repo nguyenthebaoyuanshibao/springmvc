@@ -22,65 +22,70 @@ import springmvc_example.service.ProductService;
  *
  */
 @Controller
-@RequestMapping("/products")
+@RequestMapping("")
 public class ProductController
 {
 	
 	@Autowired 
 	private ProductService productService;
 	
-	/**
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping
-	public ModelAndView list()
-	{
-		ModelAndView model = new ModelAndView();
-		model.addObject("products", this.productService.getAllProducts());
-		model.setViewName("product/products");
-		return model;
-	}
+
+//	@RequestMapping
+//	public ModelAndView list()
+//	{
+//		ModelAndView model = new ModelAndView();
+//		model.addObject("products", this.productService.getAllProducts());
+//		model.setViewName("product/products");
+//		return model;
+//	}
 	
-	/**
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/all")
-	public ModelAndView allProducts()
-	{
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("products", this.productService.getAllProducts());
-		modelAndView.setViewName("product/products");
-		
-		return modelAndView;
-	}
+
+//	@RequestMapping("/all")
+//	public ModelAndView allProducts()
+//	{
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.addObject("products", this.productService.getAllProducts());
+//		modelAndView.setViewName("product/products");
+//		
+//		return modelAndView;
+//	}
 	
-	/**
-	 * @return
-	 */
+//
+//	@RequestMapping("/{categoryId}")
+//	public ModelAndView getProductsByCategory(ModelAndView model, @PathVariable(value="categoryId") String categoryId)
+//	{   
+//		model.addObject("products", this.productService.getProductsByCategory(categoryId));
+//		model.setViewName("product/products");
+//		return model;
+//	}
 	
-	
-	/**
-	 * @param model
-	 * @param argCategory
-	 * @return
-	 */
-	@RequestMapping("/{categoryId}")
-	public ModelAndView getProductsByCategory(ModelAndView model, @PathVariable(value="categoryId") String categoryId)
-	{   
-		model.addObject("products", this.productService.getProductsByCategory(categoryId));
-		model.setViewName("product/products");
-		return model;
-	}
-	
-	@RequestMapping("/product")
-	public ModelAndView getProductByName(@RequestParam("id") String productName) throws Exception
+	@RequestMapping("product/detail")
+	public ModelAndView getProductId(@RequestParam("id") String productId) throws Exception
 	
 	{  
 	   ModelAndView model = new ModelAndView();
-		model.addObject("products", this.productService.getProductByName(productName));
-		model.setViewName("product/product");
+		model.addObject("product", this.productService.getProductById(productId));
+		model.setViewName("product/product_details");
+		return model;
+	}
+	
+	@RequestMapping("/user/admin/addProduct")
+    public ModelAndView addProductForm() {
+		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("product/add_product");
+		return model;
+	}
+	
+	@RequestMapping("/user/admin/addProduct/add")
+	public ModelAndView addProduct(@RequestParam("id") String productId, @RequestParam("url") String url,
+			@RequestParam("categoryId") String categoryId, @RequestParam("productName") String productName,
+			@RequestParam("unitPrice") Integer unitPrice, @RequestParam("unitsInStock") Integer unitsInStock) {
+		
+		ModelAndView model = new ModelAndView();
+		this.productService.addProduct(productId, url, categoryId, productName, unitPrice, unitsInStock);
+		model.addObject("msg", "Add Product Success!");
+		model.setViewName("product/add_product");
 		return model;
 	}
 	

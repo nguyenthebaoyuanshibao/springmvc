@@ -25,9 +25,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public ModelAndView list() {
-		ModelAndView model = new ModelAndView("user/list");
+		ModelAndView model = new ModelAndView("user/admin_page");
 		model.addObject("list", userService.getListUser() );
 		
 		return model;
@@ -77,19 +77,24 @@ public class UserController {
 		
 		
 	}
-	@RequestMapping(value="/removeUser/{userId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/removeUser/{userId}", method=RequestMethod.GET)
 	public ModelAndView removeUser(@PathVariable("userId") String userId) {
-		ModelAndView model = new ModelAndView("user/removeUser");
+		ModelAndView model = new ModelAndView("user/remove_user");
 		model.addObject("user", userService.findUserbyUserId(userId));
 				
 		return model;
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/delete", method=RequestMethod.POST)
 	public ModelAndView delete(@ModelAttribute("user") Users user) {
-		ModelAndView model = new ModelAndView("user/removeUser");
+		ModelAndView model = new ModelAndView("user/remove_user");
 		userService.deleteUser(user.getUserId());
 		model.addObject("msg", "User removed successful!");
 	   return model;
 	}	
+	
+
+	
+	
+	
 }
