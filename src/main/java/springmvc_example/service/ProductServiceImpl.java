@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import springmvc_example.dao.ProductDao;
 import springmvc_example.model.Product;
+import springmvc_example.model.Sale;
 
 
 /**
@@ -60,10 +61,22 @@ public class ProductServiceImpl implements ProductService
 	}
 
 
+		
+		
+    
 
-	
+
+	@Override
+	public Sale addSale(String saleId, String userId, String productId, Integer quantity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
-	
+	@Override
+	public Product getProductById(String productId) {
+		return this.productRepository.getProductById(productId);
+	}
+
 	
 }

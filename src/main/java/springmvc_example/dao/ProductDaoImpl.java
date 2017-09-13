@@ -18,6 +18,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import springmvc_example.model.Product;
+import springmvc_example.model.Sale;
 
 /**
  * @author life
@@ -38,14 +39,17 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() {
 		String sql = "SELECT * FROM products";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, null),
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null, null, null),
 				new ProductMapper());
 
 		return list;
 	}
 
-	private SqlParameterSource getSqlParameterSource(String productName, String categoryId, Integer unitPrice) {
+	private SqlParameterSource getSqlParameterSource(String productId, String productName, String categoryId, Integer unitPrice) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		if (productId!=null){
+			parameterSource.addValue("productId", productId);
+		}
 		if (productName != null) {
 			parameterSource.addValue("productName", productName);
 		}
@@ -53,11 +57,12 @@ public class ProductDaoImpl implements ProductDao {
 			parameterSource.addValue("categoryId", categoryId);
 		}
 		if (unitPrice != null) {
-			parameterSource.addValue("unitFrom", unitPrice);
+			parameterSource.addValue("unitPrice", unitPrice);
 		}
 
 		parameterSource.addValue("priceFrom", 0);
 		parameterSource.addValue("priceTo", 600);
+		
 
 		return parameterSource;
 	}
@@ -82,11 +87,20 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getProductByName(String productName) {
 		String sql = "SELECT * FROM products where product_name= :productName";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(productName, null, null),
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,productName, null, null),
 				new ProductMapper());
 
 		return list;
 	}
+	@Override
+	public Product getProductById(String productId) {
+		String sql = "SELECT * FROM products where product_id= :productId";
+		Product product = namedParameterJdbcTemplate.queryForObject(sql, getSqlParameterSource(productId,null, null, null),
+				new ProductMapper());
+
+		return product;
+	}
+
 
 	@Override
 	public List<Product> search(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
@@ -100,14 +114,14 @@ public class ProductDaoImpl implements ProductDao {
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(productName, categoryId, null), new ProductMapper());
+					getSqlParameterSource(null,productName, categoryId, null), new ProductMapper());
 			return list;
 		} else {
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND category_id =:categoryId AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(productName, categoryId, null), new ProductMapper());
+					getSqlParameterSource(null,productName, categoryId, null), new ProductMapper());
 			return list;
 		}
 	}
@@ -115,11 +129,14 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getProductsByCategory(String categoryId) {
 		String sql = "SELECT * FROM products where category_id= :categoryId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, categoryId, null),
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null, categoryId, null),
 				new ProductMapper());
 
 		return list;
 	}
+	
+	
+
 
 	@Override
 	public void addProduct(String productId, String url, String categoryId, String productName, Integer unitPrice) {
@@ -132,5 +149,6 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 
 	}
+	
 
 }

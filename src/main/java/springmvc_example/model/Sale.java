@@ -7,7 +7,7 @@ public class Sale {
 	// 販売履歴のID
 		private String saleId;
 
-		private Integer userId;
+		private String userId;
 		
 		private String productId;
 		
@@ -24,7 +24,7 @@ public class Sale {
 
 		}
 
-		public Sale(String saleId, Integer userId, String productId, Integer price) {
+		public Sale(String saleId, String userId, String productId, Integer price) {
 			super();
 			this.saleId = saleId;
 			this.userId = userId;
@@ -40,11 +40,11 @@ public class Sale {
 			this.saleId = saleId;
 		}
 
-		public Integer getUserId() {
+		public String getUserId() {
 			return userId;
 		}
 
-		public void setUserId(Integer userId) {
+		public void setUserId(String userId) {
 			this.userId = userId;
 		}
 

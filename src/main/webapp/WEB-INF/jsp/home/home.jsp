@@ -70,11 +70,11 @@ footer {
 					<li><a href="#">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/SpringWebStore/user/list"><span
+					<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/list"><span
 							class="glyphicon glyphicon-log-in"></span> Admin Page</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/SpringWebStore/logout"><span
+					<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
 			</div>
@@ -112,7 +112,7 @@ footer {
 						<div>
 						Price from: <input id="id1" type="number" name="priceFrom" min="0">
                         <br/>
-						Price from: <input id="id2" type="number" name="priceTo" min="400">
+						Price to  : <input id="id2" type="number" name="priceTo" min="600">
 						</div>
 					</form>
 						
@@ -126,7 +126,7 @@ footer {
 							<div class="thumbnail">
 								<div class="caption">
 									<div>
-										<image style weight="200" height="200" src=${product.url }>
+										<image style weight="300" height="200" src=${product.url }>
 									</div>
 
 									<div>

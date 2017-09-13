@@ -23,12 +23,13 @@
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
+						    <image style weight="300" height="200" src=${product.url }>
 							<h3>${product.productName}</h3>
 							<p>description: ${product.description}</p>
 							<p>price: ${product.unitPrice}USD</p>
 							<p>Available ${product.unitsInStock} units in stock</p>
 
-								<a href="<spring:url value="/products" />"
+								<a href="<spring:url value="/" />"
 									class="btn btn-warning btn-large"> <span
 									class="glyphicon-shopping-cart glyphicon"></span> back
 								</a> <a href="<spring:url value="/order" />"

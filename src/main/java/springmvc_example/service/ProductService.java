@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import springmvc_example.model.Product;
+import springmvc_example.model.Sale;
 
 
 
@@ -20,4 +21,6 @@ public interface ProductService
 	List<Product> search(String categoryId, Integer priceFrom, Integer priceTo,String productName);
 	List<Product> getProductByName(String productName) ;
 	List<Product> getProductsByCategory(String argCategory);
+	Product getProductById(String productId);
+	Sale addSale(String saleId, String userId, String productId,Integer quantity);
 }

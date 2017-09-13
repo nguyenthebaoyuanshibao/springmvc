@@ -5,18 +5,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Order Page</title>
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<title>Order</title>
 </head>
 <body>
-   <h1> 
-   
-        <p> 
-             Welcome to order page!
-             <br/>
-             <a href="<spring:url value="/products" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> back
-					</a>
-        </p>
-   </h1>
+
+
+	<div>
+		<image style weight="200" height="200" src=${ product.url} >
+	</div>
+
+
+	<h3>${product.productName}</h3>
+
+
+
+	<p>Description: ${product.description}</p>
+	<p>Price : ${product.unitPrice}</p>
+	<p>Units In Stock: ${product.unitsInStock} </p>
+
+
+
+	<a href="<spring:url value="/" />" class="btn btn-warning btn-large">
+		<span class="glyphicon-shopping-cart glyphicon"></span> Back
+	</a>
+	<form>
+	    Number of stocks you want buy: <input id="id1" type="number" name="" min="0">
+	</form>
+	<button onclick="search()">Order</button>
+	
+	<script language="javascript" type="text/javascript">
+		
+		var numberOfQuantityField = document.getElementById('id1');
+		
+		function setSearchHref() {
+			return "/"+ numberOfQuantityField.value;
+			
+		}
+		
+		function search() {
+			window.location = window.location.href + setSearchHref();
+		}
+	</script>
 </body>
 </html>

@@ -43,12 +43,13 @@
 						<a href="<spring:url value="/" />"
 							class="btn btn-warning btn-large"> <span
 							class="glyphicon-shopping-cart glyphicon"></span> Back
-					
-						<a href="<spring:url value="/order" />"
+						</a> <a href="<spring:url value="/order/${product.productId }" />"
 							class="btn btn-warning btn-large"> <span
-							class="glyphicon-shopping-cart glyphicon"></span> Order Now 
-					</div></a>
-				
+							class="glyphicon-shopping-cart glyphicon"></span> Order Now
+						</a>
+					</div>
+
+
 				</div>
 			</c:forEach>
 		</div>

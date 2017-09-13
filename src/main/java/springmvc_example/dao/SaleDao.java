@@ -4,8 +4,8 @@ import springmvc_example.model.Sale;
 
 public interface SaleDao {
 	
-	void addSale(String saleId, Integer userId, String productId, Integer price);
+	void addSale(String saleId, String userId, String productId, Integer price);
 	
-	Sale updateSale(String saleId);
+	void updateSale(String saleId);
 
 }
