@@ -134,7 +134,9 @@ footer {
 		var numberOfQuantityField = document.getElementById('id2');
 		var unitsInStockField     = document.getElementById('id1');
 		function myFunction(){
-			if(unitsInStockField.innerHTML>=numberOfQuantityField.value)
+			if((unitsInStockField.innerHTML.length>numberOfQuantityField.value.length)||
+					((unitsInStockField.innerHTML.length==numberOfQuantityField.value.length)&&
+					(unitsInStockField.innerHTML>numberOfQuantityField.value)))
 			{
 			alert('Order Success');}
 			else{

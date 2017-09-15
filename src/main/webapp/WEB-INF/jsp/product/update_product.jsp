@@ -91,6 +91,10 @@ footer {
 		  
 				<form>
 				<table align="center">
+				        <tr>
+				            <td>ProducId :</td>
+				            <td><input id="id1" type="number"></td>
+				        </tr>
 						<tr>
 							<td>Url:</td>
 							<td><input id="id2" type="text" /></td>
@@ -134,7 +138,7 @@ footer {
 					</table>	
 				</form>
                 
-                  <button onclick="add()">AddProduct</button>
+                  <button onclick="update()">UpdateProduct</button>
 
                      
 			</div>
@@ -157,6 +161,7 @@ footer {
 	
 	<script language="javascript" type="text/javascript">
 	
+	    var productIdField =document.getElementById('id1');
 		var urlField = document.getElementById('id2');
 		var categoryIdField = document.getElementById('id3');
 		var productNameField = document.getElementById('id4');
@@ -166,14 +171,13 @@ footer {
         var manufacturerField = document.getElementById('id8');
         
 		function setSearchHref() {
-			return '/add?id=' + urlField.value + '&categoryId=' + categoryIdField.value + '&productName=' + productNameField.value
+			return '/update?id=' + productIdField.value+ '&url=' + urlField.value + '&categoryId=' + categoryIdField.value + '&productName=' + productNameField.value
 					+'&unitPrice=' + unitPriceField.value + '&unitsInStock=' +
-					unitsInStockField.value + '&description=' + descriptionField.value+
-					'&manufacturer=' + manufacturerField.value ;
+					unitsInStockField.value + '&description=' + descriptionField.value+ '&manufacturer=' + manufacturerField.value ;
 			
 		}
 
-		function add() {
+		function update() {
 			window.location = window.location.href + setSearchHref();
 		}
 	</script>

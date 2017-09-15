@@ -25,18 +25,17 @@ public class SaleDaoImpl implements SaleDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 	
-	private SqlParameterSource getSqlParameterSource(String saleId, String userId, String productId, Integer price) {
+	private SqlParameterSource getSqlParameterSource(String userId, Integer productId,Integer quantity, Integer price) {
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-
-		if (saleId != null) {
-			parameterSource.addValue("saleId", saleId);
-		}
 		if (userId != null) {
 			parameterSource.addValue("userId", userId);
 		}
 		if (productId != null) {
 			parameterSource.addValue("productId", productId);
+		}
+		if(quantity!=null) {
+			parameterSource.addValue("quantity", quantity);
 		}
 		if (price != null) {
 			parameterSource.addValue("price", price);
@@ -49,24 +48,22 @@ public class SaleDaoImpl implements SaleDao {
 
 		public Sale mapRow(ResultSet rs, int numRow) throws SQLException {
 			Sale sale = new Sale();
-			
-			sale.setSaleId(rs.getString("sale_id"));
 			sale.setUserId(rs.getString("user_id"));
 			sale.setProductId(rs.getString("product_id"));
 			sale.setPrice(rs.getInt("price"));
-			
+			sale.setQuantity(rs.getInt("quantity"));
 			return sale;
 		}
 	
 	}
 	@Override
-	public void addSale(String saleId, String userId, String productId,Integer price) {
-		String sql ="INSERT INTO sale(sale_id, user_id, product_id, price) VALUES(:saleId, :userId, :productId, :price) ";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(saleId, userId, productId, price));
+	public void addSale(String userId, Integer productId,Integer quantity, Integer price) {
+		String sql ="INSERT INTO sale(user_id, product_id, quantity, price) VALUES(:userId, :productId, :quantity, :price) ";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, productId, quantity, price));
 	}
 
 	@Override
-	public void updateSale(String saleId) {
+	public void updateSale(Integer saleId) {
 		// TODO Auto-generated method stub
 		
 	}

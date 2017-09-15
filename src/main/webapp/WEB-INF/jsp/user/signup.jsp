@@ -10,20 +10,26 @@
 </head>
 <body>
     <spring:url value="/user/register" var="registerURL" />
-    <form:form action="${registerURL }" modelAttribute="userForm" method="post">
-        <label>UserId: </label>    
-        <form:input path="userId" type="text" />
-        <form:errors path="userId" />
-        <br/>
-        <label>Password: </label>
-        <form:password path="password" />
-        <form:errors path="password" />
-        <br/>  
-        <label>Confirm password: </label>
-        <form:password path="confirmPassword" />
-        <form:errors path="confirmPassword" />
-        <br/>
-        <button type="submit">Sign up</button>
+    <form:form action="${registerURL }" modelAttribute="userForm" method="post" align="center">
+     
+        <table align="center">
+            <tr>
+                <td>UserId: </td>
+                <td><input type ="text" name="userId"></td>
+            </tr>
+            
+            <tr>
+                <td> Password: </td>
+                <td><input type ="password" name="password"></td>
+            </tr>
+            
+            <tr>
+                <td>Confirm Password: </td>
+                <td> <input type ="password" name="confirmPassword"> </td>
+            </tr>
+         
+        </table>
+            <button type="submit">Sign up</button>
     </form:form>    
 
 </body>

@@ -22,7 +22,7 @@ public class SaleController {
 	ProductService productService;
 	
 	@RequestMapping(value="/order/{productId}")
-	public ModelAndView orderView(@PathVariable("productId") String productId) {
+	public ModelAndView orderView(@PathVariable("productId") Integer productId) {
 		
 		ModelAndView model = new ModelAndView();
 		model.addObject("product", productService.getProductById(productId));
@@ -31,15 +31,13 @@ public class SaleController {
 	}
 	
 	@RequestMapping(value = "/order/{productId}/{quantity}")
-	public ModelAndView orderResult(@PathVariable("productId") String productId,
+	public ModelAndView orderResult(@PathVariable("productId") Integer productId,
 			@PathVariable("quantity") Integer quantity) {
-		
-		String saleId = UUID.randomUUID().toString();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = auth.getName();
 
 		ModelAndView model = new ModelAndView();
-		saleService.addSale(saleId, userId, productId,
+		saleService.addSale(userId, productId,quantity,
 				quantity * (productService.getProductById(productId).getUnitPrice()));
 		
 		model.addObject("product", productService.getProductById(productId));

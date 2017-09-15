@@ -7,15 +7,17 @@ import java.math.BigDecimal;
  *
  */
 public class Product
+
 {
-	private String productId =null		;
-	private String categoryId		=null	;
+	private Integer productId;
 	private String url;
-	private String productName 	=null		;
-	private Integer unitPrice 	= null;
-	private String description		= null;
-	private String manufacturer	 	= null;
-	private Integer unitsInStock		= null;
+	private String categoryId;
+	private String productName;
+	private Integer unitPrice;
+	private Integer unitsInStock;
+	private String description;
+	private String manufacturer;
+	
 	
 	
 	public Product()
@@ -23,21 +25,27 @@ public class Product
 		super();
 	}
 
-	public Product(String productId, String categoryId, String productName, Integer unitPrice)
+	public Product(Integer productId,String url, String categoryId, String productName,
+			Integer unitPrice, Integer unitsInStock,String description, String manufacturer )
 	{
 		this.productId = productId;
+		this.url = url;
 		this.categoryId = categoryId;
 		this.productName = productName;
+		this.unitPrice = unitPrice;
+		this.unitsInStock = unitsInStock;
+		this.description = description;
+		this.manufacturer = manufacturer;
 		
 	}
 	
-	public String getProductId()
+	public Integer getProductId()
 	{
 		return this.productId;
 	}
-	public void setProductId(String argProductId)
+	public void setProductId(Integer productId)
 	{
-		this.productId = argProductId;
+		this.productId = productId;
 	}
 	
 	public String getUrl()
@@ -48,54 +56,61 @@ public class Product
 	{
 		this.url = url;
 	}
-	public String getProductName()
-	{
-		return this.productName;
-	}
-	public void setProductName(String argName)
-	{
-		this.productName = argName;
-	}
-	public Integer getUnitPrice()
-	{
-		return this.unitPrice;
-	}
-	public void setUnitPrice(Integer argUnitPrice)
-	{
-		this.unitPrice = argUnitPrice;
-	}
-	public String getDescription()
-	{
-		return this.description;
-	}
-	public void setDescription(String argDescription)
-	{
-		this.description = argDescription;
-	}
-	public String getManufacturer()
-	{
-		return this.manufacturer;
-	}
-	public void setManufacturer(String argManufacturer)
-	{
-		this.manufacturer = argManufacturer;
-	}
+	
 	public String getCategoryId()
 	{
 		return this.categoryId;
 	}
-	public void setCategoryId(String argCategory)
+	public void setCategoryId(String categoryId)
 	{
-		this.categoryId = argCategory;
+		this.categoryId = categoryId;
 	}
+	
+	public String getProductName()
+	{
+		return this.productName;
+	}
+	public void setProductName(String productName)
+	{
+		this.productName = productName;
+	}
+	
+	public Integer getUnitPrice()
+	{
+		return this.unitPrice;
+	}
+	public void setUnitPrice(Integer unitPrice)
+	{
+		this.unitPrice = unitPrice;
+	}
+	
 	public Integer getUnitsInStock()
 	{
 		return this.unitsInStock;
 	}
-	public void setUnitsInStock(Integer argUnitsInStock)
+	public void setUnitsInStock(Integer unitsInStock)
 	{
-		this.unitsInStock = argUnitsInStock;
+		this.unitsInStock = unitsInStock;
 	}
+	
+	public String getDescription()
+	{
+		return this.description;
+	}
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+	
+	public String getManufacturer()
+	{
+		return this.manufacturer;
+	}
+	public void setManufacturer(String manufacturer)
+	{
+		this.manufacturer = manufacturer;
+	}
+
 	
 	
 	/* (non-Javadoc)

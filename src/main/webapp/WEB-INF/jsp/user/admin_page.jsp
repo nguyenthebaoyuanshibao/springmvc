@@ -65,9 +65,18 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 	<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a></li>
+			
+				<li class="active">
+				    <a href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a>
+				</li>
+				
+                <li class="active">
+                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a>
+                </li>
+                
+                <li class="active">
+                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update Product</a>
+                </li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -83,15 +92,7 @@ footer {
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
+			
 			</div>
 			<div class="col-sm-8 sidenav">
 				<table border="1" align="center">

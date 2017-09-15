@@ -5,16 +5,11 @@ import java.util.Date;
 public class Review {
 	
 	// レビューりID
-		private String reviewId;
-		
+		private Integer reviewId;
 		private String userId;
-		
-		private String productId;
-
+		private Integer productId;
 		private String reviewInfo;
-		
-		private Integer rateNumber;
-
+		private Integer ratingNumber;
 		// 作成日
 		private Date createAt;
 
@@ -30,23 +25,24 @@ public class Review {
 
 
 
-		public Review(String reviewId, String userId, String productId, String reviewInfo ) {
+		public Review(Integer reviewId, String userId, Integer productId, String reviewInfo, Integer ratingNumber ) {
 			super();
 			this.reviewId = reviewId;
 			this.userId = userId;
 			this.productId = productId;
 			this.reviewInfo = reviewInfo;
+			this.ratingNumber = ratingNumber;
 		}
 
 
 
-		public String getReviewId() {
+		public Integer getReviewId() {
 			return reviewId;
 		}
 
 
 
-		public void setReviewId(String reviewId) {
+		public void setReviewId(Integer reviewId) {
 			this.reviewId = reviewId;
 		}
 
@@ -64,13 +60,13 @@ public class Review {
 
 
 
-		public String getProductId() {
+		public Integer getProductId() {
 			return productId;
 		}
 
 
 
-		public void setProductId(String productId) {
+		public void setProductId(Integer productId) {
 			this.productId = productId;
 		}
 
@@ -88,14 +84,14 @@ public class Review {
 
 
 
-		public Integer getRateNumber() {
-			return rateNumber;
+		public Integer getRatingNumber() {
+			return ratingNumber;
 		}
 
 
 
-		public void setRateNumber(Integer rateNumber) {
-			this.rateNumber = rateNumber;
+		public void setRatingNumber(Integer ratingNumber) {
+			this.ratingNumber = ratingNumber;
 		}
 
 

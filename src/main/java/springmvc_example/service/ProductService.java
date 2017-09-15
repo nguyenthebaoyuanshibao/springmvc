@@ -17,17 +17,22 @@ public interface ProductService
 {
 	List<Product> getAllProducts();
 	
-	void addProduct(String productId, String url,String categoryId, String productName, Integer unitPrice, Integer unitsInStock);
+	void addProduct(String url,String categoryId, 
+			String productName, Integer unitPrice, Integer unitsInStock, 
+			String description, String manufacturer);
 	
-	void deleteProductById(String productId);
+	void deleteProductById(Integer productId);
 	
-	List<Product> search(String categoryId, Integer priceFrom, Integer priceTo,String productName);
+	List<Product> search(String categoryId, Integer priceFrom, Integer priceTo, String productName);
 	
 	List<Product> getProductByName(String productName) ;
 	
-	List<Product> getProductsByCategory(String argCategory);
+	List<Product> getProductsByCategory(String categoryId);
 	
-	Product getProductById(String productId);
+	Product getProductById(Integer productId);
 	
-	void updateUnitsInStock(String productId, Integer unitsInStock);
+	void updateUnitsInStock(Integer productId, Integer unitsInStock);
+	
+	void updateProduct(Integer productId, String url,String categoryId, String productName, Integer unitPrice,
+			Integer unitsInStock, String description, String manufacturer);
 }

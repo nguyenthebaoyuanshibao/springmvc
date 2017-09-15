@@ -5,11 +5,13 @@ import java.util.Date;
 public class Sale {
 	
 	// 販売履歴のID
-		private String saleId;
+		private Integer saleId;
 
 		private String userId;
 		
 		private String productId;
+		
+		private Integer quantity;
 		
 		private Integer price;
 		// 作成日
@@ -24,19 +26,20 @@ public class Sale {
 
 		}
 
-		public Sale(String saleId, String userId, String productId, Integer price) {
+		public Sale(Integer saleId, String userId, String productId,Integer quantity, Integer price) {
 			super();
 			this.saleId = saleId;
 			this.userId = userId;
 			this.productId = productId;
+			this.quantity = quantity;
 			this.price = price;
 		}
 
-		public String getSaleId() {
+		public Integer getSaleId() {
 			return saleId;
 		}
 
-		public void setSaleId(String saleId) {
+		public void setSaleId(Integer saleId) {
 			this.saleId = saleId;
 		}
 
@@ -54,6 +57,14 @@ public class Sale {
 
 		public void setProductId(String productId) {
 			this.productId = productId;
+		}
+		
+		public Integer getQuantity() {
+			return quantity;
+		}
+		
+		public void setQuantity(Integer quantity) {
+			this.quantity = quantity;
 		}
 		
 		public Integer getPrice() {

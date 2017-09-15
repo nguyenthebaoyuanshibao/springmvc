@@ -60,14 +60,15 @@ footer {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				
+
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-				
+					<li class="active"><a
+						href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+
 				</ul>
-				
+
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -78,43 +79,47 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
+			<div class="col-sm-2 sidenav">	
+			
 			</div>
+			
 			<div class="col-sm-8 text-left">
 				<div>
-
 					<form>
-						Input Text : <input type="text" id="txt" name="searchString">
-						Category: 
-						<select id="foo" class=>
-						    <option value =""></option>
-							<option value="I phone">I Phone</option>
-							<option value="SamSung Galaxy">Samsung Galaxy</option>
-							<option value="XiaoMi">XiaoMi</option>
-						</select>
-                        <br/>
-                       
-					    <br/>
-						<div>
-						Price from: <input id="id1" type="number" name="priceFrom" min="">
-                        <br/>
-						Price to  :     <input id="id2" type="number" name="priceTo" min="">
-						</div>
+						<table>
+							<tr>
+								<td>Input Text :</td>
+								<td><input type="text" id="txt" name="searchString"></td>
+							</tr>
+
+							<tr>
+								<td>Category:</td>
+								<td><select id="foo" class=>
+										<option value=""></option>
+										<option value="I phone">I Phone</option>
+										<option value="SamSung Galaxy">Samsung Galaxy</option>
+										<option value="XiaoMi">XiaoMi</option>
+								</select></td>
+							</tr>
+
+							<tr>
+								<td>Price from:</td>
+								<td><input id="id1" type="number" name="priceFrom" min=""></td>
+							</tr>
+
+							<tr>
+								<td>Price to :</td>
+								<td><input id="id2" type="number" name="priceTo" min=""></td>
+							</tr>
+
+						</table>
 					</form>
-						
-					
-					
-					 <button onclick="search()">Search</button>
+
+
+
+					<button onclick="search()">Search</button>
 				</div>
+				
 				<div>
 					<c:forEach items="${products}" var="product">
 						<div class="col-sm-3 col-md-3" style="padding-bottom: 15px">
@@ -144,6 +149,7 @@ footer {
 						</div>
 					</c:forEach>
 				</div>
+				
 			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">
@@ -153,12 +159,14 @@ footer {
 					<p></p>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
 	<footer class="container-fluid text-center">
 		<p>Footer Text</p>
 	</footer>
+	
 	<script language="javascript" type="text/javascript">
 		var textField = document.getElementById('txt');
 		var priceFromField = document.getElementById('id1');
@@ -169,13 +177,13 @@ footer {
 		function setSearchHref() {
 			return 'products/search/?id=' + textField.value + '&category=' + categoryField.value +
 			'&price-from=' + priceFromField.value + '&price-to=' + priceToField.value; 
-			//return 'products/search/' + categoryField.value + '/' + priceFromField.value + '/'
-			 //    + priceToField.value + '/?id=' + textField.value;
+			
 		}
 		
 		function search() {
 			window.location = window.location.href + setSearchHref();
 		}
 	</script>
+	
 </body>
 </html>

@@ -10,7 +10,6 @@ public class Users {
 	
 	private String password;
 	
-    private UserRole role;
 	
 	// ユーザ性別
 	private String userGender;
@@ -36,7 +35,6 @@ public class Users {
 		super();
 		this.userId = userId;
 		this.password = password;
-		this.role = role;
 		this.userGender = userGender;
 		this.userEmail = userEmail;
 		this.telNumber = telNumber;
@@ -59,14 +57,6 @@ public class Users {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public UserRole getRole() {
-		return role;
-	}
-
-	public void setRole(UserRole role) {
-		this.role = role;
 	}
 
 	public String getUserGender() {

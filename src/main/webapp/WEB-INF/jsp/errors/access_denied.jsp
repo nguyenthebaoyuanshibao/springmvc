@@ -49,7 +49,7 @@
 <body>
 	<h1>Access Denied!</h1>
 	<p>
-		<a href="<spring:url value="/home" />"
+		<a href="<spring:url value="/" />"
 			class="btn btn-warning btn-large"> <span
 			class="glyphicon glyphicon"></span> Back Home
 		</a>

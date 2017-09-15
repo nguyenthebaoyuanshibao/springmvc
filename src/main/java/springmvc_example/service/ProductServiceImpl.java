@@ -35,14 +35,14 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
-	public Product getProductById(String productId) {
+	public Product getProductById(Integer productId) {
 		return this.productRepository.getProductById(productId);
 	}
 
 	@Override
-	public List<Product> getProductsByCategory(String argCategory)
+	public List<Product> getProductsByCategory(String categoryId)
 	{
-		return this.productRepository.getProductsByCategory(argCategory);
+		return this.productRepository.getProductsByCategory(categoryId);
 	}
 
 	@Override
@@ -52,23 +52,34 @@ public class ProductServiceImpl implements ProductService
 	}
      
 	@Override
-	public void updateUnitsInStock(String productId, Integer unitsInStock) {
+	public void updateUnitsInStock(Integer productId, Integer unitsInStock) {
 		this.productRepository.updateUnitsInStock(productId, unitsInStock);
 		
 	}
     
 	@Override
-	public void addProduct(String productId, String url, String categoryId, String productName, Integer unitPrice,
-			Integer unitsInStock) {
-		this.productRepository.addProduct(productId, url, categoryId, productName, unitPrice, unitsInStock);
+	public void addProduct(String url, String categoryId, 
+			String productName, Integer unitPrice, Integer unitsInStock,
+			String description, String manufacturer ) {
+		
+		this.productRepository.addProduct(url, categoryId, productName, unitPrice, unitsInStock, description, manufacturer);
+		
+	}
+	
+	@Override
+	public void updateProduct(Integer productId, String url, String categoryId, String productName, Integer unitPrice,
+			Integer unitsInStock, String description, String manufacturer) {
+		this.productRepository.updateProduct(productId, url, categoryId, productName, unitPrice, unitsInStock, description, manufacturer);
 		
 	}
 
+
 	@Override
-	public void deleteProductById(String productId) {
+	public void deleteProductById(Integer productId) {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 	

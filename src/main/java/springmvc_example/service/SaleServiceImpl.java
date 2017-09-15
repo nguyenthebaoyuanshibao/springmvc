@@ -18,28 +18,22 @@ public class SaleServiceImpl implements SaleService {
 	private SaleDao saleDao;
 	
 	@Override
-	public void addSale(String saleId, String userId, String productId, Integer price) {
+	public void addSale(String userId, Integer productId, Integer quantity, Integer price) {
 		
 		Product product = this.productRepository.getProductById(productId);
-		Integer unitPrice = product.getUnitPrice();
-		if(checkQuantity(productId, price/unitPrice)){
+		
+		if(checkQuantity(productId, quantity)){
 			
-			 product.setUnitsInStock(product.getUnitsInStock()-price/unitPrice);
+			 product.setUnitsInStock(product.getUnitsInStock()-quantity);
 			 
-			 this.saleDao.addSale(saleId, userId, productId, price);
+			 this.saleDao.addSale(userId, productId,quantity, price);
 			 this.productRepository.updateUnitsInStock(productId, product.getUnitsInStock());
 		}
 		
 
 	}
-
-	@Override
-	public void updateSale(String saleId) {
-		// TODO Auto-generated method stub
 	
-	}
-	
-	public boolean checkQuantity(String productId, Integer quantity ){
+	public boolean checkQuantity(Integer productId, Integer quantity ){
     	Product product = this.productRepository.getProductById(productId);
     	if(product.getUnitsInStock()>=quantity){
     		
@@ -47,5 +41,11 @@ public class SaleServiceImpl implements SaleService {
     	}
     	return false;
     }
+	
+	@Override
+	public void updateSale(Integer saleId) {
+		// TODO Auto-generated method stub
+	
+	}
 
 }
