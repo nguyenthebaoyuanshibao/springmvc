@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,7 +55,7 @@ footer {
 </style>
 </head>
 <body>
-     <nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -68,10 +69,9 @@ footer {
 			<ul class="nav navbar-nav">
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 <li class="active">
-                 <a href=" <spring:url value=  "/user/admin"/> "
-					class="btn btn-primary"> Admin Page </a>
-				</li>
+				<li class="active"><a
+					href=" <spring:url value=  "/user/admin"/> "
+					class="btn btn-primary"> Admin Page </a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -104,18 +104,18 @@ footer {
 					<form:hidden path="userId" />
 					<h2>${msg}</h2>
 					<table border="1" align="center">
-						
+
 						<tr>
 							<td>Username</td>
 							<td>${user.userId }</td>
 						</tr>
-						
+
 						<tr>
 							<td></td>
 							<td><button type="submit">Remove</button></td>
 						</tr>
 					</table>
-					
+
 				</form:form>
 			</div>
 
@@ -133,7 +133,7 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-	
+
 
 </body>
 </html>

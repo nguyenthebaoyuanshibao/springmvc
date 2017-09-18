@@ -5,92 +5,94 @@ import java.util.Date;
 public class Sale {
 	
 	// 販売履歴のID
-		private Integer saleId;
+	private Integer saleId;
 
-		private String userId;
-		
-		private String productId;
-		
-		private Integer quantity;
-		
-		private Integer price;
-		// 作成日
-		private Date createAt;
+	// ユーザ ID
+	private String userId;
 
-		// 更新日
-		private Date updateAt;
+	// 商品ID
+	private String productId;
 
-		
-		/* Construction */
-		public Sale() {
+	// 購入の数
+	private Integer quantity;
 
-		}
+	// 合計金額
+	private Integer price;
 
-		public Sale(Integer saleId, String userId, String productId,Integer quantity, Integer price) {
-			super();
-			this.saleId = saleId;
-			this.userId = userId;
-			this.productId = productId;
-			this.quantity = quantity;
-			this.price = price;
-		}
+	// 作成日
+	private Date createAt;
 
-		public Integer getSaleId() {
-			return saleId;
-		}
+	// 更新日
+	private Date updateAt;
 
-		public void setSaleId(Integer saleId) {
-			this.saleId = saleId;
-		}
+	/* Construction */
+	public Sale() {
 
-		public String getUserId() {
-			return userId;
-		}
+	}
 
-		public void setUserId(String userId) {
-			this.userId = userId;
-		}
+	public Sale(Integer saleId, String userId, String productId, Integer quantity, Integer price) {
+		super();
+		this.saleId = saleId;
+		this.userId = userId;
+		this.productId = productId;
+		this.quantity = quantity;
+		this.price = price;
+	}
 
-		public String getProductId() {
-			return productId;
-		}
+	public Integer getSaleId() {
+		return saleId;
+	}
 
-		public void setProductId(String productId) {
-			this.productId = productId;
-		}
-		
-		public Integer getQuantity() {
-			return quantity;
-		}
-		
-		public void setQuantity(Integer quantity) {
-			this.quantity = quantity;
-		}
-		
-		public Integer getPrice() {
-			return price;
-		}
+	public void setSaleId(Integer saleId) {
+		this.saleId = saleId;
+	}
 
-		public void setPrice(Integer price) {
-			this.price = price;
-		}
+	public String getUserId() {
+		return userId;
+	}
 
-		public Date getCreateAt() {
-			return createAt;
-		}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-		public void setCreateAt(Date createAt) {
-			this.createAt = createAt;
-		}
+	public String getProductId() {
+		return productId;
+	}
 
-		public Date getUpdateAt() {
-			return updateAt;
-		}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
-		public void setUpdateAt(Date updateAt) {
-			this.updateAt = updateAt;
-		}
+	public Integer getQuantity() {
+		return quantity;
+	}
 
-		
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
+	public Date getUpdateAt() {
+		return updateAt;
+	}
+
+	public void setUpdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
 
 }

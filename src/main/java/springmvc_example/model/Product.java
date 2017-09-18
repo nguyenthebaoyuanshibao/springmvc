@@ -8,14 +8,29 @@ import java.math.BigDecimal;
  */
 public class Product
 
-{
+{   
+	//商品ID
 	private Integer productId;
+	
+	//商品の写真のアドレス
 	private String url;
+	
+	//商品のカテゴリ
 	private String categoryId;
+	
+	//商品名
 	private String productName;
+	
+	//商品の値段
 	private Integer unitPrice;
+	
+	//残っている数
 	private Integer unitsInStock;
+	
+	//商品の描写
 	private String description;
+	
+	//サプライヤー
 	private String manufacturer;
 	
 	
@@ -43,6 +58,7 @@ public class Product
 	{
 		return this.productId;
 	}
+	
 	public void setProductId(Integer productId)
 	{
 		this.productId = productId;
@@ -52,6 +68,7 @@ public class Product
 	{
 		return this.url;
 	}
+	
 	public void setUrl(String url)
 	{
 		this.url = url;
@@ -61,6 +78,7 @@ public class Product
 	{
 		return this.categoryId;
 	}
+	
 	public void setCategoryId(String categoryId)
 	{
 		this.categoryId = categoryId;
@@ -70,6 +88,7 @@ public class Product
 	{
 		return this.productName;
 	}
+	
 	public void setProductName(String productName)
 	{
 		this.productName = productName;
@@ -79,6 +98,7 @@ public class Product
 	{
 		return this.unitPrice;
 	}
+	
 	public void setUnitPrice(Integer unitPrice)
 	{
 		this.unitPrice = unitPrice;
@@ -88,6 +108,7 @@ public class Product
 	{
 		return this.unitsInStock;
 	}
+	
 	public void setUnitsInStock(Integer unitsInStock)
 	{
 		this.unitsInStock = unitsInStock;
@@ -97,6 +118,7 @@ public class Product
 	{
 		return this.description;
 	}
+	
 	public void setDescription(String description)
 	{
 		this.description = description;
@@ -106,13 +128,12 @@ public class Product
 	{
 		return this.manufacturer;
 	}
+	
 	public void setManufacturer(String manufacturer)
 	{
 		this.manufacturer = manufacturer;
 	}
 
-	
-	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

@@ -5,7 +5,7 @@ import java.util.List;
 import springmvc_example.model.Users;
 public interface UserService {
 
-	public List<Users> getListUser();
+	public List<Users> getAllUser();
 
 	public Users findUserbyUserId(String userId);
 

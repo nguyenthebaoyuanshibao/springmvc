@@ -62,12 +62,13 @@ footer {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				
+
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-					
+					<li class="active"><a
+						href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"><span
@@ -96,37 +97,37 @@ footer {
 				</section>
 				<section class="container">
 					<div class="row">
-						
-							<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-								<div class="thumbnail">
 
+						<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+							<div class="thumbnail">
 
-									<div>
-										<image style weight="400" height="200" src=${product.url }>
-									</div>
-
-
-									<h3>${product.productName}</h3>
-
-
-
-									<h3>Description: ${product.description}</h3>
-									<h3>Price : ${product.unitPrice}USD</h3>
-									<h3>Units In Stock: ${product.unitsInStock }</h3>
-
-
-								</div>
 
 								<div>
-									 <a href="<spring:url value="/order/${product.productId }" />"
-										class="btn btn-warning btn-large"> <span
-										class="glyphicon-shopping-cart glyphicon"></span> Order Now
-									</a>
+									<image style weight="400" height="200" src=${product.url }>
 								</div>
+
+
+								<h3>${product.productName}</h3>
+
+
+
+								<h3>Description: ${product.description}</h3>
+								<h3>Price : ${product.unitPrice}USD</h3>
+								<h3>Units In Stock: ${product.unitsInStock }</h3>
 
 
 							</div>
-						
+
+							<div>
+								<a href="<spring:url value="/order/${product.productId }" />"
+									class="btn btn-warning btn-large"> <span
+									class="glyphicon-shopping-cart glyphicon"></span> Order Now
+								</a>
+							</div>
+
+
+						</div>
+
 					</div>
 				</section>
 
@@ -144,6 +145,5 @@ footer {
 
 	<footer class="container-fluid text-center">
 		<p>Footer Text</p>
-
 </body>
 </html>

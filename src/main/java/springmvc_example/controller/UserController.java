@@ -18,83 +18,87 @@ import springmvc_example.validator.SignupValidator;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-   
+
 	@Autowired
 	SignupValidator signupValidator;
-	
+
 	@Autowired
 	UserService userService;
-	
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
+
+	// admin page.
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView list() {
+
 		ModelAndView model = new ModelAndView("user/admin_page");
-		model.addObject("list", userService.getListUser() );
-		
+		model.addObject("list", userService.getAllUser());
+
 		return model;
 	}
-	
-	@RequestMapping(value="/changePass/{userId}", method=RequestMethod.GET)
+
+	// Change Password Page.
+	@RequestMapping(value = "/changePass/{userId}", method = RequestMethod.GET)
 	public ModelAndView changePass(@PathVariable("userId") String userId) {
+
 		ModelAndView model = new ModelAndView("user/change_pass");
 		model.addObject("user", userService.findUserbyUserId(userId));
-				
+
 		return model;
 	}
-	
-	@RequestMapping(value="/save", method=RequestMethod.POST)
+
+	// Change Password Success Page.
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(@ModelAttribute("user") Users user) {
+
 		ModelAndView model = new ModelAndView("user/change_pass");
 		userService.updateUser(user.getUserId(), user.getPassword());
 		model.addObject("msg", "Password change successful!");
-	   return model;
-		
-		
-	}
-	
-	@RequestMapping(value="/signup", method=RequestMethod.GET )
-	public ModelAndView signup() {
-		ModelAndView model = new ModelAndView("user/signup");
-		model.addObject("userForm", new UserForm());
-		
+
 		return model;
 	}
-	
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String register(@ModelAttribute("userForm") UserForm userForm, BindingResult result, RedirectAttributes redirectAttributes) {
-		
+
+	// Signup Page.
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signup() {
+
+		ModelAndView model = new ModelAndView("user/signup");
+		model.addObject("userForm", new UserForm());
+
+		return model;
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register(@ModelAttribute("userForm") UserForm userForm, BindingResult result,
+			RedirectAttributes redirectAttributes) {
+
 		signupValidator.validate(userForm, result);
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			return "/user/signup";
-		}
-		
-		else {
+		} else {
 			userService.addUser(userForm.getUserId(), userForm.getPassword());
 			redirectAttributes.addFlashAttribute("msg", "Your account has been created successfully!");
-			
+
 			return "redirect:/login";
 		}
-		
-		
+
 	}
-	@RequestMapping(value="/admin/removeUser/{userId}", method=RequestMethod.GET)
+
+	// Remove User Page.
+	@RequestMapping(value = "/admin/removeUser/{userId}", method = RequestMethod.GET)
 	public ModelAndView removeUser(@PathVariable("userId") String userId) {
 		ModelAndView model = new ModelAndView("user/remove_user");
 		model.addObject("user", userService.findUserbyUserId(userId));
-				
+
 		return model;
 	}
-	
-	@RequestMapping(value="/admin/delete", method=RequestMethod.POST)
+
+	// Remove User Success Page.
+	@RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
 	public ModelAndView delete(@ModelAttribute("user") Users user) {
 		ModelAndView model = new ModelAndView("user/remove_user");
 		userService.deleteUser(user.getUserId());
 		model.addObject("msg", "User removed successful!");
-	   return model;
-	}	
-	
+		return model;
+	}
 
-	
-	
-	
 }

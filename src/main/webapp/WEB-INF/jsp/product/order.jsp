@@ -61,14 +61,15 @@ footer {
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			
+
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-				
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+
 			</ul>
-			
+
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"><span
 						class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -102,15 +103,18 @@ footer {
 
 					<p>Description: ${product.description}</p>
 					<p>Price : ${product.unitPrice}USD</p>
-					Units In Stock: <p id="id1">${product.unitsInStock}</p>
+					Units In Stock:
+					<p id="id1">${product.unitsInStock}</p>
 
 
 					<form>
 						Number of stocks you want buy: <input id="id2" type="number"
 							name="" max=${product.unitsInStock}>
 					</form>
-					<button class="btn btn-warning btn-large" onclick="search(), myFunction()"><span
-										class="glyphicon-shopping-cart glyphicon"></span>Order</button>
+					<button class="btn btn-warning btn-large"
+						onclick="search(), myFunction()">
+						<span class="glyphicon-shopping-cart glyphicon"></span>Order
+					</button>
 				</div>
 
 			</div>
@@ -130,24 +134,21 @@ footer {
 	</footer>
 
 	<script language="javascript" type="text/javascript">
-		
 		var numberOfQuantityField = document.getElementById('id2');
-		var unitsInStockField     = document.getElementById('id1');
-		function myFunction(){
-			if((unitsInStockField.innerHTML.length>numberOfQuantityField.value.length)||
-					((unitsInStockField.innerHTML.length==numberOfQuantityField.value.length)&&
-					(unitsInStockField.innerHTML>numberOfQuantityField.value)))
-			{
-			alert('Order Success');}
-			else{
+		var unitsInStockField = document.getElementById('id1');
+		function myFunction() {
+			if ((unitsInStockField.innerHTML.length > numberOfQuantityField.value.length)
+					|| ((unitsInStockField.innerHTML.length == numberOfQuantityField.value.length) && (unitsInStockField.innerHTML > numberOfQuantityField.value))) {
+				alert('Order Success');
+			} else {
 				alert('Order fail, the units of stock is not enought !');
 			}
 		}
 		function setSearchHref() {
-			return "/"+ numberOfQuantityField.value;
-			
+			return "/" + numberOfQuantityField.value;
+
 		}
-		
+
 		function search() {
 			window.location = window.location.href + setSearchHref();
 		}

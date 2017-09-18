@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,22 +66,21 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-			
-				<li class="active">
-				    <a href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a>
-				</li>
-				
-                <li class="active">
-                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a>
-                </li>
-                
-                <li class="active">
-                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update Product</a>
-                </li>
-               <li class="active">
-                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete Category</a>
-                </li>
-                
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add
+						Product</a></li>
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update
+						Product</a></li>
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete
+						Category</a></li>
+
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -95,31 +95,27 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-			
-			</div>
+			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8 sidenav">
 				<table border="1" align="center">
 					<tr>
 						<td align="center">UserId</td>
 						<td align="center">Action</td>
-						<td align="center">Action</td>
 					</tr>
 					<c:forEach items="${list }" var="user">
+
 						<tr>
 							<td>${user.userId }</td>
-							<td><spring:url value="/user/changePass" var="changePassURL" />
-								<a href="${changePassURL }/${user.userId}"><span
-									class="glyphicon-info-sign glyphicon"></span>ChangePass</a></td>
 
-							<td><spring:url value="/user/admin/removeUser" var="removeUserURL" />
-								<a href="${removeUserURL }/${user.userId}"><span
+							<td><spring:url value="/user/admin/removeUser"
+									var="removeUserURL" /> <a
+								href="${removeUserURL }/${user.userId}"><span
 									class="glyphicon-info-sign glyphicon"></span>Remove</a></td>
 						</tr>
 					</c:forEach>
 				</table>
-				
-				
+
+
 
 			</div>
 
@@ -137,7 +133,7 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-	
+
 
 
 

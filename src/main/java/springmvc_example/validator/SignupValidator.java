@@ -16,10 +16,12 @@ public class SignupValidator implements Validator {
     UserService userService;
 	
 	public boolean supports(Class<?> clazz) {
+		
 		return UserForm.class.isAssignableFrom(clazz);
 	}
 	
 	public void validate(Object target, Errors errors) {
+		
 		UserForm user = (UserForm) target;
 		
 		ValidationUtils.rejectIfEmpty(errors, "userId", "notEmpty.userId");

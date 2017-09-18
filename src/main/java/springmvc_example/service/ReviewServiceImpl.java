@@ -1,11 +1,32 @@
 package springmvc_example.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springmvc_example.dao.ReviewDao;
 import springmvc_example.model.Review;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
+	
+	@Autowired
+	private ReviewDao reviewDao;
+	
+	@Override
+	public List<Review> getReviewByProductId(Integer productId) {
+		
+		return reviewDao.getReviewByProductId(productId);
+	}
+
+	@Override
+	public void deleteReviewByProductId(Integer productId) {
+		
+	 reviewDao.deleteReviewByProductId(productId);
+		
+	}
+
 
 	@Override
 	public void addReview(String reviewId, String userId, String productId) {
@@ -24,5 +45,4 @@ public class ReviewServiceImpl implements ReviewService {
 		// TODO Auto-generated method stub
 
 	}
-
 }

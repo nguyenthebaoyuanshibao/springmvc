@@ -17,34 +17,31 @@ import springmvc_example.model.Users;
 
 @Service
 
-public class LoginServiceImpl implements UserDetailsService{
+public class LoginServiceImpl implements UserDetailsService {
 
-	UserDao userDao;
-	
 	@Autowired
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-	
-	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException{
+	private UserDao userDao;
+
+	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+
 		Users userInfo = userDao.findUserbyUserId(userId);
-		
-		if(userInfo == null) {
+
+		if (userInfo == null) {
 			throw new UsernameNotFoundException("userId was not found in the database!");
 		}
-		
+
 		List<String> roles = userDao.getUserRoles(userId);
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-		
-		if(roles!= null) {
-			for(String role :roles) {
+
+		if (roles != null) {
+			for (String role : roles) {
 				GrantedAuthority authority = new SimpleGrantedAuthority(role);
 				grantList.add(authority);
 			}
 		}
-		
+
 		UserDetails userDetails = new User(userInfo.getUserId(), userInfo.getPassword(), grantList);
-        
+
 		return userDetails;
 	}
 

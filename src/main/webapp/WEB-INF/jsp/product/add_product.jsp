@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,9 +65,21 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
+
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 	<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a></li>
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add
+						Product</a></li>
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update
+						Product</a></li>
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete
+						Category</a></li>
+
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -82,15 +94,13 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				
-			</div>
-			
+			<div class="col-sm-2 sidenav"></div>
+
 			<div class="col-sm-8 sidenav">
-			         <p>${msg }</p>
-		  
+				<p>${msg }</p>
+
 				<form>
-				<table align="center">
+					<table align="center">
 						<tr>
 							<td>Url:</td>
 							<td><input id="id2" type="text" /></td>
@@ -131,12 +141,12 @@ footer {
 							<td><input id="id8" type="text" /></td>
 						</tr>
 
-					</table>	
+					</table>
 				</form>
-                
-                  <button onclick="add()">AddProduct</button>
 
-                     
+				<button onclick="add()">AddProduct</button>
+
+
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -147,14 +157,14 @@ footer {
 					<p></p>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-	
+
 	<script language="javascript" type="text/javascript">
 	
 		var urlField = document.getElementById('id2');
@@ -177,7 +187,7 @@ footer {
 			window.location = window.location.href + setSearchHref();
 		}
 	</script>
-	
-	
+
+
 </body>
 </html>

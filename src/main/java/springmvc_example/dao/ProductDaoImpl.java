@@ -26,54 +26,55 @@ import springmvc_example.model.Sale;
  */
 @Repository
 public class ProductDaoImpl implements ProductDao {
-	
 
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired
 	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	@Override
-	public List<Product> getAllProducts() {
-		String sql = "SELECT * FROM products";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null, null, null,null,null,null),
-				new ProductMapper());
+	private SqlParameterSource getSqlParameterSource(Integer productId, String url, String categoryId,
+			String productName, Integer unitPrice, Integer unitsInStock, String description, String manufacturer) {
 
-		return list;
-	}
-
-	private SqlParameterSource getSqlParameterSource(Integer productId, String url, String categoryId,String productName, Integer unitPrice, 
-			                                         Integer unitsInStock, String description, String manufacturer) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-		if (productId!=null){
+
+		if (productId != null) {
 			parameterSource.addValue("productId", productId);
 		}
-		if(url!=null) {
+
+		if (url != null) {
 			parameterSource.addValue("url", url);
 		}
+
 		if (categoryId != null) {
 			parameterSource.addValue("categoryId", categoryId);
 		}
+
 		if (productName != null) {
 			parameterSource.addValue("productName", productName);
 		}
+
 		if (unitPrice != null) {
 			parameterSource.addValue("unitPrice", unitPrice);
 		}
-		if(unitsInStock!=null) {
+
+		if (unitsInStock != null) {
 			parameterSource.addValue("unitsInStock", unitsInStock);
 		}
-        if(description!=null) {
-        	parameterSource.addValue("description", description);
-        }
-        if(manufacturer!=null) {
-        	parameterSource.addValue("manufacturer", manufacturer);
-        }
+
+		if (description != null) {
+			parameterSource.addValue("description", description);
+		}
+
+		if (manufacturer != null) {
+			parameterSource.addValue("manufacturer", manufacturer);
+		}
+
 		parameterSource.addValue("priceFrom", 0);
+
 		parameterSource.addValue("priceTo", 450);
-		
 
 		return parameterSource;
 	}
@@ -81,7 +82,9 @@ public class ProductDaoImpl implements ProductDao {
 	private static final class ProductMapper implements RowMapper<Product> {
 
 		public Product mapRow(ResultSet rs, int numRow) throws SQLException {
+
 			Product product = new Product();
+
 			product.setProductId(rs.getInt("product_id"));
 			product.setUrl(rs.getString("url"));
 			product.setProductName(rs.getString("product_name"));
@@ -94,88 +97,123 @@ public class ProductDaoImpl implements ProductDao {
 			return product;
 		}
 	}
-
+    
+	// Get All Products.
 	@Override
-	public List<Product> getProductByName(String productName) {
-		String sql = "SELECT * FROM products where product_name= :productName";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null,null,productName, null,null,null,null),
-				new ProductMapper());
+	public List<Product> getAllProducts() {
+
+		String sql = "SELECT * FROM products";
+		List<Product> list = namedParameterJdbcTemplate.query(sql,
+				getSqlParameterSource(null, null, null, null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
+    
+	// Get Product By Product Name.
 	@Override
-	public Product getProductById(Integer productId) {
+	public List<Product> getProductByName(String productName) {
+
+		String sql = "SELECT * FROM products where product_name= :productName";
+		List<Product> list = namedParameterJdbcTemplate.query(sql,
+				getSqlParameterSource(null, null, null, productName, null, null, null, null), new ProductMapper());
+
+		return list;
+	}
+    
+	// Get Product By Product ID.
+	@Override
+	public Product getProductByProductId(Integer productId) {
+
 		String sql = "SELECT * FROM products where product_id= :productId";
-		Product product = namedParameterJdbcTemplate.queryForObject(sql, getSqlParameterSource(productId,null,null, null, null,null,null,null),
-				new ProductMapper());
+		Product product = namedParameterJdbcTemplate.queryForObject(sql,
+				getSqlParameterSource(productId, null, null, null, null, null, null, null), new ProductMapper());
 
 		return product;
 	}
-
+    
+	// Get Product By Many Params.
 	@Override
-	public List<Product> search(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
+	public List<Product> getProductBy(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
 
 		if (categoryId == null || categoryId == "") {
+
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
-			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null,null,categoryId,productName, null,null,null,null), new ProductMapper());
-			return list;
-		} else {
-			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
-					+ "%' AND category_id =:categoryId AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null,null,categoryId,productName, null,null,null,null), new ProductMapper());
+					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null),
+					new ProductMapper());
+
+			return list;
+
+		} else {
+
+			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
+					+ "%' AND category_id =:categoryId AND unit_price >= :priceFrom "
+					+ "AND unit_price <= :priceTo ORDER BY product_id ";
+
+			List<Product> list = namedParameterJdbcTemplate.query(sql,
+					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null),
+					new ProductMapper());
+
 			return list;
 		}
 	}
-
+    
+	// Get Product By Category ID.
 	@Override
 	public List<Product> getProductsByCategory(String categoryId) {
+
 		String sql = "SELECT * FROM products where category_id= :categoryId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null,null, categoryId,null, null,null,null,null),
-				new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql,
+				getSqlParameterSource(null, null, categoryId, null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
-	
+
 	@Override
 	public void updateUnitsInStock(Integer productId, Integer unitsInStock) {
+
 		String sql = "update products set units_in_stock =:unitsInStock where product_id= :productId";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId,null, null, null, null,unitsInStock,null,null));
-		
+
+		namedParameterJdbcTemplate.update(sql,
+				getSqlParameterSource(productId, null, null, null, null, unitsInStock, null, null));
 	}
-
-
+    
+	// Add Product.
 	@Override
-	public void addProduct(String url,String categoryId, String productName, Integer unitPrice, 
-			Integer unitsInStock, String description, String manufacturer) {
+	public void addProduct(String url, String categoryId, String productName, Integer unitPrice, Integer unitsInStock,
+			String description, String manufacturer) {
+
 		String sql = "INSERT INTO products(url, category_id, product_name, unit_price, units_in_stock, description, manufacturer) "
 				+ "VALUES(:url, :categoryId, :productName, :unitPrice, :unitsInStock, :description, :manufacturer)";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null,url,categoryId,productName,unitPrice,unitsInStock,description,manufacturer));
-	}
 
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, url, categoryId, productName, unitPrice,
+				unitsInStock, description, manufacturer));
+	}
+    
+	// Delete Product By Product ID.
 	@Override
-	public void deleteProductById(Integer productId) {
-		// TODO Auto-generated method stub
+	public void deleteProductByProductId(Integer productId) {
+
+		String sql = "DELETE FROM products where product_id =:productId";
+
+		this.namedParameterJdbcTemplate.update(sql,
+				this.getSqlParameterSource(productId, null, null, null, null, null, null, null));
 
 	}
-
+    
+	// Update Product Information.
 	@Override
 	public void updateProduct(Integer productId, String url, String categoryId, String productName, Integer unitPrice,
 			Integer unitsInStock, String description, String manufacturer) {
-		  
-		String sql ="update products set url =:url, category_id =:categoryId, product_name =:productName, "
+
+		String sql = "update products set url =:url, category_id =:categoryId, product_name =:productName, "
 				+ " unit_price =:unitPrice, units_in_stock =:unitsInStock, description =:description,"
 				+ "manufacturer =:manufacturer where product_id =:productId ";
-		
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId,url,categoryId,productName,unitPrice,unitsInStock,description,manufacturer));
+
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId, url, categoryId, productName, unitPrice,
+				unitsInStock, description, manufacturer));
 	}
-
-
-
-
-	
 
 }

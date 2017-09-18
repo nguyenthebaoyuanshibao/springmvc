@@ -1,5 +1,12 @@
 eclipse.preferences.version=1
+encoding//src/main/java/springmvc_example/dao/ReviewDao.java=UTF-8
+encoding//src/main/java/springmvc_example/dao/ReviewDaoImpl.java=UTF-8
+encoding//src/main/java/springmvc_example/dao/SaleDao.java=UTF-8
+encoding//src/main/java/springmvc_example/dao/SaleDaoImpl.java=UTF-8
+encoding//src/main/java/springmvc_example/dao/UserDaoImpl.java=UTF-8
+encoding//src/main/java/springmvc_example/form/UserForm.java=UTF-8
 encoding//src/main/java/springmvc_example/model/Category.java=UTF-8
+encoding//src/main/java/springmvc_example/model/Product.java=UTF-8
 encoding//src/main/java/springmvc_example/model/Review.java=UTF-8
 encoding//src/main/java/springmvc_example/model/Sale.java=UTF-8
 encoding//src/main/java/springmvc_example/model/Users.java=UTF-8

@@ -1,7 +1,5 @@
 package springmvc_example.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,33 +13,36 @@ import springmvc_example.service.SaleService;
 
 @Controller
 public class SaleController {
+
 	@Autowired
 	SaleService saleService;
-	
+
 	@Autowired
 	ProductService productService;
-	
-	@RequestMapping(value="/order/{productId}")
+
+	// order Page.
+	@RequestMapping(value = "/order/{productId}")
 	public ModelAndView orderView(@PathVariable("productId") Integer productId) {
-		
+
 		ModelAndView model = new ModelAndView();
-		model.addObject("product", productService.getProductById(productId));
+		model.addObject("product", productService.getProductByProductId(productId));
 		model.setViewName("product/order");
 		return model;
 	}
-	
+
+	// order Result Page.
 	@RequestMapping(value = "/order/{productId}/{quantity}")
 	public ModelAndView orderResult(@PathVariable("productId") Integer productId,
 			@PathVariable("quantity") Integer quantity) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String userId = auth.getName();
 
+		String userId = SecurityContextHolder.getContext().getAuthentication().getName();
 		ModelAndView model = new ModelAndView();
-		saleService.addSale(userId, productId,quantity,
-				quantity * (productService.getProductById(productId).getUnitPrice()));
-		
-		model.addObject("product", productService.getProductById(productId));
+
+		saleService.addSale(userId, productId, quantity,
+				quantity * (productService.getProductByProductId(productId).getUnitPrice()));
+		model.addObject("product", productService.getProductByProductId(productId));
 		model.setViewName("product/product_details");
+
 		return model;
 	}
 

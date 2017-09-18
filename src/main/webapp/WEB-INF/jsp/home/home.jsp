@@ -79,10 +79,8 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">	
-			
-			</div>
-			
+			<div class="col-sm-2 sidenav"></div>
+
 			<div class="col-sm-8 text-left">
 				<div>
 					<form>
@@ -119,7 +117,7 @@ footer {
 
 					<button onclick="search()">Search</button>
 				</div>
-				
+
 				<div>
 					<c:forEach items="${products}" var="product">
 						<div class="col-sm-3 col-md-3" style="padding-bottom: 15px">
@@ -149,7 +147,7 @@ footer {
 						</div>
 					</c:forEach>
 				</div>
-				
+
 			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">
@@ -166,7 +164,7 @@ footer {
 	<footer class="container-fluid text-center">
 		<p>Footer Text</p>
 	</footer>
-	
+
 	<script language="javascript" type="text/javascript">
 		var textField = document.getElementById('txt');
 		var priceFromField = document.getElementById('id1');
@@ -184,6 +182,6 @@ footer {
 			window.location = window.location.href + setSearchHref();
 		}
 	</script>
-	
+
 </body>
 </html>

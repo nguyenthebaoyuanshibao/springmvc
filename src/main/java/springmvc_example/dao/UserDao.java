@@ -7,7 +7,7 @@ import springmvc_example.model.Users;
 
 public interface UserDao {
 	
-	public List<Users> getListUser();
+	public List<Users> getAllUser();
 	
 	public Users findUserbyUserId(String userId);
 	

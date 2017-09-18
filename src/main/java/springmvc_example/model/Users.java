@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Users {
 	
-	
+	//ユーザ ID
 	private String userId;
 	
+	//パスワード
 	private String password;
-	
 	
 	// ユーザ性別
 	private String userGender;
@@ -22,16 +22,16 @@ public class Users {
 	
 	// 作成日
 	private Date createAt;
-		
-	// 更新日
-	private Date updateAt;
 	
+	// 更新日
+    private Date updateAt;
 	
 	public Users() {
 		super();
 	}
 
 	public Users(String userId, String password) {
+
 		super();
 		this.userId = userId;
 		this.password = password;
@@ -40,7 +40,6 @@ public class Users {
 		this.telNumber = telNumber;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
-
 	}
 
 	public String getUserId() {

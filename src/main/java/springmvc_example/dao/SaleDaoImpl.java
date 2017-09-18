@@ -2,6 +2,7 @@ package springmvc_example.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,7 +17,6 @@ import springmvc_example.model.Sale;
 
 @Repository
 public class SaleDaoImpl implements SaleDao {
-	
 
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -24,54 +24,81 @@ public class SaleDaoImpl implements SaleDao {
 	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
-	
-	private SqlParameterSource getSqlParameterSource(String userId, Integer productId,Integer quantity, Integer price) {
+
+	private SqlParameterSource getSqlParameterSource(String userId, Integer productId,
+			Integer quantity, Integer price) 
+	{
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		
 		if (userId != null) {
 			parameterSource.addValue("userId", userId);
 		}
+		
 		if (productId != null) {
 			parameterSource.addValue("productId", productId);
 		}
-		if(quantity!=null) {
+		
+		if (quantity != null) {
 			parameterSource.addValue("quantity", quantity);
 		}
+		
 		if (price != null) {
 			parameterSource.addValue("price", price);
 		}
-		
+
 		return parameterSource;
 	}
 
 	private static final class SaleMapper implements RowMapper<Sale> {
 
 		public Sale mapRow(ResultSet rs, int numRow) throws SQLException {
+			
 			Sale sale = new Sale();
+			
 			sale.setUserId(rs.getString("user_id"));
 			sale.setProductId(rs.getString("product_id"));
 			sale.setPrice(rs.getInt("price"));
 			sale.setQuantity(rs.getInt("quantity"));
+			
 			return sale;
 		}
-	
 	}
+    
+	//Saleレコードを追加する。
 	@Override
-	public void addSale(String userId, Integer productId,Integer quantity, Integer price) {
-		String sql ="INSERT INTO sale(user_id, product_id, quantity, price) VALUES(:userId, :productId, :quantity, :price) ";
+	public void addSale(String userId, Integer productId, Integer quantity, Integer price) {
+		
+		String sql = "INSERT INTO sale(user_id, product_id, quantity, price) VALUES(:userId, :productId, :quantity, :price)";
 		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, productId, quantity, price));
 	}
+    
+	// Get sale's record by productId.
+	@Override
+	public List<Sale> getSaleByProductId(Integer productId) {
+		
+		String sql = "SELECT * FROM sale where product_id =:productId";
+		List<Sale> sales = this.namedParameterJdbcTemplate.query(sql,
+				getSqlParameterSource(null, productId, null, null), new SaleMapper());
 
+		return sales;
+	}
+    
+	//productId でSaleレコードを削除する。
+	@Override
+	public void deleteSaleByProductId(Integer productId) {
+
+		String sql = "DELETE FROM sale where product_id =:productId";
+		this.namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, productId, null, null));
+
+	}
+	
+	//Saleレコードを変更する。
 	@Override
 	public void updateSale(Integer saleId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-
 }
-
-
-
 	

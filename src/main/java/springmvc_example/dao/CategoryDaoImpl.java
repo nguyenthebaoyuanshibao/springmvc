@@ -15,33 +15,32 @@ import springmvc_example.model.Product;
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
-	
+
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired
 	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-		
+
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
-	
-	
+
 	private SqlParameterSource getSqlParameterSource(String categoryId) {
-		
+
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-		
-		if(categoryId!=null){
+
+		if (categoryId != null) {
 			parameterSource.addValue("categoryId", categoryId);
 		}
 
 		return parameterSource;
 	}
 
-private static final class CategoryMapper implements RowMapper<Category> {
+	private static final class CategoryMapper implements RowMapper<Category> {
 
 		public Category mapRow(ResultSet rs, int numRow) throws SQLException {
-			
+
 			Category category = new Category();
-			
+
 			category.setCategoryId(rs.getString("category_id"));
 
 			return category;
@@ -49,18 +48,13 @@ private static final class CategoryMapper implements RowMapper<Category> {
 	}
 
 	@Override
+	//Delete Category By Category ID.
 	public void deleteCategory(String categoryId) {
-		
-		//update in category table.
-				String sql1 ="DELETE FROM category where category_id =:categoryId";
-				namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId));
-			
-		
-		//update in products table.
-		String sql = "DELETE FROM products where category_id =:categoryId";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(categoryId));
-		
-		
+
+		String sql1 = "DELETE FROM category where category_id =:categoryId";
+
+		namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId));
+
 	}
 
 }

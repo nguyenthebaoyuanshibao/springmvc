@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,9 +65,21 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
+
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 	<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a></li>
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add
+						Product</a></li>
+
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update
+						Product</a></li>
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete
+						Category</a></li>
+
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -82,19 +94,17 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				
-			</div>
-			
+			<div class="col-sm-2 sidenav"></div>
+
 			<div class="col-sm-8 sidenav">
-			         <p>${msg }</p>
-		  
+				<p>${msg }</p>
+
 				<form>
-				<table align="center">
-				        <tr>
-				            <td>ProducId :</td>
-				            <td><input id="id1" type="number"></td>
-				        </tr>
+					<table align="center">
+						<tr>
+							<td>ProducId :</td>
+							<td><input id="id1" type="number"></td>
+						</tr>
 						<tr>
 							<td>Url:</td>
 							<td><input id="id2" type="text" /></td>
@@ -135,12 +145,12 @@ footer {
 							<td><input id="id8" type="text" /></td>
 						</tr>
 
-					</table>	
+					</table>
 				</form>
-                
-                  <button onclick="update()">UpdateProduct</button>
 
-                     
+				<button onclick="update()">UpdateProduct</button>
+
+
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -151,14 +161,14 @@ footer {
 					<p></p>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-	
+
 	<script language="javascript" type="text/javascript">
 	
 	    var productIdField =document.getElementById('id1');
@@ -181,7 +191,7 @@ footer {
 			window.location = window.location.href + setSearchHref();
 		}
 	</script>
-	
-	
+
+
 </body>
 </html>

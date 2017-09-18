@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,9 +67,8 @@ footer {
 			<ul class="nav navbar-nav">
 				<li class="active"><a
 					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-                 <li class="active">
-                 <a href=" <spring:url value=  "/user/admin"/> "> Admin Page </a>
-				</li>
+				<li class="active"><a
+					href=" <spring:url value=  "/user/admin"/> "> Admin Page </a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -98,16 +97,15 @@ footer {
 			<div class="col-sm-8 sidenav">
 
 				<form align="center">
-					UserId:<br> <input type="text" name="userId"
-						> <br> 
-					Password:<br> <input
-						type="password" name="password" value=> <br>
+					UserId:<br> <input type="text" name="userId">
+					<br> Password:<br> <input type="password" name="password"
+						value=> <br>
 				</form>
-				
+
 				<a href="<spring:url value="/user/admin/addUser" />"
-						class="btn btn-warning btn-large"> <span
-						class="glyphicon glyphicon"></span> Add User
-					</a>
+					class="btn btn-warning btn-large"> <span
+					class="glyphicon glyphicon"></span> Add User
+				</a>
 
 
 			</div>
@@ -126,7 +124,7 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
- 
+
 
 </body>
 </html>
