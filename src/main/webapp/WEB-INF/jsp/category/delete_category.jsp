@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,6 +52,7 @@ footer {
 </style>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -65,22 +65,9 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-			
-				<li class="active">
-				    <a href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a>
-				</li>
-				
-                <li class="active">
-                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a>
-                </li>
-                
-                <li class="active">
-                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update Product</a>
-                </li>
-               <li class="active">
-                    <a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete Category</a>
-                </li>
-                
+				<li class="active"><a
+					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+                 	<li class="active"><a href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add Product</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -96,31 +83,32 @@ footer {
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
-			
+				
 			</div>
+			
 			<div class="col-sm-8 sidenav">
-				<table border="1" align="center">
-					<tr>
-						<td align="center">UserId</td>
-						<td align="center">Action</td>
-						<td align="center">Action</td>
-					</tr>
-					<c:forEach items="${list }" var="user">
+			         <p>${msg }</p>
+		  
+				<form>
+				<table align="center">
+				             <p align="center">${msg }</p>
+
 						<tr>
-							<td>${user.userId }</td>
-							<td><spring:url value="/user/changePass" var="changePassURL" />
-								<a href="${changePassURL }/${user.userId}"><span
-									class="glyphicon-info-sign glyphicon"></span>ChangePass</a></td>
-
-							<td><spring:url value="/user/admin/removeUser" var="removeUserURL" />
-								<a href="${removeUserURL }/${user.userId}"><span
-									class="glyphicon-info-sign glyphicon"></span>Remove</a></td>
+							<td>Category:</td>
+							<td><select id="id" class=>
+									<option value=""></option>
+									<option value="I phone">I Phone</option>
+									<option value="SamSung Galaxy">Samsung Galaxy</option>
+									<option value="XiaoMi">XiaoMi</option>
+							</select></td>
 						</tr>
-					</c:forEach>
-				</table>
-				
-				
 
+					</table>	
+				</form>
+                
+                  <button onclick="delete1()">DeleteCategory</button>
+
+                     
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -131,6 +119,7 @@ footer {
 					<p></p>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
@@ -138,8 +127,20 @@ footer {
 	<p>Footer Text</p>
 	</footer>
 	
+	<script language="javascript" type="text/javascript">
+	   
+		var categoryIdField = document.getElementById('id');
+        
+		function setSearchHref() {
+			return '/delete?id=' + categoryIdField.value ;
+			
+		}
 
-
-
+		function delete1() {
+			window.location = window.location.href + setSearchHref();
+		}
+	</script>
+	
+	
 </body>
 </html>
