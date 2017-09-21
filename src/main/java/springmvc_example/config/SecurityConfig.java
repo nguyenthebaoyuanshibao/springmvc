@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/login", "/user/signup", "user/register").permitAll();
-		http.authorizeRequests().antMatchers("/", "/home", "/products", "/product", "/customers", "/order")
+		http.authorizeRequests().antMatchers("/", "/home","/products", "/product", "/customers", "/order")
 				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
 		http.authorizeRequests()
 				.antMatchers("/user/admin", "/user/admin/", "user/admin/deleteCategory", "user/admin/deleteCategory/",

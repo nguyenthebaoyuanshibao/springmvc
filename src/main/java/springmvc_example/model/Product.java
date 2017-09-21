@@ -1,6 +1,8 @@
 package springmvc_example.model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 
 /**
  * @author life
@@ -33,6 +35,9 @@ public class Product
 	//サプライヤー
 	private String manufacturer;
 	
+	private Timestamp createAt;
+	
+	private Timestamp updateAt;
 	
 	
 	public Product()
@@ -133,6 +138,23 @@ public class Product
 	{
 		this.manufacturer = manufacturer;
 	}
+	
+	public Timestamp getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Timestamp createAt) {
+		this.createAt = createAt;
+	}
+
+	public Timestamp getUpdateAt() {
+		return updateAt;
+	}
+
+	public void setUpdateAt(Timestamp updateAt) {
+		this.updateAt = updateAt;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)

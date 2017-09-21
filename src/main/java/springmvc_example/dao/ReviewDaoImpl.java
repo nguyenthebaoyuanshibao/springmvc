@@ -2,6 +2,7 @@ package springmvc_example.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	private SqlParameterSource getSqlParameterSource(Integer reviewId, String userId, Integer productId,
-			                                         String reviewInfo,  Integer ratingNumber) {
+			            String reviewInfo,  Integer ratingNumber, Timestamp createAt, Timestamp updateAt) {
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		
@@ -72,7 +73,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	public List<Review> getReviewByProductId(Integer productId) {
 		String sql = "SELECT * FROM review where product_id =:productId";
 		List<Review> reviews = this.namedParameterJdbcTemplate.query(sql, 
-				this.getSqlParameterSource(null,null,productId,null,null), new ReviewMapper());
+				this.getSqlParameterSource(null, null, productId, null, null, null, null), new ReviewMapper());
 		
 		return reviews;
 	}
@@ -81,7 +82,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public void deleteReviewByProductId(Integer productId) {
 	    String sql = "DELETE FROM review where product_id =:productId ";
-	    this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, null, productId, null, null));
+	    this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, null, productId, null, null, null, null));
 		
 	}
 	

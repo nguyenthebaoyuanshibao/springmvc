@@ -1,5 +1,6 @@
 package springmvc_example.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Sale {
@@ -20,10 +21,10 @@ public class Sale {
 	private Integer price;
 
 	// 作成日
-	private Date createAt;
+	private Timestamp createAt;
 
 	// 更新日
-	private Date updateAt;
+	private Timestamp updateAt;
 
 	/* Construction */
 	public Sale() {
@@ -79,19 +80,19 @@ public class Sale {
 		this.price = price;
 	}
 
-	public Date getCreateAt() {
+	public Timestamp getCreateAt() {
 		return createAt;
 	}
 
-	public void setCreateAt(Date createAt) {
+	public void setCreateAt(Timestamp createAt) {
 		this.createAt = createAt;
 	}
 
-	public Date getUpdateAt() {
+	public Timestamp getUpdateAt() {
 		return updateAt;
 	}
 
-	public void setUpdateAt(Date updateAt) {
+	public void setUpdateAt(Timestamp updateAt) {
 		this.updateAt = updateAt;
 	}
 

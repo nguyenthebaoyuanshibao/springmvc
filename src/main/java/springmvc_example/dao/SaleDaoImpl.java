@@ -1,5 +1,6 @@
 package springmvc_example.dao;
 
+import java.security.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,7 +27,7 @@ public class SaleDaoImpl implements SaleDao {
 	}
 
 	private SqlParameterSource getSqlParameterSource(String userId, Integer productId,
-			Integer quantity, Integer price) 
+			Integer quantity, Integer price, Timestamp createAt, Timestamp updateAt) 
 	{
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -69,8 +70,8 @@ public class SaleDaoImpl implements SaleDao {
 	@Override
 	public void addSale(String userId, Integer productId, Integer quantity, Integer price) {
 		
-		String sql = "INSERT INTO sale(user_id, product_id, quantity, price) VALUES(:userId, :productId, :quantity, :price)";
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, productId, quantity, price));
+		String sql = "INSERT INTO sale(user_id, product_id, quantity, price, create_at, update_at) VALUES(:userId, :productId, :quantity, :price, now(), now())";
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, productId, quantity, price, null, null));
 	}
     
 	// Get sale's record by productId.
@@ -79,7 +80,7 @@ public class SaleDaoImpl implements SaleDao {
 		
 		String sql = "SELECT * FROM sale where product_id =:productId";
 		List<Sale> sales = this.namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, productId, null, null), new SaleMapper());
+				getSqlParameterSource(null, productId, null, null, null, null), new SaleMapper());
 
 		return sales;
 	}
@@ -89,7 +90,7 @@ public class SaleDaoImpl implements SaleDao {
 	public void deleteSaleByProductId(Integer productId) {
 
 		String sql = "DELETE FROM sale where product_id =:productId";
-		this.namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, productId, null, null));
+		this.namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, productId, null, null, null, null));
 
 	}
 	

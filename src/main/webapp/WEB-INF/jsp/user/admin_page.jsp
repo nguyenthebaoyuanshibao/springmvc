@@ -97,26 +97,7 @@ footer {
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8 sidenav">
-				<table border="1" align="center">
-					<tr>
-						<td align="center">UserId</td>
-						<td align="center">Action</td>
-					</tr>
-					<c:forEach items="${list }" var="user">
-
-						<tr>
-							<td>${user.userId }</td>
-
-							<td><spring:url value="/user/admin/removeUser"
-									var="removeUserURL" /> <a
-								href="${removeUserURL }/${user.userId}"><span
-									class="glyphicon-info-sign glyphicon"></span>Remove</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-
-
-
+	
 			</div>
 
 			<div class="col-sm-2 sidenav">

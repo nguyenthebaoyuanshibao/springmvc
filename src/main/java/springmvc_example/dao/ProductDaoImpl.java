@@ -1,6 +1,7 @@
 package springmvc_example.dao;
 
 import java.math.BigDecimal;
+import java.security.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +37,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	private SqlParameterSource getSqlParameterSource(Integer productId, String url, String categoryId,
-			String productName, Integer unitPrice, Integer unitsInStock, String description, String manufacturer) {
+			String productName, Integer unitPrice, Integer unitsInStock, 
+			String description, String manufacturer, Timestamp createAt, Timestamp updateAt) {
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
@@ -93,7 +95,9 @@ public class ProductDaoImpl implements ProductDao {
 			product.setUnitsInStock(rs.getInt("units_in_stock"));
 			product.setManufacturer(rs.getString("manufacturer"));
 			product.setCategoryId(rs.getString("category_id"));
-
+            product.setUpdateAt(rs.getTimestamp("update_at"));
+            product.setCreateAt(rs.getTimestamp("create_at"));
+            
 			return product;
 		}
 	}
@@ -104,7 +108,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products";
 		List<Product> list = namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, null, null, null, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(null, null, null, null, null, null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
@@ -115,7 +119,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products where product_name= :productName";
 		List<Product> list = namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, null, null, productName, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(null, null, null, productName, null, null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
@@ -126,7 +130,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products where product_id= :productId";
 		Product product = namedParameterJdbcTemplate.queryForObject(sql,
-				getSqlParameterSource(productId, null, null, null, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(productId, null, null, null, null, null, null, null, null, null), new ProductMapper());
 
 		return product;
 	}
@@ -141,7 +145,7 @@ public class ProductDaoImpl implements ProductDao {
 					+ "%' AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null),
+					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null, null, null),
 					new ProductMapper());
 
 			return list;
@@ -153,7 +157,7 @@ public class ProductDaoImpl implements ProductDao {
 					+ "AND unit_price <= :priceTo ORDER BY product_id ";
 
 			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null),
+					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null, null, null),
 					new ProductMapper());
 
 			return list;
@@ -166,7 +170,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products where category_id= :categoryId";
 		List<Product> list = namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, null, categoryId, null, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(null, null, categoryId, null, null, null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
@@ -174,22 +178,22 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void updateUnitsInStock(Integer productId, Integer unitsInStock) {
 
-		String sql = "update products set units_in_stock =:unitsInStock where product_id= :productId";
+		String sql = "update products set units_in_stock =:unitsInStock, update_at = now() where product_id= :productId";
 
 		namedParameterJdbcTemplate.update(sql,
-				getSqlParameterSource(productId, null, null, null, null, unitsInStock, null, null));
+				getSqlParameterSource(productId, null, null, null, null, unitsInStock, null, null, null, null));
 	}
     
 	// Add Product.
 	@Override
 	public void addProduct(String url, String categoryId, String productName, Integer unitPrice, Integer unitsInStock,
 			String description, String manufacturer) {
-
-		String sql = "INSERT INTO products(url, category_id, product_name, unit_price, units_in_stock, description, manufacturer) "
-				+ "VALUES(:url, :categoryId, :productName, :unitPrice, :unitsInStock, :description, :manufacturer)";
+		
+		String sql = "INSERT INTO products(url, category_id, product_name, unit_price, units_in_stock, description, manufacturer, create_at, update_at) "
+				+ "VALUES(:url, :categoryId, :productName, :unitPrice, :unitsInStock, :description, :manufacturer, now(), now())";
 
 		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, url, categoryId, productName, unitPrice,
-				unitsInStock, description, manufacturer));
+				unitsInStock, description, manufacturer, null, null));
 	}
     
 	// Delete Product By Product ID.
@@ -199,7 +203,7 @@ public class ProductDaoImpl implements ProductDao {
 		String sql = "DELETE FROM products where product_id =:productId";
 
 		this.namedParameterJdbcTemplate.update(sql,
-				this.getSqlParameterSource(productId, null, null, null, null, null, null, null));
+				this.getSqlParameterSource(productId, null, null, null, null, null, null, null, null, null));
 
 	}
     
@@ -210,10 +214,10 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "update products set url =:url, category_id =:categoryId, product_name =:productName, "
 				+ " unit_price =:unitPrice, units_in_stock =:unitsInStock, description =:description,"
-				+ "manufacturer =:manufacturer where product_id =:productId ";
+				+ "manufacturer =:manufacturer, update_at = now() where product_id =:productId ";
 
 		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId, url, categoryId, productName, unitPrice,
-				unitsInStock, description, manufacturer));
+				unitsInStock, description, manufacturer, null, null));
 	}
 
 }

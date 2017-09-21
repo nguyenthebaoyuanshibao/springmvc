@@ -2,6 +2,7 @@ package springmvc_example.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -24,7 +25,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	private SqlParameterSource getSqlParameterSource(String categoryId) {
+	private SqlParameterSource getSqlParameterSource(String categoryId, Timestamp createAt, Timestamp updateAt) {
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
@@ -53,7 +54,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 		String sql1 = "DELETE FROM category where category_id =:categoryId";
 
-		namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId));
+		namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId, null, null));
 
 	}
 

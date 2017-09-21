@@ -1,5 +1,6 @@
 package springmvc_example.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class ProductController{
 	public ModelAndView addProduct(@RequestParam("id") String url,
 			@RequestParam("categoryId") String categoryId, @RequestParam("productName") String productName,
 			@RequestParam("unitPrice") Integer unitPrice, @RequestParam("unitsInStock") Integer unitsInStock,
-			@RequestParam("description") String description ,@RequestParam("manufacturer") String manufacturer ) {
+			@RequestParam("description") String description ,@RequestParam("manufacturer") String manufacturer) {
 		
 		ModelAndView model = new ModelAndView();
 		productService.addProduct(url, categoryId, productName, unitPrice, unitsInStock, description, manufacturer);
