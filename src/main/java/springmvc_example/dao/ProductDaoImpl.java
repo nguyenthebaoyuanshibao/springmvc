@@ -73,10 +73,10 @@ public class ProductDaoImpl implements ProductDao {
 		if (manufacturer != null) {
 			parameterSource.addValue("manufacturer", manufacturer);
 		}
+		
+	    parameterSource.addValue("priceFrom", 0);
 
-		parameterSource.addValue("priceFrom", 0);
-
-		parameterSource.addValue("priceTo", 450);
+		parameterSource.addValue("priceTo", 700);
 
 		return parameterSource;
 	}

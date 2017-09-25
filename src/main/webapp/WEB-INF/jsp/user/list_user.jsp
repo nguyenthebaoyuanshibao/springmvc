@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add User</title>
+<title></title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -52,7 +53,6 @@ footer {
 </style>
 </head>
 <body>
-
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -65,15 +65,30 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-				<li class="active"><a
-					href=" <spring:url value=  "/user/admin"/> "> Admin Page </a></li>
+			
+				<li class="active">
+				    <a href="/MobileStore">Home</a>
+				</li>
+				
+				 <li class="active"><a
+					href="/MobileStore/user/admin/listUser">List User</a></li>
+					
+                <li class="active">
+                    <a href="/MobileStore/user/admin/addProduct">Add Product</a>
+                </li>
+                
+                <li class="active">
+                    <a href="/MobileStore/user/admin/updateProduct">Update Product</a>
+                </li>
+               <li class="active">
+                    <a href="/MobileStore/user/admin/deleteCategory">Delete Category</a>
+                </li>
+                
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><spring:url value="/user/removeUser" var="removeUserURL" />
-					<a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"> <span
+					<a href="/MobileStore/logout"> <span
 						class="glyphicon glyphicon-log-in"></span> Logout
 				</a></li>
 			</ul>
@@ -84,30 +99,27 @@ footer {
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
+			
 			</div>
 			<div class="col-sm-8 sidenav">
+			    <h2>${msg}</h2>
+				<table border="1" align="center">
+					<tr>
+						<td align="center">UserId</td>
+						<td align="center">Action</td>
+						
+					</tr>
+					<c:forEach items="${list }" var="user">
+						<tr>
+							<td>${user.userId }</td>
 
-				<form align="center">
-					UserId:<br> <input type="text" name="userId">
-					<br> Password:<br> <input type="password" name="password"
-						value=> <br>
-				</form>
-
-				<a href="<spring:url value="/user/admin/addUser" />"
-					class="btn btn-warning btn-large"> <span
-					class="glyphicon glyphicon"></span> Add User
-				</a>
-
-
+							<td><spring:url value="/user/admin/removeUser" var="removeUserURL" />
+								<a href="${removeUserURL }/${user.userId}"><span
+									class="glyphicon-info-sign glyphicon"></span>Remove</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+				
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -124,6 +136,8 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
+	
+
 
 
 </body>

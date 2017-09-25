@@ -68,7 +68,7 @@ footer {
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+					href="/MobileStore">Home</a></li>
 				<li class="active"><a
 					href=" <spring:url value=  "/user/admin"/> "
 					class="btn btn-primary"> Admin Page </a></li>
@@ -76,7 +76,7 @@ footer {
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><spring:url value="/user/removeUser" var="removeUserURL" />
-					<a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"> <span
+					<a href="/MobileStore/logout"> <span
 						class="glyphicon glyphicon-log-in"></span> Logout
 				</a></li>
 			</ul>
@@ -98,9 +98,11 @@ footer {
 				</p>
 			</div>
 			<div class="col-sm-8 sidenav">
-				<spring:url value="/user/admin/delete" var="deleteURL" />
+			
+				<spring:url value="/user/admin/listUser" var="deleteURL" />
 				<form:form method="post" modelAttribute="user"
 					action="${deleteURL }">
+
 					<form:hidden path="userId" />
 					<h2>${msg}</h2>
 					<table border="1" align="center">

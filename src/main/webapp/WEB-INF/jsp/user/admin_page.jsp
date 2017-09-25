@@ -68,24 +68,27 @@ footer {
 			<ul class="nav navbar-nav">
 
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
-
+					href="/MobileStore">Home</a></li>
+					
+                <li class="active"><a
+					href="/MobileStore/user/admin/listUser">List User</a></li>
+					
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add
+					href="/MobileStore/user/admin/addProduct">Add
 						Product</a></li>
 
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update
+					href="/MobileStore/user/admin/updateProduct">Update
 						Product</a></li>
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete
+					href="/MobileStore/user/admin/deleteCategory">Delete
 						Category</a></li>
 
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><spring:url value="/user/removeUser" var="removeUserURL" />
-					<a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"> <span
+					<a href="/MobileStore/logout"> <span
 						class="glyphicon glyphicon-log-in"></span> Logout
 				</a></li>
 			</ul>
@@ -95,11 +98,42 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav"></div>
-			<div class="col-sm-8 sidenav">
-	
+			<div class="col-sm-2 sidenav">
 			</div>
 
+			<div class="col-sm-8 text-left">
+				<div></div>
+				<div>
+					<c:forEach items="${products}" var="product">
+						<div class="col-sm-3 col-md-3" style="padding-bottom: 15px">
+							<div class="thumbnail">
+								<div class="caption">
+									<div>
+										<image style weight="300" height="200" src=${product.url }>
+									</div>
+
+									<div>
+										<h3>${product.productName}</h3>
+									</div>
+
+									<div>
+										<p>price: ${product.unitPrice}USD</p>
+										<a
+											href=" <spring:url value=  "/product/detail?id=${product.productId}" /> "
+											class="btn btn-primary"> <span
+											class="glyphicon-info-sign glyphicon" /></span> Detail
+										</a>
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+
+			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">
 					<p></p>
@@ -108,15 +142,12 @@ footer {
 					<p></p>
 				</div>
 			</div>
+
 		</div>
 	</div>
-
-	<footer class="container-fluid text-center">
-	<p>Footer Text</p>
+    <footer class="container-fluid text-center">
+		<p>Footer Text</p>
 	</footer>
-
-
-
-
+	
 </body>
 </html>

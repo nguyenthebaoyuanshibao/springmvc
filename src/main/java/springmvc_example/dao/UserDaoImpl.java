@@ -58,10 +58,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<Users> getAllUser() {
 
-		String sql = "SELECT * from users";
+	    String sql=	"Select * from users JOIN user_roles ON users.user_id = user_roles.user_id where "
+	    		+ "users.user_id != (Select user_id from user_roles where role LIKE 'ROLE_ADMIN') ";
 		
 		List<Users> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, null, null), new UserMapper());
-
+        
 		return list;
 	}
     
@@ -96,8 +97,8 @@ public class UserDaoImpl implements UserDao {
     
 	//ユーザーを削除する
 	public void deleteUser(String userId) {
-		
-		String sql = "delete from users where user_id= :userId";
+	
+		String sql = "delete from users where user_id =:userId";
 		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, null, null, null));
 	}
     

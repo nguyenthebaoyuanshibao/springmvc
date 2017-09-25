@@ -35,7 +35,7 @@ public class SearchController {
 
 		model.addObject("products", this.productService.getProductBy(categoryId, priceFrom, priceTo, productName));
 		model.setViewName("home/home");
+		
 		return model;
-
 	}
 }

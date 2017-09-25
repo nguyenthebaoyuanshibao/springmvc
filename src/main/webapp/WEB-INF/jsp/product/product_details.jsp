@@ -67,11 +67,11 @@ footer {
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a
-						href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+						href="/MobileStore">Home</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"><span
+					<li><a href="/MobileStore/logout"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
 			</div>

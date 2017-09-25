@@ -7,12 +7,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import springmvc_example.dao.UserDao;
+import springmvc_example.dao.UserRoleDao;
 import springmvc_example.model.Users;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	UserDao userDao;
+	
+	@Autowired
+	UserRoleDao userRoleDao;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -53,7 +57,9 @@ public class UserServiceImpl implements UserService {
 	// Delete User
 	@Override
 	public void deleteUser(String userId) {
-
+		
+		userRoleDao.deleteUser(userId);
+		
 		userDao.deleteUser(userId);
 	}
 

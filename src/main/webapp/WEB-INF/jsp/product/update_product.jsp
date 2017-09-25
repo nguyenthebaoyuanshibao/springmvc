@@ -67,24 +67,27 @@ footer {
 			<ul class="nav navbar-nav">
 
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+					href="/MobileStore">Home</a></li>
+				
+				 <li class="active"><a
+					href="/MobileStore/user/admin/listUser">List User</a></li>	
 
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/addProduct">Add
+					href="/MobileStore/user/admin/addProduct">Add
 						Product</a></li>
 
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/updateProduct">Update
+					href="/MobileStore/user/admin/updateProduct">Update
 						Product</a></li>
 				<li class="active"><a
-					href="/SpringMvcSignUpLoginWithPasswordEncoder/user/admin/deleteCategory">Delete
+					href="/MobileStore/user/admin/deleteCategory">Delete
 						Category</a></li>
 
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><spring:url value="/user/removeUser" var="removeUserURL" />
-					<a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"> <span
+					<a href="/MobileStore/logout"> <span
 						class="glyphicon glyphicon-log-in"></span> Logout
 				</a></li>
 			</ul>
@@ -180,7 +183,7 @@ footer {
         var descriptionField  = document.getElementById('id7');
         var manufacturerField = document.getElementById('id8');
         
-		function setSearchHref() {
+		function setUpdateHref() {
 			return '/update?id=' + productIdField.value+ '&url=' + urlField.value + '&categoryId=' + categoryIdField.value + '&productName=' + productNameField.value
 					+'&unitPrice=' + unitPriceField.value + '&unitsInStock=' +
 					unitsInStockField.value + '&description=' + descriptionField.value+ '&manufacturer=' + manufacturerField.value ;
@@ -188,7 +191,7 @@ footer {
 		}
 
 		function update() {
-			window.location = window.location.href + setSearchHref();
+			window.location = window.location.href + setUpdateHref();
 		}
 	</script>
 

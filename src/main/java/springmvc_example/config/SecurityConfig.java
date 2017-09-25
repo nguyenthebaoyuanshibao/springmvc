@@ -58,9 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/", "/home","/products", "/product", "/customers", "/order")
 				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
 		http.authorizeRequests()
-				.antMatchers("/user/admin", "/user/admin/", "user/admin/deleteCategory", "user/admin/deleteCategory/",
-						"/user/admin/addProduct", "/user/admin/addProduct/", "/user/admin/updateProduct",
-						"/user/admin/updateProduct/")
+				.antMatchers("/user/admin", "/user/admin/**")
 				.access("hasRole('ROLE_ADMIN')");
 
 		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -65,13 +66,19 @@ footer {
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a
-						href="/SpringMvcSignUpLoginWithPasswordEncoder">Home</a></li>
+						href="/MobileStore">Home</a></li>
 
 				</ul>
-
+                
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/SpringMvcSignUpLoginWithPasswordEncoder/logout"><span
+					<li><a href="/MobileStore/logout"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+
+                     <li><a href="/MobileStore/user/admin"><span
+							class="glyphicon glyphicon-log-in"></span> AdminPage</a></li>
+
+                   </sec:authorize>
 				</ul>
 			</div>
 		</div>
@@ -179,7 +186,7 @@ footer {
 		}
 		
 		function search() {
-			window.location = window.location.href + setSearchHref();
+			window.location = "http://localhost:8080/MobileStore/" + setSearchHref();
 		}
 	</script>
 
