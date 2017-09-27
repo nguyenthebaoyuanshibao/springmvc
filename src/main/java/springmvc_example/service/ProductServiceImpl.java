@@ -51,9 +51,9 @@ public class ProductServiceImpl implements ProductService {
 
 	// Get Product By Many Params.
 	@Override
-	public List<Product> getProductBy(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
+	public List<Product> getProductBy(String categoryId, String productName, Integer priceFrom, Integer priceTo) {
 
-		return this.productDao.getProductBy(categoryId, priceFrom, priceTo, productName);
+		return this.productDao.getProductBy(categoryId, productName, priceFrom, priceTo);
 	}
 
 	// Update Units In Stock.

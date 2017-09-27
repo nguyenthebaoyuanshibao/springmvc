@@ -52,6 +52,30 @@ footer {
 		height: auto;
 	}
 }
+#userTable td, #userTable tr {
+	border: 1px solid #c9c9c9;
+	max-height: 20px;
+	max-width: 20px;
+	overflow: hidden;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#userTable {
+	width: 50%;
+	height: 50%;
+	border-collapse: collapse;
+	background-color: #EEEEEE;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 7%;
+	margin: auto;
+	width: 50%;
+	height: 50%;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #7D7D7D;
+}
 </style>
 </head>
 <body>
@@ -105,15 +129,15 @@ footer {
 
 					<form:hidden path="userId" />
 					<h2>${msg}</h2>
-					<table border="1" align="center">
+					<table id ="userTable" border="1" align="center">
 
 						<tr>
 							<td>Username</td>
-							<td>${user.userId }</td>
+							<td>Action</td>
 						</tr>
 
 						<tr>
-							<td></td>
+							<td>${user.userId }</td>
 							<td><button type="submit">Remove</button></td>
 						</tr>
 					</table>

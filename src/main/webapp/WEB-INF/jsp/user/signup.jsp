@@ -9,24 +9,26 @@
 <title>Sign Up</title>
 </head>
 <body>
-	<spring:url value="/user/register" var="registerURL" />
-	<form:form action="${registerURL }" modelAttribute="userForm"
+	<form:form action="/MobileStore/user/register" modelAttribute="userForm"
 		method="post" align="center">
 
 		<table align="center">
 			<tr>
 				<td>UserId:</td>
 				<td><input type="text" name="userId"></td>
+				<form:errors path="userId" />
 			</tr>
 
 			<tr>
 				<td>Password:</td>
 				<td><input type="password" name="password"></td>
+				<form:errors path="password" />
 			</tr>
 
 			<tr>
 				<td>Confirm Password:</td>
 				<td><input type="password" name="confirmPassword"></td>
+				<form:errors path="confirmPassword" />
 			</tr>
 
 		</table>

@@ -16,7 +16,7 @@ public interface ProductService {
 
 	List<Product> getAllProducts();
 
-	List<Product> getProductBy(String categoryId, Integer priceFrom, Integer priceTo, String productName);
+	List<Product> getProductBy(String categoryId, String productName, Integer priceFrom, Integer priceTo);
 
 	List<Product> getProductByName(String productName);
 

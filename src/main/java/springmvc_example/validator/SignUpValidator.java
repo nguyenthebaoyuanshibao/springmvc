@@ -8,32 +8,32 @@ import org.springframework.validation.Validator;
 
 import springmvc_example.form.UserForm;
 import springmvc_example.service.UserService;
-
 @Component
-public class SignupValidator implements Validator {
+public class SignUpValidator implements Validator {
 	
 	@Autowired
-    UserService userService;
 	
+	UserService userService;
+
 	public boolean supports(Class<?> clazz) {
-		
 		return UserForm.class.isAssignableFrom(clazz);
 	}
-	
+
 	public void validate(Object target, Errors errors) {
-		
+
 		UserForm user = (UserForm) target;
 		
-		ValidationUtils.rejectIfEmpty(errors, "userId", "notEmpty.userId");
-		ValidationUtils.rejectIfEmpty(errors, "password", "notEmpty.password");
-		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "notEmpty.confirmPassword");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "notEmpty.userId");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "notEmpty.password");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "notEmpty.confirmPassword");
 		
-		if(user.getPassword()!=null&&user.getConfirmPassword()!=null&&!user.getPassword().equals(user.getConfirmPassword())) {
-			errors.rejectValue("password", "notMath.confirmPassword");
+		if (((user.getPassword() != null) && (user.getPassword() != null)) && (!user.getPassword().equals(user.getConfirmPassword()))) {
+			errors.rejectValue("password", "notMatch.confirmPassword");
 		}
 		
-		if(userService.userExists(user.getUserId())) {
+		if (userService.userExists(user.getUserId())) {
 			errors.rejectValue("userId", "exists.userId");
 		}
 	}
+
 }

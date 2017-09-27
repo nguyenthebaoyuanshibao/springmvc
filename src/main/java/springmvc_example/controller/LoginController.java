@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import springmvc_example.service.CategoryService;
 import springmvc_example.service.ProductService;
 
 @Controller
@@ -21,6 +22,9 @@ public class LoginController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CategoryService categoryService;
 
 	// Login Result Page.
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -39,9 +43,10 @@ public class LoginController {
 	// Home Page.
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView home() {
+		
 		ModelAndView model = new ModelAndView();
 		model.addObject("products", this.productService.getAllProducts());
-
+        model.addObject("listCategory",categoryService.listCategory() );
 		model.setViewName("home/home");
 
 		return model;

@@ -9,6 +9,7 @@ import springmvc_example.dao.CategoryDao;
 import springmvc_example.dao.ProductDao;
 import springmvc_example.dao.ReviewDao;
 import springmvc_example.dao.SaleDao;
+import springmvc_example.model.Category;
 import springmvc_example.model.Product;
 
 @Service
@@ -42,6 +43,12 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 
 		categoryDao.deleteCategory(categoryId);
+	}
+
+	@Override
+	public List<Category> listCategory() {
+		
+		return this.categoryDao.listCategory();	
 	}
 
 }

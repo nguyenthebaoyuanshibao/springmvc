@@ -52,10 +52,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+        
+		http.sessionManagement().maximumSessions(1);
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/login", "/user/signup", "user/register").permitAll();
-		http.authorizeRequests().antMatchers("/", "/home","/products", "/product", "/customers", "/order")
+		http.authorizeRequests().antMatchers("/login", "/user/signup", "user/register", "/","/home","/products/**", "/product/**").permitAll();
+		http.authorizeRequests().antMatchers( "/order/**")
 				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
 		http.authorizeRequests()
 				.antMatchers("/user/admin", "/user/admin/**")
@@ -71,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
+		
 		JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
 		db.setDataSource(dataSource);
 

@@ -61,7 +61,6 @@ footer {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
@@ -100,10 +99,10 @@ footer {
 							<tr>
 								<td>Category:</td>
 								<td><select id="foo" class=>
-										<option value=""></option>
-										<option value="I phone">I Phone</option>
-										<option value="SamSung Galaxy">Samsung Galaxy</option>
-										<option value="XiaoMi">XiaoMi</option>
+								        <option value =""></option>
+										<c:forEach items="${listCategory}" var="category">
+										<option value="${category.categoryId }">${category.categoryId }</option>
+									</c:forEach>
 								</select></td>
 							</tr>
 
@@ -119,25 +118,20 @@ footer {
 
 						</table>
 					</form>
-
-
-
 					<button onclick="search()">Search</button>
 				</div>
-
 				<div>
 					<c:forEach items="${products}" var="product">
-						<div class="col-sm-3 col-md-3" style="padding-bottom: 15px">
+						<div class="col-sm-3 col-md-3"
+							style="padding-bottom: 15px; height: 409px;">
 							<div class="thumbnail">
-								<div class="caption">
+								<div class="caption" style="height: 364px">
 									<div>
-										<image style weight="300" height="200" src=${product.url }>
+										<image style max-width="25%" height="200" src=${product.url }>
 									</div>
-
 									<div>
 										<h3>${product.productName}</h3>
 									</div>
-
 									<div>
 										<p>price: ${product.unitPrice}USD</p>
 										<a
@@ -146,15 +140,11 @@ footer {
 											class="glyphicon-info-sign glyphicon" /></span> Detail
 										</a>
 									</div>
-
-
-
 								</div>
 							</div>
 						</div>
 					</c:forEach>
 				</div>
-
 			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">
@@ -164,10 +154,8 @@ footer {
 					<p></p>
 				</div>
 			</div>
-
 		</div>
 	</div>
-
 	<footer class="container-fluid text-center">
 		<p>Footer Text</p>
 	</footer>

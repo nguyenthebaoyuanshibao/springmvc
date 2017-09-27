@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -102,7 +105,7 @@ footer {
 			<div class="col-sm-8 sidenav">
 				<p>${msg }</p>
 
-				<form>
+		   		<form>
 					<table align="center">
 						<tr>
 							<td>Url:</td>
@@ -111,11 +114,10 @@ footer {
 
 						<tr>
 							<td>Category:</td>
-							<td><select id="id3" class=>
-									<option value=""></option>
-									<option value="I phone">I Phone</option>
-									<option value="SamSung Galaxy">Samsung Galaxy</option>
-									<option value="XiaoMi">XiaoMi</option>
+							<td><select id="id3" >
+									<option value =""></option>
+										<c:forEach items="${listCategory}" var="category">
+										<option value="${category.categoryId }">${category.categoryId }</option></c:forEach>
 							</select></td>
 						</tr>
 
@@ -148,8 +150,56 @@ footer {
 				</form>
 
 				<button onclick="add()">AddProduct</button>
+				
 
+     <!--       <form:form action="/user/admin/addProduct/add" modelAttribute="product" method="POST" >
+					<table align="center">
+						<tr>
+					      <td>Url:</td>
+						  <td><input path="url"/></td> 
+						
+						</tr>
 
+						<tr>
+							<td>Category:</td>
+							<td><select path="categoryId" >
+									<option value=""></option>
+									<option value="I phone">I Phone</option>
+									<option value="SamSung Galaxy">Samsung Galaxy</option>
+									<option value="XiaoMi">XiaoMi</option>
+							</select></td>
+						</tr>
+
+						<tr>
+							<td>ProductName:</td>
+							<td><input type="text" path="productName" /></td>
+						</tr>
+
+						<tr>
+							<td>UnitPrice:</td>
+							<td><input type="number" path="unitPrice"/></td>
+						</tr>
+
+						<tr>
+							<td>UnitsInStock:</td>
+							<td><input type="number" path="unitsInStock" /></td>
+						</tr>
+
+						<tr>
+							<td>Description:</td>
+							<td><input type="text" path="description"/></td>
+						</tr>
+
+						<tr>
+							<td>Manufacturer:</td>
+							<td><input type="text" path="manufacturer"/></td>
+						</tr>
+
+					</table>
+					<td><input type="submit" value="Submit"/></td>
+				</form:form>
+
+ --> 
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -168,7 +218,8 @@ footer {
 	<p>Footer Text</p>
 	</footer>
 
-	<script language="javascript" type="text/javascript">
+
+	   <script language="javascript" type="text/javascript">
 	
 		var urlField = document.getElementById('id2');
 		var categoryIdField = document.getElementById('id3');

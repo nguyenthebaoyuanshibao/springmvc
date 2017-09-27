@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springmvc_example.dao.ProductDao;
 import springmvc_example.dao.ProductDaoImpl;
 import springmvc_example.model.Product;
+import springmvc_example.service.CategoryService;
 import springmvc_example.service.ProductService;
 
 @Controller
@@ -24,6 +25,9 @@ public class SearchController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	// (Search Product By Many Params) ->Result Page.
 	@RequestMapping(value = "/products/search/", method = RequestMethod.GET)
@@ -33,8 +37,9 @@ public class SearchController {
 
 		ModelAndView model = new ModelAndView();
 
-		model.addObject("products", this.productService.getProductBy(categoryId, priceFrom, priceTo, productName));
+		model.addObject("products", this.productService.getProductBy(categoryId, productName, priceFrom, priceTo));
 		model.setViewName("home/home");
+		model.addObject("listCategory",categoryService.listCategory() );
 		
 		return model;
 	}

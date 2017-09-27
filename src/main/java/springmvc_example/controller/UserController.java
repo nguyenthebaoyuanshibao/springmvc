@@ -14,14 +14,15 @@ import springmvc_example.form.UserForm;
 import springmvc_example.model.Users;
 import springmvc_example.service.ProductService;
 import springmvc_example.service.UserService;
-import springmvc_example.validator.SignupValidator;
+import springmvc_example.validator.SignUpValidator;
+
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired
-	SignupValidator signupValidator;
+	SignUpValidator signupValidator;
 
 	@Autowired
 	UserService userService;

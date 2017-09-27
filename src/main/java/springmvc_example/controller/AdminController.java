@@ -2,20 +2,26 @@ package springmvc_example.controller;
 
 import java.awt.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import springmvc_example.model.Product;
 import springmvc_example.model.Users;
 import springmvc_example.service.CategoryService;
 import springmvc_example.service.ProductService;
 import springmvc_example.service.UserService;
-import springmvc_example.validator.SignupValidator;
+import springmvc_example.validator.SignUpValidator;
 
 @Controller
 @RequestMapping("")
@@ -28,7 +34,7 @@ public class AdminController {
 	private CategoryService categoryService;
 	
 	@Autowired
-	SignupValidator signupValidator;
+	SignUpValidator signupValidator;
 
 	@Autowired
 	UserService userService;
@@ -82,50 +88,50 @@ public class AdminController {
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("product/add_product");
-
+		model.addObject("listCategory", categoryService.listCategory() );
+		
 		return model;
 	}
 
 	// Add Product Result Page.
-	@RequestMapping(value = "/user/admin/addProduct/add")
-	public ModelAndView addProduct(@RequestParam("id") String url, @RequestParam("categoryId") String categoryId,
+	@RequestMapping(value = "/user/admin/addProduct/add",method = RequestMethod.GET)
+	public String addProduct(@RequestParam("id") String url, @RequestParam("categoryId") String categoryId,
 			@RequestParam("productName") String productName, @RequestParam("unitPrice") Integer unitPrice,
 			@RequestParam("unitsInStock") Integer unitsInStock, @RequestParam("description") String description,
-			@RequestParam("manufacturer") String manufacturer) {
+			@RequestParam("manufacturer") String manufacturer, Model model) {
 
-		ModelAndView model = new ModelAndView();
+		
 		productService.addProduct(url, categoryId, productName, unitPrice, unitsInStock, description, manufacturer);
-		model.addObject("msg", "Add Product Success!");
-		model.addObject("products", this.productService.getAllProducts());
-		model.setViewName("user/admin_page");
+		model.addAttribute("msg", "Add Product Success!");
+		model.addAttribute("products", this.productService.getAllProducts());
+		
 
-		return model;
+		return "redirect:/user/admin";
 	}
-
+	
 	// Update Product Page.
 	@RequestMapping("/user/admin/updateProduct")
 	public ModelAndView updateProductForm() {
 
 		ModelAndView model = new ModelAndView();
-		model.setViewName("product/update_product");
-
+		model.addObject("listCategory", categoryService.listCategory() );
+		model.setViewName("product/update_product");	
+		
 		return model;
 	}
 
 	// Update Product Result Page.
 	@RequestMapping("/user/admin/updateProduct/update")
-	public ModelAndView addProduct(@RequestParam("id") Integer productId, @RequestParam("url") String url,
+	public String addProduct(@RequestParam("id") Integer productId, @RequestParam("url") String url,
 			@RequestParam("categoryId") String categoryId, @RequestParam("productName") String productName,
 			@RequestParam("unitPrice") Integer unitPrice, @RequestParam("unitsInStock") Integer unitsInStock,
-			@RequestParam("description") String description, @RequestParam("manufacturer") String manufacturer) {
-
-		ModelAndView model = new ModelAndView();
+			@RequestParam("description") String description, @RequestParam("manufacturer") String manufacturer, Model model) {
+	
 		productService.updateProduct(productId, url, categoryId, productName, unitPrice, unitsInStock, description,
 				manufacturer);
-		model.addObject("msg", "Update Product Success!");
-		model.setViewName("product/update_product");
-
-		return model;
+		model.addAttribute("msg", "Update Product Success!");
+		
+		return "redirect:/user/admin";
 	}
 
 	// Delete Category Page.
@@ -133,6 +139,7 @@ public class AdminController {
 	public ModelAndView deleteCategoryForm() {
 
 		ModelAndView model = new ModelAndView();
+		model.addObject("listCategory", categoryService.listCategory() );
 		model.setViewName("category/delete_category");
 
 		return model;
@@ -140,14 +147,13 @@ public class AdminController {
 
 	// Delete Category Success Page.
 	@RequestMapping("/user/admin/deleteCategory/delete")
-	public ModelAndView deleteCategory(@RequestParam("id") String categoryId) {
+	public String deleteCategory(@RequestParam("id") String categoryId,Model model) {
 
-		ModelAndView model = new ModelAndView();
 		categoryService.deleteCategory(categoryId);
-		model.addObject("msg", "Delete Category success!");
-		model.setViewName("category/delete_category");
+		model.addAttribute("msg", "Delete Category success!");
+		
 
-		return model;
+		return "redirect:/user/admin";
 	}
 
 }

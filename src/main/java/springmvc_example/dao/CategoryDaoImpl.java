@@ -3,6 +3,7 @@ package springmvc_example.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,7 +13,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import springmvc_example.model.Category;
-import springmvc_example.model.Product;
+
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
@@ -56,6 +57,16 @@ public class CategoryDaoImpl implements CategoryDao {
 
 		namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId, null, null));
 
+	}
+
+	@Override
+	public List<Category> listCategory() {
+		
+		String sql = "Select category_id from category";
+		
+		List<Category> list = this.namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, null), new CategoryMapper());
+		
+		return list;
 	}
 
 }

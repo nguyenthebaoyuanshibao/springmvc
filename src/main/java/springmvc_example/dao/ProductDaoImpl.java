@@ -37,11 +37,11 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	private SqlParameterSource getSqlParameterSource(Integer productId, String url, String categoryId,
-			String productName, Integer unitPrice, Integer unitsInStock, 
+			String productName, Integer unitPrice,Integer priceFrom, Integer priceTo, Integer unitsInStock, 
 			String description, String manufacturer, Timestamp createAt, Timestamp updateAt) {
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-
+		
 		if (productId != null) {
 			parameterSource.addValue("productId", productId);
 		}
@@ -74,9 +74,13 @@ public class ProductDaoImpl implements ProductDao {
 			parameterSource.addValue("manufacturer", manufacturer);
 		}
 		
-	    parameterSource.addValue("priceFrom", 0);
-
-		parameterSource.addValue("priceTo", 700);
+		if(priceFrom!=null) {
+	        parameterSource.addValue("priceFrom", priceFrom);
+		}
+		
+		if(priceTo!=null) {
+			parameterSource.addValue("priceTo", priceTo);
+		}
 
 		return parameterSource;
 	}
@@ -108,7 +112,8 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products";
 		List<Product> list = namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, null, null, null, null, null, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(null, null, null, null, null, null, null, 
+						null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
@@ -119,7 +124,8 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products where product_name= :productName";
 		List<Product> list = namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, null, null, productName, null, null, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(null, null, null, productName, null, null, 
+						null, null, null, null, null, null), new ProductMapper());
 
 		return list;
 	}
@@ -130,23 +136,31 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "SELECT * FROM products where product_id= :productId";
 		Product product = namedParameterJdbcTemplate.queryForObject(sql,
-				getSqlParameterSource(productId, null, null, null, null, null, null, null, null, null), new ProductMapper());
+				getSqlParameterSource(productId, null, null, null, 
+						null, null, null, null, null, null, null, null), new ProductMapper());
 
 		return product;
 	}
     
 	// Get Product By Many Params.
 	@Override
-	public List<Product> getProductBy(String categoryId, Integer priceFrom, Integer priceTo, String productName) {
-
+	public List<Product> getProductBy(String categoryId,  String productName, Integer priceFrom, Integer priceTo) {
+        
+		if(priceFrom==null) {
+			priceFrom =0;
+		}
+		
+		if(priceTo==null) {
+			priceTo =1000;
+		}
+		
 		if (categoryId == null || categoryId == "") {
 
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
 
-			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null, null, null),
-					new ProductMapper());
+			List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, categoryId, productName, null,
+					priceFrom, priceTo, null, null, null, null, null), new ProductMapper());
 
 			return list;
 
@@ -156,9 +170,8 @@ public class ProductDaoImpl implements ProductDao {
 					+ "%' AND category_id =:categoryId AND unit_price >= :priceFrom "
 					+ "AND unit_price <= :priceTo ORDER BY product_id ";
 
-			List<Product> list = namedParameterJdbcTemplate.query(sql,
-					getSqlParameterSource(null, null, categoryId, productName, null, null, null, null, null, null),
-					new ProductMapper());
+			List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, categoryId, productName, null,
+					priceFrom, priceTo, null, null, null, null, null), new ProductMapper());
 
 			return list;
 		}
@@ -169,8 +182,8 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> getProductsByCategory(String categoryId) {
 
 		String sql = "SELECT * FROM products where category_id= :categoryId";
-		List<Product> list = namedParameterJdbcTemplate.query(sql,
-				getSqlParameterSource(null, null, categoryId, null, null, null, null, null, null, null), new ProductMapper());
+		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, categoryId, null, 
+						null, null, null, null, null, null ,null, null), new ProductMapper());
 
 		return list;
 	}
@@ -180,8 +193,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "update products set units_in_stock =:unitsInStock, update_at = now() where product_id= :productId";
 
-		namedParameterJdbcTemplate.update(sql,
-				getSqlParameterSource(productId, null, null, null, null, unitsInStock, null, null, null, null));
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId, null, null, null, null, null, null, unitsInStock, null, null, null, null));
 	}
     
 	// Add Product.
@@ -192,7 +204,7 @@ public class ProductDaoImpl implements ProductDao {
 		String sql = "INSERT INTO products(url, category_id, product_name, unit_price, units_in_stock, description, manufacturer, create_at, update_at) "
 				+ "VALUES(:url, :categoryId, :productName, :unitPrice, :unitsInStock, :description, :manufacturer, now(), now())";
 
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, url, categoryId, productName, unitPrice,
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(null, url, categoryId, productName, unitPrice, null, null,
 				unitsInStock, description, manufacturer, null, null));
 	}
     
@@ -202,8 +214,8 @@ public class ProductDaoImpl implements ProductDao {
 
 		String sql = "DELETE FROM products where product_id =:productId";
 
-		this.namedParameterJdbcTemplate.update(sql,
-				this.getSqlParameterSource(productId, null, null, null, null, null, null, null, null, null));
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(productId, null, null,
+				null, null, null, null, null, null, null, null, null));
 
 	}
     
@@ -216,7 +228,7 @@ public class ProductDaoImpl implements ProductDao {
 				+ " unit_price =:unitPrice, units_in_stock =:unitsInStock, description =:description,"
 				+ "manufacturer =:manufacturer, update_at = now() where product_id =:productId ";
 
-		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId, url, categoryId, productName, unitPrice,
+		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(productId, url, categoryId, productName, unitPrice, null, null,
 				unitsInStock, description, manufacturer, null, null));
 	}
 

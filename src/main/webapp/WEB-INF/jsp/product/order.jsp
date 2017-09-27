@@ -109,7 +109,7 @@ footer {
 
 					<form>
 						Number of stocks you want buy: <input id="id2" type="number"
-							name="" max=${product.unitsInStock}>
+							name="" max=${product.unitsInStock} min=0>
 					</form>
 					<button class="btn btn-warning btn-large"
 						onclick="search(), myFunction()">
