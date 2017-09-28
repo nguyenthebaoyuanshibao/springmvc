@@ -76,10 +76,11 @@ footer {
 				<li class="active"><a
 					href="/MobileStore/user/admin/addProduct">Add
 						Product</a></li>
-
+	    
 				<li class="active"><a
-					href="/MobileStore/user/admin/updateProduct">Update
-						Product</a></li>
+					href="/MobileStore/user/admin/addCategory">Add
+						Category</a></li>		
+						
 				<li class="active"><a
 					href="/MobileStore/user/admin/deleteCategory">Delete
 						Category</a></li>
@@ -107,22 +108,29 @@ footer {
 				</div>
 				<div>
 					<c:forEach items="${products}" var="product">
-						<div class="col-sm-3 col-md-3"
+						<div class="col-sm-3 col-md-4"
 							style="padding-bottom: 15px; height: 409px;">
 							<div class="thumbnail">
-								<div class="caption" style="height: 364px">
+								<div class="caption" style="height: 384px">
 									<div>
-										<image style max-width="25%" height="200" src=${product.url }>
+										<image style max-width="100%" height="200" src=${product.url }>
 									</div>
 									<div>
 										<h3>${product.productName}</h3>
 									</div>
 									<div>
-										<p>price: ${product.unitPrice}USD</p>
+										<p>Price: ${product.unitPrice}USD</p>
+									</div>
+									<div>	
 										<a
-											href=" <spring:url value=  "/product/detail?id=${product.productId}" /> "
+											href=" <spring:url value=  "/user/admin/updateProduct?id=${product.productId}" /> "
 											class="btn btn-primary"> <span
-											class="glyphicon-info-sign glyphicon" /></span> Detail
+											class="glyphicon-info-sign glyphicon" /></span> Update
+										</a>
+										<a
+											href=" <spring:url value=  "/user/admin/deleteProduct/?id=${product.productId}" /> "
+											class="btn btn-warning"> <span
+											class="glyphicon-info-sign glyphicon" /></span> Delete
 										</a>
 									</div>
 								</div>

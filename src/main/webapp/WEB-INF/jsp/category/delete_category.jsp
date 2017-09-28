@@ -78,10 +78,11 @@ footer {
 				<li class="active"><a
 					href="/MobileStore/user/admin/addProduct">Add
 						Product</a></li>
-
+						
 				<li class="active"><a
-					href="/MobileStore/user/admin/updateProduct">Update
-						Product</a></li>
+					href="/MobileStore/user/admin/addCategory">Add
+						Category</a></li>	
+						
 				<li class="active"><a
 					href="/MobileStore/user/admin/deleteCategory">Delete
 						Category</a></li>
@@ -121,7 +122,7 @@ footer {
 					</table>
 				</form>
 
-				<button onclick="delete1()">DeleteCategory</button>
+				<button onclick="delete1()" class="btn btn-warning">Delete</button>
 
 
 			</div>

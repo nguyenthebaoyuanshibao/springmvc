@@ -80,8 +80,9 @@ footer {
 						Product</a></li>
 
 				<li class="active"><a
-					href="/MobileStore/user/admin/updateProduct">Update
-						Product</a></li>
+					href="/MobileStore/user/admin/addCategory">Add
+						Category</a></li>		
+						
 				<li class="active"><a
 					href="/MobileStore/user/admin/deleteCategory">Delete
 						Category</a></li>
@@ -109,7 +110,7 @@ footer {
 					<table align="center">
 						<tr>
 							<td>ProducId :</td>
-							<td><input id="id1" type="number"></td>
+							<td><input id="id1" type="number" value=${productId }></td>
 						</tr>
 						<tr>
 							<td>Url:</td>
@@ -153,7 +154,7 @@ footer {
 					</table>
 				</form>
 
-				<button onclick="update()">UpdateProduct</button>
+				<button onclick="update()" class="btn btn-success">Update</button>
 
 
 			</div>
@@ -193,7 +194,7 @@ footer {
 		}
 
 		function update() {
-			window.location = window.location.href + setUpdateHref();
+			window.location = "/MobileStore/user/admin/updateProduct" + setUpdateHref();
 		}
 	</script>
 

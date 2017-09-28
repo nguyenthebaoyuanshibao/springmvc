@@ -111,10 +111,11 @@ public class AdminController {
 	
 	// Update Product Page.
 	@RequestMapping("/user/admin/updateProduct")
-	public ModelAndView updateProductForm() {
+	public ModelAndView updateProductForm(@RequestParam("id") Integer productId) {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("listCategory", categoryService.listCategory() );
+		model.addObject("productId", productId);
 		model.setViewName("product/update_product");	
 		
 		return model;
@@ -133,6 +134,38 @@ public class AdminController {
 		
 		return "redirect:/user/admin";
 	}
+	
+	// Delete Product .
+		@RequestMapping("/user/admin/deleteProduct/")
+		public String deleteProduct(@RequestParam("id") Integer productId, Model model) {
+
+			productService.deleteProductByProductId(productId);
+			model.addAttribute("msg", "Delete Product success!");
+			
+
+			return "redirect:/user/admin";
+		}
+	
+	// Add Category Page.
+		@RequestMapping("/user/admin/addCategory")
+		public ModelAndView addCategoryForm() {
+
+			ModelAndView model = new ModelAndView();
+			model.setViewName("category/add_category");
+
+			return model;
+		}
+		
+		// Add Category Success Page.
+		@RequestMapping("/user/admin/addCategory/add")
+		public String addCategory(@RequestParam("id") String categoryId, Model model) {
+
+			categoryService.addCategory(categoryId);
+			model.addAttribute("msg", "Add Category success!");
+			
+
+			return "redirect:/user/admin";
+		}	
 
 	// Delete Category Page.
 	@RequestMapping("/user/admin/deleteCategory")
@@ -147,7 +180,7 @@ public class AdminController {
 
 	// Delete Category Success Page.
 	@RequestMapping("/user/admin/deleteCategory/delete")
-	public String deleteCategory(@RequestParam("id") String categoryId,Model model) {
+	public String deleteCategory(@RequestParam("id") String categoryId, Model model) {
 
 		categoryService.deleteCategory(categoryId);
 		model.addAttribute("msg", "Delete Category success!");

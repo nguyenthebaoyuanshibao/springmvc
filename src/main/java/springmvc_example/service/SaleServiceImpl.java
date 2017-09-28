@@ -26,6 +26,9 @@ public class SaleServiceImpl implements SaleService {
 		Product product = this.productRepository.getProductByProductId(productId);
 
 		if (checkQuantity(productId, quantity)) {
+			if(quantity<0){
+				quantity=0;
+			}
 
 			product.setUnitsInStock(product.getUnitsInStock() - quantity);
 

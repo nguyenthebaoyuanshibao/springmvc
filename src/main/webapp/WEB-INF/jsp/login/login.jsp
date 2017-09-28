@@ -103,7 +103,8 @@ footer {
 						<tr>
 							<td></td>
 							<td>
-								<button type="submit">Login</button>
+								<button class="btn btn-info" type="submit">
+								<span class="glyphicon glyphicon-log-in"></span>Log in</button>
 							</td>
 						</tr>
 						<tr>

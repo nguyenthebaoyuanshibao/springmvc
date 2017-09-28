@@ -53,14 +53,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
         
+		http.sessionManagement()
+		  .sessionFixation()
+		  .none();
 		http.sessionManagement().maximumSessions(1);
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/login", "/user/signup", "user/register", "/","/home","/products/**", "/product/**").permitAll();
-		http.authorizeRequests().antMatchers( "/order/**")
+		http.authorizeRequests().antMatchers( "/order/*")
 				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
 		http.authorizeRequests()
 				.antMatchers("/user/admin", "/user/admin/**")
 				.access("hasRole('ROLE_ADMIN')");
+		
+		http.requiresChannel()
+		  .antMatchers("/login**", "/j_spring_security_check");
 
 		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")
 				.failureUrl("/login?error=true").usernameParameter("username").passwordParameter("password").and()

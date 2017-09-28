@@ -7,5 +7,8 @@ import springmvc_example.model.Category;
 public interface CategoryService {
 	
 	void deleteCategory(String categoryId);
+	
 	public List<Category> listCategory();
+	
+	public void addCategory(String categoryId);
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import springmvc_example.dao.ProductDao;
+import springmvc_example.dao.ReviewDao;
+import springmvc_example.dao.SaleDao;
 import springmvc_example.model.Product;
 import springmvc_example.model.Sale;
 
@@ -18,8 +20,13 @@ import springmvc_example.model.Sale;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
+	
 	@Autowired
 	private ProductDao productDao;
+	@Autowired
+	private ReviewDao reviewDao;
+	@Autowired
+	private SaleDao saleDao;
 
 	// Get All Product.
 	@Override
@@ -87,6 +94,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteProductByProductId(Integer productId) {
 		
+		saleDao.deleteSaleByProductId(productId);
+		reviewDao.deleteReviewByProductId(productId);
 		this.productDao.deleteProductByProductId(productId);
 
 	}

@@ -69,4 +69,11 @@ public class CategoryDaoImpl implements CategoryDao {
 		return list;
 	}
 
+	@Override
+	public void addCategory(String categoryId) {
+		
+		String sql = "INSERT INTO category(category_id, create_at, update_at) VALUES(:categoryId, now(), now())";
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(categoryId, null, null));
+	}
+
 }

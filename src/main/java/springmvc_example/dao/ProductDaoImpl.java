@@ -223,7 +223,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void updateProduct(Integer productId, String url, String categoryId, String productName, Integer unitPrice,
 			Integer unitsInStock, String description, String manufacturer) {
-
+         
 		String sql = "update products set url =:url, category_id =:categoryId, product_name =:productName, "
 				+ " unit_price =:unitPrice, units_in_stock =:unitsInStock, description =:description,"
 				+ "manufacturer =:manufacturer, update_at = now() where product_id =:productId ";

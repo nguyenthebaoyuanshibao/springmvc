@@ -51,4 +51,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return this.categoryDao.listCategory();	
 	}
 
+	@Override
+	public void addCategory(String categoryId) {
+		
+		this.categoryDao.addCategory(categoryId);
+	}
+
 }

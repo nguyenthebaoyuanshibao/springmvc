@@ -101,9 +101,10 @@ footer {
                     <a href="/MobileStore/user/admin/addProduct">Add Product</a>
                 </li>
                 
-                <li class="active">
-                    <a href="/MobileStore/user/admin/updateProduct">Update Product</a>
-                </li>
+                <li class="active"><a
+					href="/MobileStore/user/admin/addCategory">Add
+						Category</a></li>
+                
                <li class="active">
                     <a href="/MobileStore/user/admin/deleteCategory">Delete Category</a>
                 </li>
@@ -139,7 +140,7 @@ footer {
 
 							<td><spring:url value="/user/admin/removeUser" var="removeUserURL" />
 								<a href="${removeUserURL }/${user.userId}"><span
-									class="glyphicon-info-sign glyphicon"></span>Remove</a></td>
+									class="glyphicon glyphicon-remove"></span>Remove</a></td>
 						</tr>
 					</c:forEach>
 				</table>

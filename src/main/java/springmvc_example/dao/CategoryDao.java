@@ -9,4 +9,6 @@ public interface CategoryDao {
 	void deleteCategory(String categoryId);
 	
 	public List<Category> listCategory();
+	
+	public void addCategory(String categoryId);
 }

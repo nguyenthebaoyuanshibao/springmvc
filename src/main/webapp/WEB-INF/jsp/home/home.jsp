@@ -118,27 +118,30 @@ footer {
 
 						</table>
 					</form>
-					<button onclick="search()">Search</button>
+					<button onclick="search()" class="btn btn-success">SEARCH</button>
 				</div>
 				<div>
 					<c:forEach items="${products}" var="product">
-						<div class="col-sm-3 col-md-3"
-							style="padding-bottom: 15px; height: 409px;">
+						<div class="col-sm-3 col-md-4"
+							style="padding-bottom: 15px; height: 415px;">
 							<div class="thumbnail">
-								<div class="caption" style="height: 364px">
+								<div class="caption" style="height: 384px">
 									<div>
-										<image style max-width="25%" height="200" src=${product.url }>
+										<image style max-width="100%" height="200" src=${product.url }>
 									</div>
 									<div>
 										<h3>${product.productName}</h3>
 									</div>
 									<div>
-										<p>price: ${product.unitPrice}USD</p>
+										<p>Price: ${product.unitPrice}USD</p>
+									</div>
+									<div>	
 										<a
 											href=" <spring:url value=  "/product/detail?id=${product.productId}" /> "
 											class="btn btn-primary"> <span
 											class="glyphicon-info-sign glyphicon" /></span> Detail
 										</a>
+									
 									</div>
 								</div>
 							</div>

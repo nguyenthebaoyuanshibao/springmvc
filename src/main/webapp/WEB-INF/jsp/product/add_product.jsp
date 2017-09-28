@@ -78,10 +78,11 @@ footer {
 				<li class="active"><a
 					href="/MobileStore/user/admin/addProduct">Add
 						Product</a></li>
-
+						
 				<li class="active"><a
-					href="/MobileStore/user/admin/updateProduct">Update
-						Product</a></li>
+					href="/MobileStore/user/admin/addCategory">Add
+						Category</a></li>		
+						
 				<li class="active"><a
 					href="/MobileStore/user/admin/deleteCategory">Delete
 						Category</a></li>
@@ -149,57 +150,8 @@ footer {
 					</table>
 				</form>
 
-				<button onclick="add()">AddProduct</button>
+				<button onclick="add()" class = "btn btn-success">Add</button>
 				
-
-     <!--       <form:form action="/user/admin/addProduct/add" modelAttribute="product" method="POST" >
-					<table align="center">
-						<tr>
-					      <td>Url:</td>
-						  <td><input path="url"/></td> 
-						
-						</tr>
-
-						<tr>
-							<td>Category:</td>
-							<td><select path="categoryId" >
-									<option value=""></option>
-									<option value="I phone">I Phone</option>
-									<option value="SamSung Galaxy">Samsung Galaxy</option>
-									<option value="XiaoMi">XiaoMi</option>
-							</select></td>
-						</tr>
-
-						<tr>
-							<td>ProductName:</td>
-							<td><input type="text" path="productName" /></td>
-						</tr>
-
-						<tr>
-							<td>UnitPrice:</td>
-							<td><input type="number" path="unitPrice"/></td>
-						</tr>
-
-						<tr>
-							<td>UnitsInStock:</td>
-							<td><input type="number" path="unitsInStock" /></td>
-						</tr>
-
-						<tr>
-							<td>Description:</td>
-							<td><input type="text" path="description"/></td>
-						</tr>
-
-						<tr>
-							<td>Manufacturer:</td>
-							<td><input type="text" path="manufacturer"/></td>
-						</tr>
-
-					</table>
-					<td><input type="submit" value="Submit"/></td>
-				</form:form>
-
- --> 
 			</div>
 
 			<div class="col-sm-2 sidenav">

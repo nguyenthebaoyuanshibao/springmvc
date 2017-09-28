@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,6 +55,7 @@ footer {
 </style>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -65,59 +68,58 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
+
 				<li class="active"><a
 					href="/MobileStore">Home</a></li>
+					
+				 <li class="active"><a
+					href="/MobileStore/user/admin/listUser">List User</a></li>	
+
+				<li class="active"><a
+					href="/MobileStore/user/admin/addProduct">Add
+						Product</a></li>
+				
+				<li class="active"><a
+					href="/MobileStore/user/admin/addCategory">Add
+						Category</a></li>		
+						
+				<li class="active"><a
+					href="/MobileStore/user/admin/deleteCategory">Delete
+						Category</a></li>
 
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/MobileStore/logout"><span
-						class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				<li><spring:url value="/user/removeUser" var="removeUserURL" />
+					<a href="/MobileStore/logout"> <span
+						class="glyphicon glyphicon-log-in"></span> Logout
+				</a></li>
 			</ul>
 		</div>
 	</div>
 	</nav>
+
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
+			<div class="col-sm-2 sidenav"></div>
+
+			<div class="col-sm-8 sidenav">
+				<p>${msg }</p>
+
+		   		<form>
+					<table align="center">
+						<tr>
+							<td>Category Name:</td>
+							<td><td><input id="id" type="text" /></td></td>
+						</tr>
+
+					</table>
+				</form>
+
+				<button onclick="add()" class="btn btn-success">Add</button>
+				
 			</div>
-			<div class="col-sm-8 text-left">
-				<div>
-					<div>
-						<image style weight="200" height="200" src=${ product.url}>
-					</div>
 
-
-					<h3>${product.productName}</h3>
-
-
-
-					<p>Description: ${product.description}</p>
-					<p>Price : ${product.unitPrice}USD</p>
-					Units In Stock:
-					<p id="id1">${product.unitsInStock}</p>
-
-
-					<form>
-						Number of stocks you want buy: <input id="id2" type="number"
-							name="" max=${product.unitsInStock} min=0>
-					</form>
-					<button class="btn btn-warning btn-large"
-						onclick="search(), myFunction()">
-						<span class="glyphicon-shopping-cart glyphicon"></span>Order
-					</button>
-				</div>
-
-			</div>
 			<div class="col-sm-2 sidenav">
 				<div class="well">
 					<p></p>
@@ -126,6 +128,7 @@ footer {
 					<p></p>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
@@ -133,26 +136,21 @@ footer {
 	<p>Footer Text</p>
 	</footer>
 
-	<script language="javascript" type="text/javascript">
-		var numberOfQuantityField = document.getElementById('id2');
-		var unitsInStockField = document.getElementById('id1');
-		function myFunction() {
-			if ((numberOfQuantityField.value.charAt(0)!="-")&&((unitsInStockField.innerHTML.length > numberOfQuantityField.value.length)
-					|| ((unitsInStockField.innerHTML.length == numberOfQuantityField.value.length)
-						&& (unitsInStockField.innerHTML > numberOfQuantityField.value)))) {
-				alert('Order Success');
-			} else {
-				alert('Order fail, the units of stock is not enought !');
-			}
-		}
-		function setSearchHref() {
-			return "/" + numberOfQuantityField.value;
 
+	   <script language="javascript" type="text/javascript">
+	
+		var categoryIdField = document.getElementById('id');
+		
+		function setAddHref() {
+			return '/add?id=' + categoryIdField.value ;
+			
 		}
 
-		function search() {
-			window.location = window.location.href + setSearchHref();
+		function add() {
+			window.location = "http://localhost:8080/MobileStore/user/admin/addCategory" + setAddHref();
 		}
 	</script>
+
+
 </body>
 </html>
