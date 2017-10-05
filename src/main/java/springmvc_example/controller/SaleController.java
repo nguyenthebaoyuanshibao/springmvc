@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springmvc_example.service.ProductService;
 import springmvc_example.service.SaleService;
+import springmvc_example.service.UserService;
 
 @Controller
 public class SaleController {
@@ -19,6 +20,9 @@ public class SaleController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	UserService userService;
 
 	// order Page.
 	@RequestMapping(value = "/order/{productId}")
@@ -35,7 +39,8 @@ public class SaleController {
 	public ModelAndView orderResult(@PathVariable("productId") Integer productId,
 			@PathVariable("quantity") Integer quantity) {
 
-		String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+		String auth = SecurityContextHolder.getContext().getAuthentication().getName();
+		Integer userId = userService.findUserbyUserName(auth).getUserId();
 		ModelAndView model = new ModelAndView();
 
 		saleService.addSale(userId, productId, quantity,

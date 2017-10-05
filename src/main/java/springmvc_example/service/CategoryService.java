@@ -6,9 +6,13 @@ import springmvc_example.model.Category;
 
 public interface CategoryService {
 	
-	void deleteCategory(String categoryId);
-	
-	public List<Category> listCategory();
-	
-	public void addCategory(String categoryId);
+		void deleteCategoryByCategoryId(Integer categoryId);
+		
+		public List<Category> listCategory();
+		
+		public void addCategory(String categoryName);
+		
+		public boolean existsCategory(String categoryName);
+		
+		public boolean canDeleteCategory(Integer CategoryId);
 }

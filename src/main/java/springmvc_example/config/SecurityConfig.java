@@ -56,10 +56,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement()
 		  .sessionFixation()
 		  .none();
-		http.sessionManagement().maximumSessions(1);
+		//http.sessionManagement().maximumSessions(1);
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/login", "/user/signup", "user/register", "/","/home","/products/**", "/product/**").permitAll();
-		http.authorizeRequests().antMatchers( "/order/*")
+		http.authorizeRequests().antMatchers( "/order/**")
 				.access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
 		http.authorizeRequests()
 				.antMatchers("/user/admin", "/user/admin/**")

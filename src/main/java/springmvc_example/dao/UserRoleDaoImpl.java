@@ -24,7 +24,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	private SqlParameterSource getSqlParameterSource(Integer userRoleId, String userId) {
+	private SqlParameterSource getSqlParameterSource(Integer userRoleId, Integer userId, String role) {
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		
@@ -36,6 +36,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
 			parameterSource.addValue("userId", userId);
 		}
 		
+	    if(role!=null) {
+	    	parameterSource.addValue("role", role);
+	    }
+		
 		return parameterSource;
 	}
 
@@ -45,7 +49,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 			
 			UserRole userRole = new UserRole();
 			userRole.setUserRoleId(rs.getInt("user_role_id"));
-			userRole.setUserId(rs.getString("user_id"));
+			userRole.setUserId(rs.getInt("user_id"));
 			
 			return userRole;
 			
@@ -53,12 +57,20 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	}
 
 	@Override
-	public void deleteUser(String userId) {
+	public void deleteUser(Integer userId) {
 		
 		String sql = "delete from user_roles where user_id =:userId";
-		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, userId));
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, userId, null));
 		
 
+	}
+
+	@Override
+	public UserRole addUserRole(Integer userId) {
+		String role ="ROLE_USER";
+		String sql = "insert into user_roles(user_id, role) values(:userId, :role)";
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, userId, role ));
+		return null;
 	}
 
 }

@@ -18,7 +18,7 @@ public class Product
 	private String url;
 	
 	//商品のカテゴリ
-	private String categoryId;
+	private Integer categoryId;
 	
 	//商品名
 	private String productName;
@@ -45,7 +45,7 @@ public class Product
 		super();
 	}
 
-	public Product(Integer productId,String url, String categoryId, String productName,
+	public Product(Integer productId,String url, Integer categoryId, String productName,
 			Integer unitPrice, Integer unitsInStock,String description, String manufacturer )
 	{
 		this.productId = productId;
@@ -79,12 +79,12 @@ public class Product
 		this.url = url;
 	}
 	
-	public String getCategoryId()
+	public Integer getCategoryId()
 	{
 		return this.categoryId;
 	}
 	
-	public void setCategoryId(String categoryId)
+	public void setCategoryId(Integer categoryId)
 	{
 		this.categoryId = categoryId;
 	}

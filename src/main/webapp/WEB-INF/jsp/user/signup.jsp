@@ -85,19 +85,19 @@ footer {
 					<table align="center">
 						<tr>
 							<td>UserId:</td>
-							<td><input type="text" name="userId"></td>
-							<form:errors path="userId" />
+							<td><form:input type="text" name="userName" path="userName"/></td>
+							<form:errors path="userName" />
 						</tr>
 
 						<tr>
 							<td>Password:</td>
-							<td><input type="password" name="password"></td>
+							<td><form:input type="password" name="password" path="password"/></td>
 							<form:errors path="password" />
 						</tr>
 
 						<tr>
 							<td>Confirm Password:</td>
-							<td><input type="password" name="confirmPassword"></td>
+							<td><form:input type="password" name="confirmPassword" path="confirmPassword" /></td>
 							<form:errors path="confirmPassword" />
 						</tr>
 						

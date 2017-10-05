@@ -9,7 +9,7 @@ public class Sale {
 	private Integer saleId;
 
 	// ユーザ ID
-	private String userId;
+	private Integer userId;
 
 	// 商品ID
 	private String productId;
@@ -31,7 +31,7 @@ public class Sale {
 
 	}
 
-	public Sale(Integer saleId, String userId, String productId, Integer quantity, Integer price) {
+	public Sale(Integer saleId, Integer userId, String productId, Integer quantity, Integer price) {
 		super();
 		this.saleId = saleId;
 		this.userId = userId;
@@ -48,11 +48,11 @@ public class Sale {
 		this.saleId = saleId;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

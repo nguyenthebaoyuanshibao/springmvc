@@ -1,6 +1,6 @@
 package springmvc_example.controller;
 
-import java.awt.List;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import springmvc_example.model.Category;
 import springmvc_example.model.Product;
 import springmvc_example.model.Users;
 import springmvc_example.service.CategoryService;
 import springmvc_example.service.ProductService;
 import springmvc_example.service.UserService;
+import springmvc_example.validator.AddCategoryValidator;
 import springmvc_example.validator.SignUpValidator;
 
 @Controller
@@ -38,6 +40,9 @@ public class AdminController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AddCategoryValidator addCategoryValidator;
 	
 	// admin page.
 	@RequestMapping(value = "user/admin", method = RequestMethod.GET)
@@ -61,11 +66,11 @@ public class AdminController {
 	}
 
 	// Remove User Page.
-	@RequestMapping(value = "user/admin/removeUser/{userId}", method = RequestMethod.GET)
-	public ModelAndView removeUser(@PathVariable("userId") String userId) {
+	@RequestMapping(value = "user/admin/removeUser/{userName}", method = RequestMethod.GET)
+	public ModelAndView removeUser(@PathVariable("userName") String userName) {
 
 		ModelAndView model = new ModelAndView("user/remove_user");
-		model.addObject("user", userService.findUserbyUserId(userId));
+		model.addObject("user", userService.findUserbyUserName(userName));
 
 		return model;
 	}
@@ -95,11 +100,12 @@ public class AdminController {
 
 	// Add Product Result Page.
 	@RequestMapping(value = "/user/admin/addProduct/add",method = RequestMethod.GET)
-	public String addProduct(@RequestParam("id") String url, @RequestParam("categoryId") String categoryId,
+	public String addProduct(@RequestParam("id") String url, @RequestParam("categoryId") Integer categoryId,
 			@RequestParam("productName") String productName, @RequestParam("unitPrice") Integer unitPrice,
 			@RequestParam("unitsInStock") Integer unitsInStock, @RequestParam("description") String description,
 			@RequestParam("manufacturer") String manufacturer, Model model) {
-
+        
+		
 		
 		productService.addProduct(url, categoryId, productName, unitPrice, unitsInStock, description, manufacturer);
 		model.addAttribute("msg", "Add Product Success!");
@@ -115,7 +121,7 @@ public class AdminController {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("listCategory", categoryService.listCategory() );
-		model.addObject("productId", productId);
+		model.addObject("product", this.productService.getProductByProductId(productId));
 		model.setViewName("product/update_product");	
 		
 		return model;
@@ -124,7 +130,7 @@ public class AdminController {
 	// Update Product Result Page.
 	@RequestMapping("/user/admin/updateProduct/update")
 	public String addProduct(@RequestParam("id") Integer productId, @RequestParam("url") String url,
-			@RequestParam("categoryId") String categoryId, @RequestParam("productName") String productName,
+			@RequestParam("categoryId") Integer categoryId, @RequestParam("productName") String productName,
 			@RequestParam("unitPrice") Integer unitPrice, @RequestParam("unitsInStock") Integer unitsInStock,
 			@RequestParam("description") String description, @RequestParam("manufacturer") String manufacturer, Model model) {
 	
@@ -149,8 +155,10 @@ public class AdminController {
 	// Add Category Page.
 		@RequestMapping("/user/admin/addCategory")
 		public ModelAndView addCategoryForm() {
-
+             
 			ModelAndView model = new ModelAndView();
+			List<Category> listCategory = categoryService.listCategory();
+			model.addObject("listCategory", listCategory );
 			model.setViewName("category/add_category");
 
 			return model;
@@ -158,13 +166,12 @@ public class AdminController {
 		
 		// Add Category Success Page.
 		@RequestMapping("/user/admin/addCategory/add")
-		public String addCategory(@RequestParam("id") String categoryId, Model model) {
-
-			categoryService.addCategory(categoryId);
-			model.addAttribute("msg", "Add Category success!");
+		public String addCategory(@RequestParam("id") String categoryName, Model model  ) {
 			
-
-			return "redirect:/user/admin";
+			categoryService.addCategory(categoryName);
+			model.addAttribute("msg", "Add Category success!");
+		
+			return "redirect:/user/admin";		
 		}	
 
 	// Delete Category Page.
@@ -172,7 +179,12 @@ public class AdminController {
 	public ModelAndView deleteCategoryForm() {
 
 		ModelAndView model = new ModelAndView();
-		model.addObject("listCategory", categoryService.listCategory() );
+		List<Category> listCategory = categoryService.listCategory();
+		model.addObject("listCategory", listCategory );
+		for(Category category:listCategory) {
+			Integer size = productService.getProductsByCategory(category.getCategoryId()).size();
+			model.addObject("size", size);
+		}
 		model.setViewName("category/delete_category");
 
 		return model;
@@ -180,13 +192,18 @@ public class AdminController {
 
 	// Delete Category Success Page.
 	@RequestMapping("/user/admin/deleteCategory/delete")
-	public String deleteCategory(@RequestParam("id") String categoryId, Model model) {
-
-		categoryService.deleteCategory(categoryId);
-		model.addAttribute("msg", "Delete Category success!");
+	public String deleteCategory(@RequestParam("categoryId") Integer categoryId, Model model) {
+        
+		Integer size = productService.getProductsByCategory(categoryId).size();
+	
+		//model.addAttribute("size", size);
 		
-
+		if(size==0) {
+			
+		categoryService.deleteCategoryByCategoryId(categoryId);
 		return "redirect:/user/admin";
+	   }		
+	   return "redirect:/user/admin/deleteCategory";
 	}
 
 }

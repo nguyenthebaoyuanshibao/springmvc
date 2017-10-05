@@ -21,28 +21,14 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	private ProductDao productDao;
 
-	@Autowired
-	private SaleDao saleDao;
-
-	@Autowired
-	private ReviewDao reviewDao;
-
 	// Delete Category By Category ID.
 	@Override
-	public void deleteCategory(String categoryId) {
+	public void deleteCategoryByCategoryId(Integer categoryId) {
 
-		List<Product> products = productDao.getProductsByCategory(categoryId);
-
-		for (Product product : products) {
-
-			Integer productId = product.getProductId();
-
-			saleDao.deleteSaleByProductId(productId);
-			reviewDao.deleteReviewByProductId(productId);
-			productDao.deleteProductByProductId(productId);
-		}
-
-		categoryDao.deleteCategory(categoryId);
+        if(canDeleteCategory(categoryId)) {
+        	
+		categoryDao.deleteCategoryByCategoryId(categoryId);
+        }
 	}
 
 	@Override
@@ -52,9 +38,28 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void addCategory(String categoryId) {
+	public void addCategory(String categoryName) {
 		
-		this.categoryDao.addCategory(categoryId);
+		if(!categoryDao.existsCategory(categoryName)) {
+			
+		categoryDao.addCategory(categoryName);
+		}
+	}
+
+	@Override
+	public boolean existsCategory(String categoryName) {
+		return this.categoryDao.existsCategory(categoryName);
+	}
+
+	@Override
+	public boolean canDeleteCategory(Integer categoryId) {
+		
+		List<Product> products = productDao.getProductsByCategory(categoryId);
+		if(products.size()==0) {
+			
+			return true;
+		}
+		return false;
 	}
 
 }

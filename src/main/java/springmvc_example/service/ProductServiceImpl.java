@@ -51,14 +51,14 @@ public class ProductServiceImpl implements ProductService {
 
 	// Get Product By Category.
 	@Override
-	public List<Product> getProductsByCategory(String categoryId) {
+	public List<Product> getProductsByCategory(Integer categoryId) {
 		
 		return this.productDao.getProductsByCategory(categoryId);
 	}
 
 	// Get Product By Many Params.
 	@Override
-	public List<Product> getProductBy(String categoryId, String productName, Integer priceFrom, Integer priceTo) {
+	public List<Product> getProductBy(Integer categoryId, String productName, Integer priceFrom, Integer priceTo) {
 
 		return this.productDao.getProductBy(categoryId, productName, priceFrom, priceTo);
 	}
@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
 
 	// Add Product.
 	@Override
-	public void addProduct(String url, String categoryId, String productName, Integer unitPrice, Integer unitsInStock,
+	public void addProduct(String url, Integer categoryId, String productName, Integer unitPrice, Integer unitsInStock,
 			String description, String manufacturer) {
 
 		this.productDao.addProduct(url, categoryId, productName, unitPrice, unitsInStock, description, manufacturer);
@@ -82,11 +82,12 @@ public class ProductServiceImpl implements ProductService {
 
 	// Update Product Information.
 	@Override
-	public void updateProduct(Integer productId, String url, String categoryId, String productName, Integer unitPrice,
+	public void updateProduct(Integer productId, String url, Integer categoryId, String productName, Integer unitPrice,
 			Integer unitsInStock, String description, String manufacturer) {
 		
 		this.productDao.updateProduct(productId, url, categoryId, productName, unitPrice, unitsInStock, description,
 				manufacturer);
+		
 
 	}
 

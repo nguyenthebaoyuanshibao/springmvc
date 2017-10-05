@@ -101,7 +101,7 @@ footer {
 								<td><select id="foo" class=>
 								        <option value =""></option>
 										<c:forEach items="${listCategory}" var="category">
-										<option value="${category.categoryId }">${category.categoryId }</option>
+										<option value="${category.categoryId }">${category.categoryName }</option>
 									</c:forEach>
 								</select></td>
 							</tr>
@@ -150,12 +150,7 @@ footer {
 				</div>
 			</div>
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
+				
 			</div>
 		</div>
 	</div>

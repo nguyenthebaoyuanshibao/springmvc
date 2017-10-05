@@ -21,7 +21,7 @@ public class SaleServiceImpl implements SaleService {
 
 	// Add sale.
 	@Override
-	public void addSale(String userId, Integer productId, Integer quantity, Integer price) {
+	public void addSale(Integer userId, Integer productId, Integer quantity, Integer price) {
 
 		Product product = this.productRepository.getProductByProductId(productId);
 
@@ -64,6 +64,13 @@ public class SaleServiceImpl implements SaleService {
 	public void updateSale(Integer saleId) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void deleteSaleByUserId(Integer userId) {
+		
+		saleDao.deleteSaleByUserId(userId);
+		
 	}
 
 }

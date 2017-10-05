@@ -22,15 +22,15 @@ public class LoginServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserDao userDao;
 
-	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-		Users userInfo = userDao.findUserbyUserId(userId);
+		Users userInfo = userDao.findUserbyUserName(userName);
 
 		if (userInfo == null) {
 			throw new UsernameNotFoundException("userId was not found in the database!");
 		}
 
-		List<String> roles = userDao.getUserRoles(userId);
+		List<String> roles = userDao.getUserRoles(userInfo.getUserId());
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 
 		if (roles != null) {
@@ -40,7 +40,7 @@ public class LoginServiceImpl implements UserDetailsService {
 			}
 		}
 
-		UserDetails userDetails = new User(userInfo.getUserId(), userInfo.getPassword(), grantList);
+		UserDetails userDetails = new User(userInfo.getUserName(), userInfo.getPassword(), grantList);
 
 		return userDetails;
 	}

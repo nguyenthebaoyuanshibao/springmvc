@@ -7,7 +7,7 @@ import springmvc_example.model.Review;
 public interface ReviewDao {
 	
 	//レビューを追加する。
-	void addReview(Integer reviewId, String userId, Integer productId);
+	void addReview(Integer reviewId, Integer userId, Integer productId);
 	
 	//レビューを変更する。
 	Review updateReview(Integer reviewId);
@@ -20,5 +20,7 @@ public interface ReviewDao {
 	
 	//productId で レピューを削除する。
 	void deleteReviewByProductId(Integer productId);
+	
+	void deleteReviewByUserId(Integer userId);
 
 }

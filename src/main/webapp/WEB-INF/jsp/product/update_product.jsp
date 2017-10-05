@@ -110,45 +110,46 @@ footer {
 					<table align="center">
 						<tr>
 							<td>ProducId :</td>
-							<td><input id="id1" type="number" value=${productId }></td>
+							<td><input id="id1" type="number" value=${product.productId} disabled /></td>
 						</tr>
 						<tr>
 							<td>Url:</td>
-							<td><input id="id2" type="text" /></td>
+							<td><input id="id2" type="text" value=${product.url} /></td>
 						</tr>
 
 						<tr>
 							<td>Category:</td>
-							<td><select id="id3" class=>
-									<option value =""></option>
-										<c:forEach items="${listCategory}" var="category">
-										<option value="${category.categoryId }">${category.categoryId }</option></c:forEach>
+							<td><select id="id3"  >
+									
+									<c:forEach items="${listCategory}" var="category">
+										<option value="${category.categoryId }">${category.categoryName }</option>
+									</c:forEach>
 							</select></td>
 						</tr>
 
 						<tr>
 							<td>ProductName:</td>
-							<td><input id="id4" type="text" /></td>
+							<td><input id="id4" type="text" value=${product.productName} /></td>
 						</tr>
 
 						<tr>
 							<td>UnitPrice:</td>
-							<td><input id="id5" type="number" /></td>
+							<td><input id="id5" type="number" value=${product.unitPrice} /></td>
 						</tr>
 
 						<tr>
 							<td>UnitsInStock:</td>
-							<td><input id="id6" type="number" /></td>
+							<td><input id="id6" type="number" value=${product.unitsInStock} /></td>
 						</tr>
 
 						<tr>
 							<td>Description:</td>
-							<td><input id="id7" type="text" /></td>
+							<td><input id="id7" type="text" value = ${product.description} /></td>
 						</tr>
 
 						<tr>
 							<td>Manufacturer:</td>
-							<td><input id="id8" type="text" /></td>
+							<td><input id="id8" type="text" value = ${product.manufacturer} /></td>
 						</tr>
 
 					</table>

@@ -129,7 +129,7 @@ footer {
 										</a>
 										<a
 											href=" <spring:url value=  "/user/admin/deleteProduct/?id=${product.productId}" /> "
-											class="btn btn-warning"> <span
+											onclick="return confirm('Are you sure?')" class="btn btn-warning"> <span
 											class="glyphicon-info-sign glyphicon" /></span> Delete
 										</a>
 									</div>
@@ -141,12 +141,7 @@ footer {
 
 			</div>
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
+				
 			</div>
 
 		</div>
@@ -154,6 +149,11 @@ footer {
     <footer class="container-fluid text-center">
 		<p>Footer Text</p>
 	</footer>
+	<script type="text/javascript">
 	
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };   
+</script>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class SearchController {
 	@RequestMapping(value = "/products/search/", method = RequestMethod.GET)
 	public ModelAndView getProductBy(@RequestParam("id") String productName,
 			@RequestParam("price-from") Integer priceFrom, @RequestParam("price-to") Integer priceTo,
-			@RequestParam("category") String categoryId) {
+			@RequestParam("category") Integer categoryId) {
 
 		ModelAndView model = new ModelAndView();
 

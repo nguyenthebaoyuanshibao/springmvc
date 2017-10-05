@@ -18,22 +18,22 @@ public interface ProductDao {
 
 	List<Product> getAllProducts();
 
-	List<Product> getProductBy(String categoryId, String productName, Integer priceFrom, Integer priceTo);
+	List<Product> getProductBy(Integer categoryId, String productName, Integer priceFrom, Integer priceTo);
 
 	List<Product> getProductByName(String productName);
 
 	Product getProductByProductId(Integer productId);
 
-	List<Product> getProductsByCategory(String categoryId);
+	List<Product> getProductsByCategory(Integer categoryId);
 
-	void addProduct(String url, String categoryId, String productName, Integer unitPrice, Integer unitsInStock,
+	void addProduct(String url, Integer categoryId, String productName, Integer unitPrice, Integer unitsInStock,
 			String description, String manufacturer);
 
 	void deleteProductByProductId(Integer productId);
 
 	void updateUnitsInStock(Integer productId, Integer unitsInStock);
 
-	void updateProduct(Integer productId, String url, String categoryId, String productName, Integer unitPrice,
+	void updateProduct(Integer productId, String url, Integer categoryId, String productName, Integer unitPrice,
 			Integer unitsInStock, String description, String manufacturer);
 
 }

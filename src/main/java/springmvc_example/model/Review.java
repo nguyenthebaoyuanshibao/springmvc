@@ -9,7 +9,7 @@ public class Review {
 	private Integer reviewId;
 	
 	//ユーザーID
-	private String userId;
+	private Integer userId;
 	
 	//商品ID
 	private Integer productId;
@@ -31,7 +31,7 @@ public class Review {
 
 	}
 
-	public Review(Integer reviewId, String userId, Integer productId, String reviewInfo, Integer ratingNumber) {
+	public Review(Integer reviewId, Integer userId, Integer productId, String reviewInfo, Integer ratingNumber) {
 		
 		super();
 		this.reviewId = reviewId;
@@ -49,11 +49,11 @@ public class Review {
 		this.reviewId = reviewId;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

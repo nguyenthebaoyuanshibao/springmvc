@@ -25,7 +25,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 	
-	private SqlParameterSource getSqlParameterSource(Integer reviewId, String userId, Integer productId,
+	private SqlParameterSource getSqlParameterSource(Integer reviewId, Integer userId, Integer productId,
 			            String reviewInfo,  Integer ratingNumber, Timestamp createAt, Timestamp updateAt) {
 		
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -59,7 +59,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			Review review = new Review();
 			review.setReviewId(rs.getInt("review_id"));
-			review.setUserId(rs.getString("user_id"));
+			review.setUserId(rs.getInt("user_id"));
 			review.setProductId(rs.getInt("product_id"));
 			review.setReviewInfo(rs.getString("review_info"));
 			review.setRatingNumber(rs.getInt("rating_number"));
@@ -71,6 +71,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	// Get Review By Product ID
 	@Override
 	public List<Review> getReviewByProductId(Integer productId) {
+		
 		String sql = "SELECT * FROM review where product_id =:productId";
 		List<Review> reviews = this.namedParameterJdbcTemplate.query(sql, 
 				this.getSqlParameterSource(null, null, productId, null, null, null, null), new ReviewMapper());
@@ -81,16 +82,25 @@ public class ReviewDaoImpl implements ReviewDao {
 	//productId で レピューを削除する。
 	@Override
 	public void deleteReviewByProductId(Integer productId) {
-	    String sql = "DELETE FROM review where product_id =:productId ";
-	    this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, null, productId, null, null, null, null));
 		
+	    String sql = "DELETE FROM review where product_id =:productId ";
+	    this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, null, productId, null, null, null, null));	
 	}
 	
 	@Override
-	public void addReview(Integer reviewId, String userId, Integer productId) {
+	public void deleteReviewByUserId(Integer userId) {
+		
+		String sql="DELETE from review where user_id =:userId";
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, userId, null, null, null, null, null));	
+	}
+	
+	@Override
+	public void addReview(Integer reviewId, Integer userId, Integer productId) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
     
 	//レビューを追加する。
 	@Override
@@ -105,6 +115,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		// TODO Auto-generated method stub
 
 	}
+
 
 
 }

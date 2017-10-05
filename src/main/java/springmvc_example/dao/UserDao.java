@@ -8,16 +8,18 @@ import springmvc_example.model.Users;
 public interface UserDao {
 	
 	public List<Users> getAllUser();
-	
-	public Users findUserbyUserId(String userId);
-	
-	public void updateUser(String userId, String password);
-	
-	public void addUser(String userId, String password);
-	
-	public void deleteUser(String userId);
-	
-	public boolean userExists(String userId);
-	
-	public List<String> getUserRoles(String userId);
+
+	public Users findUserbyUserId(Integer userId);
+
+	public Users findUserbyUserName(String userName);
+
+	public void updateUser(Integer userId, String userName, String password);
+
+	public void addUser(String userName, String password);
+
+	public void deleteUser(Integer userId);
+
+	public boolean userExists(String userName);
+
+	public List<String> getUserRoles(Integer userId);
 }

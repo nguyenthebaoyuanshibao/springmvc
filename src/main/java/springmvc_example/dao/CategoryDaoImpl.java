@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import springmvc_example.model.Category;
+import springmvc_example.model.Product;
 
 
 @Repository
@@ -26,7 +27,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	private SqlParameterSource getSqlParameterSource(String categoryId, Timestamp createAt, Timestamp updateAt) {
+	private SqlParameterSource getSqlParameterSource(Integer categoryId, String categoryName, Timestamp createAt, Timestamp updateAt) {
 
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
@@ -34,6 +35,9 @@ public class CategoryDaoImpl implements CategoryDao {
 			parameterSource.addValue("categoryId", categoryId);
 		}
 
+		if(categoryName!=null) {
+			parameterSource.addValue("categoryName", categoryName);
+		}
 		return parameterSource;
 	}
 
@@ -43,37 +47,52 @@ public class CategoryDaoImpl implements CategoryDao {
 
 			Category category = new Category();
 
-			category.setCategoryId(rs.getString("category_id"));
-
+			category.setCategoryId(rs.getInt("category_id"));
+			category.setCategoryName(rs.getString("category_name"));
+			
 			return category;
 		}
 	}
 
 	@Override
 	//Delete Category By Category ID.
-	public void deleteCategory(String categoryId) {
+	public void deleteCategoryByCategoryId(Integer categoryId) {
 
 		String sql1 = "DELETE FROM category where category_id =:categoryId";
 
-		namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId, null, null));
+		namedParameterJdbcTemplate.update(sql1, getSqlParameterSource(categoryId, null, null, null));
 
 	}
 
 	@Override
 	public List<Category> listCategory() {
 		
-		String sql = "Select category_id from category";
+		String sql = "Select category_id, category_name from category";
 		
-		List<Category> list = this.namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, null), new CategoryMapper());
+		List<Category> list = this.namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, null, null), new CategoryMapper());
 		
 		return list;
 	}
 
 	@Override
-	public void addCategory(String categoryId) {
+	public void addCategory(String categoryName) {
 		
-		String sql = "INSERT INTO category(category_id, create_at, update_at) VALUES(:categoryId, now(), now())";
-		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(categoryId, null, null));
+		String sql = "INSERT INTO category(category_name, create_at, update_at) VALUES(:categoryName, now(), now())";
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, categoryName, null, null));
+	}
+
+	@Override
+	public boolean existsCategory(String categoryName) {
+		String sql = "Select * from category where category_name =:categoryName";
+		
+		List<Category> list = this.namedParameterJdbcTemplate.query(sql,  this.getSqlParameterSource(null, categoryName, null, null)
+				, new CategoryMapper());
+		
+		if(list.size()>0) {
+			return true;
+		}
+		
+		return false;
 	}
 
 }

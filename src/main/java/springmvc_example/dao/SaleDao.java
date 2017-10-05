@@ -7,7 +7,7 @@ import springmvc_example.model.Sale;
 public interface SaleDao {
 	
 	//Saleレコードを追加する。
-	void addSale(String userId, Integer productId, Integer quantity, Integer price);
+	void addSale(Integer userId, Integer productId, Integer quantity, Integer price);
 	
 	//Saleレコードを変更する。
 	void updateSale(Integer saleId);
@@ -17,5 +17,7 @@ public interface SaleDao {
 	
 	//productId でSaleレコードを削除する。
 	void deleteSaleByProductId(Integer productId);
+	
+	void deleteSaleByUserId(Integer userId);
 
 }

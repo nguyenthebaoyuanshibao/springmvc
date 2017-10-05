@@ -49,7 +49,10 @@ public class UserController {
 			if (result.hasErrors()) {
 				return "/user/signup";
 			} else {
-				userService.addUser(userForm.getUserId(), userForm.getPassword());
+				userService.addUser(userForm.getUserName(), userForm.getPassword());
+				
+				userService.addUserRole(userService.findUserbyUserName(userForm.getUserName()).getUserId());
+				
 				redirectAttributes.addFlashAttribute("msg", "Your account has been created successfully!");
 
 				return "redirect:/login";

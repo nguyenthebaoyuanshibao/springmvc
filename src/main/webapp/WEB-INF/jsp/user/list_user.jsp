@@ -136,10 +136,10 @@ footer {
 					</tr>
 					<c:forEach items="${list }" var="user">
 						<tr>
-							<td>${user.userId }</td>
+							<td>${user.userName }</td>
 
 							<td><spring:url value="/user/admin/removeUser" var="removeUserURL" />
-								<a href="${removeUserURL }/${user.userId}"><span
+								<a href="${removeUserURL }/${user.userName}"><span
 									class="glyphicon glyphicon-remove"></span>Remove</a></td>
 						</tr>
 					</c:forEach>

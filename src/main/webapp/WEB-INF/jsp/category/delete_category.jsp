@@ -112,19 +112,17 @@ footer {
 
 						<tr>
 							<td>Category:</td>
-							<td><select id="id" class=>
-									<option value =""></option>
+							<td><select id="id" >
 										<c:forEach items="${listCategory}" var="category">
-										<option value="${category.categoryId }">${category.categoryId }</option></c:forEach>
+										<option value="${category.categoryId }">${category.categoryName }</option>
+										</c:forEach>
 							</select></td>
 						</tr>
 
 					</table>
 				</form>
-
-				<button onclick="delete1()" class="btn btn-warning">Delete</button>
-
-
+                 <button onclick="delete1(), myFunction(${size})" class="btn btn-warning">Delete</button>
+				
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -147,8 +145,16 @@ footer {
 	   
 		var categoryIdField = document.getElementById('id');
         
+		function myFunction(size){
+			if(size> 0){			
+			    alert('Delete Category Fail! You can not delete category already has product!');
+			}
+			else {
+				alert("Delete category success!");
+			}
+		}
 		function setDeleteHref() {
-			return '/delete?id=' + categoryIdField.value ;
+			return '/delete?categoryId=' + categoryIdField.value ;
 			
 		}
 

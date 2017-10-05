@@ -3,7 +3,7 @@ package springmvc_example.model;
 public class UserRole {
 	
 	private Integer userRoleId;
-	private String userId;
+	private Integer userId;
 	private String role;
 	
 	
@@ -15,11 +15,11 @@ public class UserRole {
 		this.userRoleId = userRoleId;
 	}
 	
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 	
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	

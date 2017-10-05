@@ -2,8 +2,8 @@ package springmvc_example.form;
 
 public class UserForm {
 	
-	//ユーザーID
-	private String userId;
+	
+	private String userName;
 	
 	//パスワード
 	private String password;
@@ -11,13 +11,12 @@ public class UserForm {
 	//確認 の パスワード
 	private String confirmPassword;
 	
-	public String getUserId() {
-		
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
 	
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	public String getPassword() {

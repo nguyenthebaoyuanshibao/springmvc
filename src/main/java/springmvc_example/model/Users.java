@@ -7,7 +7,10 @@ import java.util.List;
 public class Users {
 	
 	//ユーザ ID
-	private String userId;
+	private Integer userId;
+	
+	//user name
+	private String userName;
 	
 	//パスワード
 	private String password;
@@ -31,10 +34,11 @@ public class Users {
 		super();
 	}
 
-	public Users(String userId, String password) {
+	public Users(String userName, String password) {
 
 		super();
 		this.userId = userId;
+		this.userName = userName;
 		this.password = password;
 		this.userGender = userGender;
 		this.userEmail = userEmail;
@@ -43,12 +47,20 @@ public class Users {
 		this.updateAt = updateAt;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {

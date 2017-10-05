@@ -116,9 +116,9 @@ footer {
 						<tr>
 							<td>Category:</td>
 							<td><select id="id3" >
-									<option value =""></option>
+									
 										<c:forEach items="${listCategory}" var="category">
-										<option value="${category.categoryId }">${category.categoryId }</option></c:forEach>
+										<option value="${category.categoryId }">${category.categoryName }</option></c:forEach>
 							</select></td>
 						</tr>
 
@@ -190,7 +190,7 @@ footer {
 		}
 
 		function add() {
-			window.location = "http://localhost:8080/MobileStore/user/admin/addProduct" + setAddHref();
+			window.location = "/MobileStore/user/admin/addProduct" + setAddHref();
 		}
 	</script>
 

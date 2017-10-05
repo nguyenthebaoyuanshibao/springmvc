@@ -26,7 +26,7 @@ public class SaleDaoImpl implements SaleDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	private SqlParameterSource getSqlParameterSource(String userId, Integer productId,
+	private SqlParameterSource getSqlParameterSource(Integer userId, Integer productId,
 			Integer quantity, Integer price, Timestamp createAt, Timestamp updateAt) 
 	{
 
@@ -57,7 +57,7 @@ public class SaleDaoImpl implements SaleDao {
 			
 			Sale sale = new Sale();
 			
-			sale.setUserId(rs.getString("user_id"));
+			sale.setUserId(rs.getInt("user_id"));
 			sale.setProductId(rs.getString("product_id"));
 			sale.setPrice(rs.getInt("price"));
 			sale.setQuantity(rs.getInt("quantity"));
@@ -68,7 +68,7 @@ public class SaleDaoImpl implements SaleDao {
     
 	//Saleレコードを追加する。
 	@Override
-	public void addSale(String userId, Integer productId, Integer quantity, Integer price) {
+	public void addSale(Integer userId, Integer productId, Integer quantity, Integer price) {
 		
 		String sql = "INSERT INTO sale(user_id, product_id, quantity, price, create_at, update_at) VALUES(:userId, :productId, :quantity, :price, now(), now())";
 		namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, productId, quantity, price, null, null));
@@ -97,8 +97,14 @@ public class SaleDaoImpl implements SaleDao {
 	//Saleレコードを変更する。
 	@Override
 	public void updateSale(Integer saleId) {
-		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void deleteSaleByUserId(Integer userId) {
+		
+		String sql ="delete from sale where user_id =:userId";
+		this.namedParameterJdbcTemplate.update(sql, getSqlParameterSource(userId, null, null, null, null, null));
 	}
 
 }

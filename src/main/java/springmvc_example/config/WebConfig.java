@@ -51,6 +51,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	public ResourceBundleMessageSource messageSource() {
 		ResourceBundleMessageSource rb = new ResourceBundleMessageSource();
 		rb.setBasenames(new String[]{ "validation"});
+		rb.setDefaultEncoding("UTF-8");
 		
 		return rb;
 	}

@@ -56,6 +56,7 @@ footer {
 </head>
 <body>
 
+
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -65,7 +66,7 @@ footer {
 					class="icon-bar"></span>
 			</button>
 
-		</div>
+	   </div> 
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 
@@ -106,7 +107,7 @@ footer {
 			<div class="col-sm-8 sidenav">
 				<p>${msg }</p>
 
-		   		<form>
+				<form>
 					<table align="center">
 						<tr>
 							<td>Category Name:</td>
@@ -117,7 +118,7 @@ footer {
 				</form>
 
 				<button onclick="add()" class="btn btn-success">Add</button>
-				
+		
 			</div>
 
 			<div class="col-sm-2 sidenav">
@@ -135,19 +136,18 @@ footer {
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-
-
-	   <script language="javascript" type="text/javascript">
 	
+	<script language="javascript" type="text/javascript">
 		var categoryIdField = document.getElementById('id');
-		
+
 		function setAddHref() {
-			return '/add?id=' + categoryIdField.value ;
-			
+			return '/add?id=' + categoryIdField.value;
+
 		}
 
 		function add() {
-			window.location = "http://localhost:8080/MobileStore/user/admin/addCategory" + setAddHref();
+			window.location = "http://localhost:8080/MobileStore/user/admin/addCategory"
+					+ setAddHref();
 		}
 	</script>
 

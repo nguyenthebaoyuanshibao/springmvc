@@ -29,20 +29,26 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public void addReview(String reviewId, String userId, String productId) {
+	public void addReview(Integer reviewId, Integer userId, Integer productId) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Review updateReview(String reviewId) {
+	public Review updateReview(Integer reviewId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteReview(String reviewId) {
+	public void deleteReviewByReviewId(Integer reviewId) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void deleteReviewByUserId(Integer userId) {
+		// TODO Auto-generated method stub
+		
 	}
 }

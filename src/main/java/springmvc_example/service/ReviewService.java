@@ -6,13 +6,20 @@ import springmvc_example.model.Review;
 
 public interface ReviewService {
 		
-	Review updateReview(String reviewId);
-	
-	void deleteReview(String reviewId);
-    
-	List<Review> getReviewByProductId(Integer productId);
-	
-	void addReview(String reviewId, String userId, String productId);
-	
-	void deleteReviewByProductId(Integer productId);
+	//レビューを追加する。
+		void addReview(Integer reviewId, Integer userId, Integer productId);
+		
+		//レビューを変更する。
+		Review updateReview(Integer reviewId);
+		
+		//レピューID で レピューを削除する。
+		void deleteReviewByReviewId(Integer reviewId);
+		
+		// Get Review By Product ID.
+		List<Review> getReviewByProductId(Integer productId);
+		
+		//productId で レピューを削除する。
+		void deleteReviewByProductId(Integer productId);
+		
+		void deleteReviewByUserId(Integer userId);
 }

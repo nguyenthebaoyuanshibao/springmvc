@@ -6,12 +6,14 @@ import springmvc_example.model.Sale;
 
 public interface SaleService {
 	
-	void addSale(String userId, Integer productId, Integer quantity, Integer price);
+	void addSale(Integer userId, Integer productId, Integer quantity, Integer price);
 
 	void updateSale(Integer saleId);
 	
 	List<Sale> getSaleByProductId(Integer productId);
 	
 	void deleteSaleByProductId(Integer productId);
+	
+	void deleteSaleByUserId(Integer userId);
 
 }

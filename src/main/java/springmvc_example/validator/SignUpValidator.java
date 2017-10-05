@@ -12,7 +12,6 @@ import springmvc_example.service.UserService;
 public class SignUpValidator implements Validator {
 	
 	@Autowired
-	
 	UserService userService;
 
 	public boolean supports(Class<?> clazz) {
@@ -23,7 +22,7 @@ public class SignUpValidator implements Validator {
 
 		UserForm user = (UserForm) target;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "notEmpty.userId");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "notEmpty.userName");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "notEmpty.password");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "notEmpty.confirmPassword");
 		
@@ -31,8 +30,8 @@ public class SignUpValidator implements Validator {
 			errors.rejectValue("password", "notMatch.confirmPassword");
 		}
 		
-		if (userService.userExists(user.getUserId())) {
-			errors.rejectValue("userId", "exists.userId");
+		if (userService.userExists(user.getUserName())) {
+			errors.rejectValue("userName", "exists.userName");
 		}
 	}
 

@@ -7,7 +7,10 @@ import java.util.List;
 public class Category {
 
 	// カテゴリーID
-	private String categoryId;
+	private Integer categoryId;
+	
+	// categoryName
+	private String categoryName;
 
 	// 作成日
 	private Timestamp createAt;
@@ -20,19 +23,28 @@ public class Category {
 
 	}
 
-	public Category(String categoryId, Timestamp createAt, Timestamp updateAt) {
+	public Category(Integer categoryId, String categoryName, Timestamp createAt, Timestamp updateAt) {
 		
 		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
 
-	public String getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+	
+	public String getcategoryName() {
+		return categoryName;
+	}
+	
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public Timestamp getCreateAt() {

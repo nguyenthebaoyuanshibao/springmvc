@@ -36,7 +36,7 @@ public class ProductDaoImpl implements ProductDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	private SqlParameterSource getSqlParameterSource(Integer productId, String url, String categoryId,
+	private SqlParameterSource getSqlParameterSource(Integer productId, String url, Integer categoryId,
 			String productName, Integer unitPrice,Integer priceFrom, Integer priceTo, Integer unitsInStock, 
 			String description, String manufacturer, Timestamp createAt, Timestamp updateAt) {
 
@@ -98,7 +98,7 @@ public class ProductDaoImpl implements ProductDao {
 			product.setUnitPrice(rs.getInt("unit_price"));
 			product.setUnitsInStock(rs.getInt("units_in_stock"));
 			product.setManufacturer(rs.getString("manufacturer"));
-			product.setCategoryId(rs.getString("category_id"));
+			product.setCategoryId(rs.getInt("category_id"));
             product.setUpdateAt(rs.getTimestamp("update_at"));
             product.setCreateAt(rs.getTimestamp("create_at"));
             
@@ -144,17 +144,17 @@ public class ProductDaoImpl implements ProductDao {
     
 	// Get Product By Many Params.
 	@Override
-	public List<Product> getProductBy(String categoryId,  String productName, Integer priceFrom, Integer priceTo) {
+	public List<Product> getProductBy(Integer categoryId,  String productName, Integer priceFrom, Integer priceTo) {
         
 		if(priceFrom==null) {
 			priceFrom =0;
 		}
 		
 		if(priceTo==null) {
-			priceTo =1000;
+			priceTo =1000000000;
 		}
 		
-		if (categoryId == null || categoryId == "") {
+		if (categoryId == null) {
 
 			String sql = "SELECT * from products WHERE product_name LIKE '%" + productName
 					+ "%' AND unit_price >= :priceFrom AND unit_price <= :priceTo ORDER BY product_id ";
@@ -179,7 +179,7 @@ public class ProductDaoImpl implements ProductDao {
     
 	// Get Product By Category ID.
 	@Override
-	public List<Product> getProductsByCategory(String categoryId) {
+	public List<Product> getProductsByCategory(Integer categoryId) {
 
 		String sql = "SELECT * FROM products where category_id= :categoryId";
 		List<Product> list = namedParameterJdbcTemplate.query(sql, getSqlParameterSource(null, null, categoryId, null, 
@@ -198,7 +198,7 @@ public class ProductDaoImpl implements ProductDao {
     
 	// Add Product.
 	@Override
-	public void addProduct(String url, String categoryId, String productName, Integer unitPrice, Integer unitsInStock,
+	public void addProduct(String url, Integer categoryId, String productName, Integer unitPrice, Integer unitsInStock,
 			String description, String manufacturer) {
 		
 		String sql = "INSERT INTO products(url, category_id, product_name, unit_price, units_in_stock, description, manufacturer, create_at, update_at) "
@@ -221,7 +221,7 @@ public class ProductDaoImpl implements ProductDao {
     
 	// Update Product Information.
 	@Override
-	public void updateProduct(Integer productId, String url, String categoryId, String productName, Integer unitPrice,
+	public void updateProduct(Integer productId, String url, Integer categoryId, String productName, Integer unitPrice,
 			Integer unitsInStock, String description, String manufacturer) {
          
 		String sql = "update products set url =:url, category_id =:categoryId, product_name =:productName, "
