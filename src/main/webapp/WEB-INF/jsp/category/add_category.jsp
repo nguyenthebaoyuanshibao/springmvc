@@ -25,7 +25,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -66,28 +66,16 @@ footer {
 					class="icon-bar"></span>
 			</button>
 
-	   </div> 
+		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-
+				<li class="active"><a href="/MobileStore">Home</a></li>
+				<li class="active"><a href="/MobileStore/user/admin/listUser">ListUser</a></li>
+				<li class="active"><a href="/MobileStore/user/admin/addProduct">AddProduct</a></li>
 				<li class="active"><a
-					href="/MobileStore">Home</a></li>
-					
-				 <li class="active"><a
-					href="/MobileStore/user/admin/listUser">List User</a></li>	
-
+					href="/MobileStore/user/admin/addCategory">AddCategory</a></li>
 				<li class="active"><a
-					href="/MobileStore/user/admin/addProduct">Add
-						Product</a></li>
-				
-				<li class="active"><a
-					href="/MobileStore/user/admin/addCategory">Add
-						Category</a></li>		
-						
-				<li class="active"><a
-					href="/MobileStore/user/admin/deleteCategory">Delete
-						Category</a></li>
-
+					href="/MobileStore/user/admin/deleteCategory">DeleteCategory</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -103,33 +91,20 @@ footer {
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
-
-			<div class="col-sm-8 sidenav">
+			<div class="col-sm-8 text-left ">
 				<p>${msg }</p>
-
-				<form>
-					<table align="center">
-						<tr>
-							<td>Category Name:</td>
-							<td><td><input id="id" type="text" /></td></td>
-						</tr>
-
-					</table>
-				</form>
-
-				<button onclick="add()" class="btn btn-success">Add</button>
-		
+				<table align="center">
+					<tr>
+						<td>Category Name:</td>
+						<td><input id="id" type="text" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button onclick="add()" class="btn btn-success">Add</button></td>
+					</tr>
+				</table>
 			</div>
-
-			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
-			</div>
-
+			<div class="col-sm-2 sidenav"></div>
 		</div>
 	</div>
 
@@ -139,15 +114,12 @@ footer {
 	
 	<script language="javascript" type="text/javascript">
 		var categoryIdField = document.getElementById('id');
-
 		function setAddHref() {
 			return '/add?id=' + categoryIdField.value;
-
 		}
 
 		function add() {
-			window.location = "http://localhost:8080/MobileStore/user/admin/addCategory"
-					+ setAddHref();
+			window.location = "http://localhost:8080/MobileStore/user/admin/addCategory" + setAddHref();
 		}
 	</script>
 

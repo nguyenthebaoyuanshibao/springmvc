@@ -31,7 +31,7 @@
 .sidenav {
 	padding-top: 20px;
 	background-color: #f1f1f1;
-	height: 100%;
+	height: 300%;
 }
 
 /* Set black background color, white text and some padding */
@@ -54,50 +54,38 @@ footer {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
+	<div>
+		<nav class="navbar navbar-inverse navbar-fixed-top ">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
 
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/MobileStore">Home</a></li>
+					<li class="active"><a href="/MobileStore/user/admin/listUser">ListUser</a></li>
+					<li class="active"><a href="/MobileStore/user/admin/addProduct">AddProduct</a></li>
+					<li class="active"><a href="/MobileStore/user/admin/addCategory">AddCategory</a></li>
+					<li class="active"><a href="/MobileStore/user/admin/deleteCategory">DeleteCategory</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><spring:url value="/user/removeUser" var="removeUserURL" />
+						<a href="/MobileStore/logout"> <span
+							class="glyphicon glyphicon-log-in"></span> Logout
+					</a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-
-				<li class="active"><a
-					href="/MobileStore">Home</a></li>
-					
-                <li class="active"><a
-					href="/MobileStore/user/admin/listUser">List User</a></li>
-					
-				<li class="active"><a
-					href="/MobileStore/user/admin/addProduct">Add
-						Product</a></li>
-	    
-				<li class="active"><a
-					href="/MobileStore/user/admin/addCategory">Add
-						Category</a></li>		
-						
-				<li class="active"><a
-					href="/MobileStore/user/admin/deleteCategory">Delete
-						Category</a></li>
-
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><spring:url value="/user/removeUser" var="removeUserURL" />
-					<a href="/MobileStore/logout"> <span
-						class="glyphicon glyphicon-log-in"></span> Logout
-				</a></li>
-			</ul>
-		</div>
+		</nav>
 	</div>
-	</nav>
 
-	<div class="container-fluid text-center">
+	<div class="container-fluid text-center " style="margin-top:50px">
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
 			</div>

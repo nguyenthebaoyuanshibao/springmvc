@@ -25,7 +25,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -68,25 +68,16 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-
 				<li class="active"><a
-					href="/MobileStore">Home</a></li>
-					
+					href="/MobileStore">Home</a></li>	
 				 <li class="active"><a
-					href="/MobileStore/user/admin/listUser">List User</a></li>	
-
+					href="/MobileStore/user/admin/listUser">ListUser</a></li>	
 				<li class="active"><a
-					href="/MobileStore/user/admin/addProduct">Add
-						Product</a></li>
-						
+					href="/MobileStore/user/admin/addProduct">AddProduct</a></li>				
 				<li class="active"><a
-					href="/MobileStore/user/admin/addCategory">Add
-						Category</a></li>		
-						
+					href="/MobileStore/user/admin/addCategory">AddCategory</a></li>					
 				<li class="active"><a
-					href="/MobileStore/user/admin/deleteCategory">Delete
-						Category</a></li>
-
+					href="/MobileStore/user/admin/deleteCategory">DeleteCategory</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -103,66 +94,51 @@ footer {
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
 
-			<div class="col-sm-8 sidenav">
+			<div class="col-sm-8 text-left ">
 				<p>${msg }</p>
 
-		   		<form>
+		   	
 					<table align="center">
 						<tr>
 							<td>Url:</td>
 							<td><input id="id2" type="text" /></td>
 						</tr>
-
 						<tr>
 							<td>Category:</td>
-							<td><select id="id3" >
+							<td><select id="id3" style="height:25px; width:174px; margin-top:3px">
 									
 										<c:forEach items="${listCategory}" var="category">
 										<option value="${category.categoryId }">${category.categoryName }</option></c:forEach>
 							</select></td>
 						</tr>
-
 						<tr>
 							<td>ProductName:</td>
-							<td><input id="id4" type="text" /></td>
+							<td><input id="id4" type="text" ></td>
 						</tr>
-
 						<tr>
 							<td>UnitPrice:</td>
-							<td><input id="id5" type="number" /></td>
+							<td><input id="id5" type="number" ></td>
 						</tr>
-
 						<tr>
 							<td>UnitsInStock:</td>
-							<td><input id="id6" type="number" /></td>
+							<td><input id="id6" type="number" ></td>
 						</tr>
-
 						<tr>
 							<td>Description:</td>
-							<td><input id="id7" type="text" /></td>
+							<td><input id="id7" type="text" ></td>
 						</tr>
-
 						<tr>
 							<td>Manufacturer:</td>
-							<td><input id="id8" type="text" /></td>
+							<td><input id="id8" type="text" ></td>
 						</tr>
-
+						<tr>
+						    <td></td>
+						    <td><button align="center" onclick="add()" class = "btn btn-success">Add</button></td>
+						</tr>
 					</table>
-				</form>
-
-				<button onclick="add()" class = "btn btn-success">Add</button>
-				
+			
 			</div>
-
-			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
-			</div>
-
+			<div class="col-sm-2 sidenav"></div>
 		</div>
 	</div>
 

@@ -28,6 +28,7 @@ public class SaleServiceImpl implements SaleService {
 		if (checkQuantity(productId, quantity)) {
 			if(quantity<0){
 				quantity=0;
+				
 			}
 
 			product.setUnitsInStock(product.getUnitsInStock() - quantity);
@@ -50,27 +51,42 @@ public class SaleServiceImpl implements SaleService {
 	}
 
 	@Override
-	public List<Sale> getSaleByProductId(Integer productId) {
-		return saleDao.getSaleByProductId(productId);
+	public List<Sale> getSalesByProductId(Integer productId) {
+		return saleDao.getSalesByProductId(productId);
 	}
 
 	@Override
-	public void deleteSaleByProductId(Integer productId) {
+	public void deleteSalesByProductId(Integer productId) {
 
-		saleDao.deleteSaleByProductId(productId);
+		saleDao.deleteSalesByProductId(productId);
 	}
 
 	@Override
 	public void updateSale(Integer saleId) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	public void deleteSaleByUserId(Integer userId) {
+	public void deleteSalesByUserId(Integer userId) {
 		
-		saleDao.deleteSaleByUserId(userId);
-		
+		saleDao.deleteSalesByUserId(userId);		
 	}
 
+	@Override
+	public Sale getSaleBySaleId(Integer saleId) {
+		
+		return saleDao.getSaleBySaleId(saleId);
+	}
+
+	@Override
+	public List<Sale> getSalesByUserId(Integer userId) {
+		
+		return saleDao.getSalesByUserId(userId);
+	}
+
+	@Override
+	public void deleteSaleBySaleId(Integer saleId) {
+		
+		saleDao.deleteSaleBySaleId(saleId);	
+	}
 }

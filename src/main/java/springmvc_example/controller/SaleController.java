@@ -42,7 +42,9 @@ public class SaleController {
 		String auth = SecurityContextHolder.getContext().getAuthentication().getName();
 		Integer userId = userService.findUserbyUserName(auth).getUserId();
 		ModelAndView model = new ModelAndView();
-
+        if(quantity<0) {
+        	quantity = 0;
+        }
 		saleService.addSale(userId, productId, quantity,
 				quantity * (productService.getProductByProductId(productId).getUnitPrice()));
 		model.addObject("product", productService.getProductByProductId(productId));

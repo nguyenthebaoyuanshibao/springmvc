@@ -12,3 +12,5 @@ encoding//src/main/java/springmvc_example/model/Review.java=UTF-8
 encoding//src/main/java/springmvc_example/model/Sale.java=UTF-8
 encoding//src/main/java/springmvc_example/model/Users.java=UTF-8
 encoding//src/main/java/springmvc_example/service/ReviewService.java=UTF-8
+encoding//src/main/java/springmvc_example/service/SaleService.java=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/product/order.jsp=UTF-8

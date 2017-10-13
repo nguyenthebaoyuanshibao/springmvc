@@ -22,7 +22,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -80,70 +80,85 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-			</div>
-			<div class="col-sm-8 text-left">
-				<section>
-					<div class="jumbotron">
-				</section>
-				<section class="container">
-					<div class="row">
+			<div class="col-sm-2 sidenav"></div>
 
-						<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-							<div class="thumbnail">
-
-
-								<div>
-									<image style weight="400" height="200" src=${product.url }>
-								</div>
-
-
-								<h3>${product.productName}</h3>
-
-
-
-								<h3>Description: ${product.description}</h3>
-								<h3>Price : ${product.unitPrice}USD</h3>
-								<h3>Units In Stock: ${product.unitsInStock }</h3>
-
-
-							</div>
-
-							<div>
-								<a href="<spring:url value="/order/${product.productId }" />"
-									class="btn btn-warning btn-large"> <span
-									class="glyphicon-shopping-cart glyphicon"></span> Order Now
-								</a>
-							</div>
-
-
+			<div class="col-sm-8 " style="margin-top: 30px">
+				<div class="col-sm-4 col-md-3" style="padding-bottom: 15px">
+					<div class="thumbnail">
+						<div>
+							<img style weight="300" height="250" src=${product.url } />
 						</div>
-
+						<div style="margin-top: 30px">
+							<table>
+								<tr>
+									<td></td>
+									<td>${product.productName}</td>
+								</tr>
+								<tr>
+								<td></td>
+								<td>Description: ${product.description}</td>
+								</tr>
+								<tr>
+								    <td></td>
+								    <td>Price : ${product.unitPrice}USD</td>
+								</tr>
+								<tr>
+								    <td></td>
+								    <td>Units In Stock: ${product.unitsInStock }</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><a
+										href="<spring:url value="/order/${product.productId }" />"
+										class="btn btn-warning btn-large"> <span
+											class="glyphicon-shopping-cart glyphicon"></span> Order Now
+									</a></td>
+								</tr>
+							</table>
+						</div>
 					</div>
-				</section>
-
+					<div class="container-fluid text-left">
+						<form>
+							<div>
+								<label for="comment">Comment:</label>
+								<textarea class="form-control" style="width:270px;" rows="5" id="comment">${userId }</textarea>
+							</div>
+						</form>
+						<button  onclick="submitComment" class="btn btn-info">Submit</button>
+					</div>
+				</div>	
+				<div class="container col-sm-4 " >
+				</div>
+				<div class="container col-sm-4 " >
+				    <div class="container-fluid text-left">
+							<div>
+								<label for="comment">Top Comment:</label>
+								<textarea class="form-control " rows="26" >    
+								</textarea>
+							</div>			
+					</div>
+				</div>
 			</div>
+			
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
+				
 			</div>
 		</div>
 	</div>
 
 	<footer class="container-fluid text-center">
 		<p>Footer Text</p>
+	<script language="javascript" type="text/javascript">
+		
+
+		function setSubmmitCommentHref() {
+			return 'product/detail/?id='; 
+			
+		}
+		
+		function submmitComment() {
+			window.location = "http://localhost:8080/MobileStore/" + setSearchHref();
+		}
+	</script>	
 </body>
 </html>

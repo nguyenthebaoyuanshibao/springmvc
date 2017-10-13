@@ -12,12 +12,18 @@ public interface SaleDao {
 	//Saleレコードを変更する。
 	void updateSale(Integer saleId);
 	
+	Sale getSaleBySaleId(Integer saleId);
+	
+	List<Sale> getSalesByUserId(Integer userId);
+	
 	// Get sale's record by productId.
-	List<Sale> getSaleByProductId(Integer productId);
+	List<Sale> getSalesByProductId(Integer productId);
+	
+	void deleteSaleBySaleId(Integer saleId);
 	
 	//productId でSaleレコードを削除する。
-	void deleteSaleByProductId(Integer productId);
+	void deleteSalesByProductId(Integer productId);
 	
-	void deleteSaleByUserId(Integer userId);
+	void deleteSalesByUserId(Integer userId);
 
 }

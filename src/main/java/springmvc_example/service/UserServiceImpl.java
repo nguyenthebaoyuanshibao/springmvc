@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
 		
 		userRoleDao.deleteUser(userId);
 		reviewDao.deleteReviewByUserId(userId);
-		saleDao.deleteSaleByUserId(userId);
+		saleDao.deleteSalesByUserId(userId);
 		userDao.deleteUser(userId);
 	}
 

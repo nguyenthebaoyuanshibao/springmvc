@@ -22,7 +22,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -116,12 +116,6 @@ footer {
 
 			</div>
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
 			</div>
 
 		</div>

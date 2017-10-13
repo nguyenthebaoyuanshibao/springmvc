@@ -29,26 +29,38 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 	@Override
-	public void addReview(Integer reviewId, Integer userId, Integer productId) {
-		// TODO Auto-generated method stub
-
+	public void addReview(Integer userId, Integer productId, String reviewInfo) {
+		// kiem tra xem user hien tai co quyen add review hay khong
+       reviewDao.addReview(userId, productId, reviewInfo);
 	}
 
 	@Override
-	public Review updateReview(Integer reviewId) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateReview(Integer reviewId, String reviewInfo) {
+		// khi update can phai xac thuc xem user hien tai co phai la nguoi da review khong
+		reviewDao.updateReview(reviewId, reviewInfo);
 	}
 
 	@Override
 	public void deleteReviewByReviewId(Integer reviewId) {
-		// TODO Auto-generated method stub
+		// khi delete can phai xac thuc xem user hien tai co phai la nguoi da review hoac la ADMIN khong
 
 	}
 
 	@Override
 	public void deleteReviewByUserId(Integer userId) {
-		// TODO Auto-generated method stub
+		reviewDao.deleteReviewByUserId(userId);
 		
+	}
+
+	@Override
+	public Review getReviewByReviewId(Integer reviewId) {
+		
+		return reviewDao.getReviewByReviewId(reviewId);
+	}
+
+	@Override
+	public List<Review> getReviewByUserId(Integer userId) {
+		
+		return reviewDao.getReviewByUserId(userId);
 	}
 }

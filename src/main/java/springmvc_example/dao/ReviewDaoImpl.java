@@ -95,25 +95,49 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	@Override
-	public void addReview(Integer reviewId, Integer userId, Integer productId) {
-		// TODO Auto-generated method stub
-
+	public void addReview(Integer userId, Integer productId, String reviewInfo) {
+		
+		String sql = "insert from review(user_id, product_id, review_info, create_at, update_at) values (:userId, :productId, :reviewInfo, now(), now()";
+		this.namedParameterJdbcTemplate.update(sql, this.getSqlParameterSource(null, userId, productId, reviewInfo, null, null, null));
 	}
 	
 	
     
 	//レビューを追加する。
 	@Override
-	public Review updateReview(Integer reviewId) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateReview(Integer reviewId, String reviewInfo) {
+		
+         String sql = "update review set review_info :=reviewInfo, update_at = now() where review_id :=reviewId";
+         this.namedParameterJdbcTemplate.update(sql, 
+        		 this.getSqlParameterSource(reviewId, null, null, reviewInfo, null, null, null));
 	}
     
 	//レピューID で レピューを削除する。
 	@Override
 	public void deleteReviewByReviewId(Integer reviewId) {
-		// TODO Auto-generated method stub
+		
+		String sql = "delete from review where review_id :=reviewId";
+		this.namedParameterJdbcTemplate.update(sql, 
+				this.getSqlParameterSource(reviewId, null, null, null, null, null, null));
+	}
 
+	@Override
+	public Review getReviewByReviewId(Integer reviewId) {
+		
+		String sql = "select * from review where review_id :=reviewId";
+		Review review = namedParameterJdbcTemplate.queryForObject(sql,
+				this.getSqlParameterSource(reviewId, null, null, null, null, null, null), new ReviewMapper());
+		
+		return review;
+	}
+
+	@Override
+	public List<Review> getReviewByUserId(Integer userId) {
+		
+		String sql = "select * from review where user_id :=userId";
+		List<Review> list = namedParameterJdbcTemplate.query(sql, 
+				this.getSqlParameterSource(null, userId, null, null, null, null, null) , new ReviewMapper());
+		return list;
 	}
 
 

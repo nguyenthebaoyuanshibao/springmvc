@@ -25,7 +25,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -61,32 +61,22 @@ footer {
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
 			</button>
 
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-
-				<li class="active"><a
-					href="/MobileStore">Home</a></li>
-				
-				 <li class="active"><a
-					href="/MobileStore/user/admin/listUser">List User</a></li>	
-
-				<li class="active"><a
-					href="/MobileStore/user/admin/addProduct">Add
+				<li><a href="/MobileStore">Home</a></li>
+				<li><a href="/MobileStore/user/admin/listUser">List User</a></li>
+				<li><a href="/MobileStore/user/admin/addProduct">Add
 						Product</a></li>
-
-				<li class="active"><a
-					href="/MobileStore/user/admin/addCategory">Add
-						Category</a></li>		
-						
-				<li class="active"><a
-					href="/MobileStore/user/admin/deleteCategory">Delete
+				<li><a href="/MobileStore/user/admin/addCategory">Add
 						Category</a></li>
-
+				<li><a href="/MobileStore/user/admin/deleteCategory">Delete
+						Category</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -103,7 +93,7 @@ footer {
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
 
-			<div class="col-sm-8 sidenav">
+			<div class="col-sm-8">
 				<p>${msg }</p>
 
 				<form>
@@ -156,19 +146,9 @@ footer {
 				</form>
 
 				<button onclick="update()" class="btn btn-success">Update</button>
-
-
 			</div>
-
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
 			</div>
-
 		</div>
 	</div>
 

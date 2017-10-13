@@ -23,7 +23,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -89,26 +89,11 @@ footer {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-			
-				<li class="active">
-				    <a href="/MobileStore">Home</a>
-				</li>
-				
-				 <li class="active"><a
-					href="/MobileStore/user/admin/listUser">List User</a></li>
-					
-                <li class="active">
-                    <a href="/MobileStore/user/admin/addProduct">Add Product</a>
-                </li>
-                
-                <li class="active"><a
-					href="/MobileStore/user/admin/addCategory">Add
-						Category</a></li>
-                
-               <li class="active">
-                    <a href="/MobileStore/user/admin/deleteCategory">Delete Category</a>
-                </li>
-                
+				<li class="active"><a href="/MobileStore">Home</a></li>
+				<li class="active"><a href="/MobileStore/user/admin/listUser">ListUser</a></li>	
+                <li class="active"><a href="/MobileStore/user/admin/addProduct">AddProduct</a> </li>
+                <li class="active"><a href="/MobileStore/user/admin/addCategory">AddCategory</a></li>
+                <li class="active"><a href="/MobileStore/user/admin/deleteCategory">DeleteCategory</a></li>     
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

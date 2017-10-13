@@ -158,7 +158,7 @@ public class AdminController {
              
 			ModelAndView model = new ModelAndView();
 			List<Category> listCategory = categoryService.listCategory();
-			model.addObject("listCategory", listCategory );
+		    model.addObject("listCategory", listCategory );
 			model.setViewName("category/add_category");
 
 			return model;
@@ -181,6 +181,7 @@ public class AdminController {
 		ModelAndView model = new ModelAndView();
 		List<Category> listCategory = categoryService.listCategory();
 		model.addObject("listCategory", listCategory );
+		
 		for(Category category:listCategory) {
 			Integer size = productService.getProductsByCategory(category.getCategoryId()).size();
 			model.addObject("size", size);

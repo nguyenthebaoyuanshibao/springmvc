@@ -7,20 +7,26 @@ import springmvc_example.model.Review;
 public interface ReviewDao {
 	
 	//レビューを追加する。
-	void addReview(Integer reviewId, Integer userId, Integer productId);
+	void addReview(Integer userId, Integer productId, String reviewInfo);
 	
 	//レビューを変更する。
-	Review updateReview(Integer reviewId);
+	void updateReview(Integer reviewId, String reviewInfo);
 	
-	//レピューID で レピューを削除する。
-	void deleteReviewByReviewId(Integer reviewId);
+	Review getReviewByReviewId(Integer reviewId);
+	
+	List<Review> getReviewByUserId(Integer userId);
 	
 	// Get Review By Product ID.
 	List<Review> getReviewByProductId(Integer productId);
 	
+	//レピューID で レピューを削除する。
+	void deleteReviewByReviewId(Integer reviewId);
+	
+	void deleteReviewByUserId(Integer userId);
+	
 	//productId で レピューを削除する。
 	void deleteReviewByProductId(Integer productId);
 	
-	void deleteReviewByUserId(Integer userId);
+
 
 }

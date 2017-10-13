@@ -23,7 +23,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-	height: 450px
+	height: 850px
 }
 
 /* Set gray background color and 100% height */
@@ -79,34 +79,18 @@ footer {
 	</nav>
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-				<p>
-					<a href="#"></a>
-				</p>
-			</div>
-			<div class="col-sm-8 text-left">
+			<div class="col-sm-2 sidenav"></div>
+			
+			<div class="col-sm-8 text-left" style="margin-top:30px">
 				<div>
 					<div>
-						<image style weight="200" height="200" src=${ product.url}>
+						<image style weight="300" height="250" src=${ product.url}>
 					</div>
-
-
 					<h3>${product.productName}</h3>
-
-
-
 					<p>Description: ${product.description}</p>
 					<p>Price : ${product.unitPrice}USD</p>
 					Units In Stock:
 					<p id="id1">${product.unitsInStock}</p>
-
-
 					<form>
 						Number of stocks you want buy: <input id="id2" type="number"
 							name="" max=${product.unitsInStock} min=0>
@@ -116,16 +100,9 @@ footer {
 						<span class="glyphicon-shopping-cart glyphicon"></span>Order
 					</button>
 				</div>
-
 			</div>
-			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p></p>
-				</div>
-				<div class="well">
-					<p></p>
-				</div>
-			</div>
+			
+			<div class="col-sm-2 sidenav"></div>
 		</div>
 	</div>
 
@@ -139,10 +116,11 @@ footer {
 		function myFunction() {
 			if ((numberOfQuantityField.value.charAt(0)!="-")&&((unitsInStockField.innerHTML.length > numberOfQuantityField.value.length)
 					|| ((unitsInStockField.innerHTML.length == numberOfQuantityField.value.length)
-						&& (unitsInStockField.innerHTML > numberOfQuantityField.value)))) {
-				alert('Order Success');
+						&& (unitsInStockField.innerHTML >= numberOfQuantityField.value)))) {
+				alert('Order Success!');
 			} else {
-				alert('Order fail, the units of stock is not enought !');
+				alert('Order fail, the units of stock is not enought !'); 
+				
 			}
 		}
 		function setSearchHref() {
